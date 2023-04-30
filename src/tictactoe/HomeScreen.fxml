@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1024.0" styleClass="root" stylesheets="@../css/homescreen.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.HomeScreenController">
+   <children>
+      <StackPane prefHeight="720.0" prefWidth="1024.0">
+         <children>
+            <ImageView fitHeight="720.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/full_background.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <StackPane alignment="CENTER_LEFT" layoutX="265.0" layoutY="217.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="150.0" prefWidth="564.0">
+         <children>
+            <Button fx:id="singleBtn" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="Single" textAlignment="CENTER" StackPane.alignment="CENTER_LEFT">
+               <StackPane.margin>
+                  <Insets left="80.0" />
+               </StackPane.margin>
+            </Button>
+            <ImageView fx:id="singleImg" fitHeight="116.0" fitWidth="116.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" styleClass="singleImg">
+               <image>
+                  <Image url="@../assets/single.png" />
+               </image></ImageView>
+         </children>
+      </StackPane>
+      <StackPane alignment="CENTER_LEFT" layoutX="265.0" layoutY="360.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="150.0" prefWidth="564.0">
+         <children>
+            <Button fx:id="twoPlayersBtn" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#pressTwoPlayer" text="Two Players" textAlignment="CENTER" StackPane.alignment="CENTER_LEFT">
+               <StackPane.margin>
+                  <Insets left="80.0" />
+               </StackPane.margin>
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="twoPlayersImg" fitHeight="116.0" fitWidth="116.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/multi%20players%201.png" />
+               </image></ImageView>
+         </children>
+      </StackPane>
+      <StackPane alignment="CENTER_LEFT" layoutX="265.0" layoutY="510.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="150.0" prefWidth="564.0">
+         <children>
+            <Button fx:id="onlineBtn" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="Online" textAlignment="CENTER" StackPane.alignment="CENTER_LEFT">
+               <StackPane.margin>
+                  <Insets left="80.0" />
+               </StackPane.margin>
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="onlineImg" fitHeight="116.0" fitWidth="116.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/online.png" />
+               </image></ImageView>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>
