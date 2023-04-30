@@ -21,7 +21,7 @@
       </StackPane>
       <StackPane alignment="CENTER_LEFT" layoutX="265.0" layoutY="360.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="150.0" prefWidth="564.0">
          <children>
-            <Button fx:id="twoPlayersBtn" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="Two Players" textAlignment="CENTER" StackPane.alignment="CENTER_LEFT">
+            <Button fx:id="twoPlayersBtn" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#pressTwoPlayer" text="Two Players" textAlignment="CENTER" StackPane.alignment="CENTER_LEFT">
                <StackPane.margin>
                   <Insets left="80.0" />
                </StackPane.margin>

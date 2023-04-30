@@ -84,5 +84,11 @@ public class HomeScreenController implements Initializable {
 
       
     }
+
+    @FXML
+    private void pressTwoPlayer(ActionEvent event) throws IOException {
+        navigate(event,"GameBoard.fxml");
+    }
+        
 }
     
