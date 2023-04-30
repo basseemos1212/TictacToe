@@ -68,7 +68,7 @@
 }
 .labelStyle
 {
-   -fx-font-size: 30;   
+   /*-fx-font-size: 30;*/   
    -fx-text-fill: linear-gradient(to bottom left,#748DFE,#788CFE);
    -fx-font-family: 'MyFont';
 }
