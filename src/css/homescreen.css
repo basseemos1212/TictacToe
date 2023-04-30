@@ -2,7 +2,7 @@
 .root
 {
    
-   -fx-background-image: url("/assets/full_background.png");
+   -fx-background-image: url('/assets/full_background.png');
    -fx-background-size:cover;
 }
 
@@ -40,23 +40,23 @@
     
 }
 
-.singleImg
+#singleImg
 {
-    -fx-image: url("/assets/single.png");
+    -fx-image: url('/assets/single.png');
     -fx-fit-width: 116px;
     -fx-fit-height: 116px;
 }
-/*#twoPlayersImg
+#twoPlayersImg
 {
-    -fx-image: url("assets/multi players 1.png");
+    -fx-image: url('/assets/multi-players.png');
     -fx-fit-width: 116px;
     -fx-fit-height: 116px;
 }
 #onlineImg
 {
-    -fx-image: url("assetsonline.png");
+    -fx-image: url('/assets/online.png');
     -fx-fit-width: 116px;
     -fx-fit-height: 116px;
-}*/
+}
 
 
