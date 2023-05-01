@@ -52,6 +52,7 @@ public class TicTacToe extends Application {
         });
 
         stage.show();
+        stage.setResizable(false);
         delay.play();
 
     }
