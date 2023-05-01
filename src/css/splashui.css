@@ -13,6 +13,12 @@
     -fx-background-position: center;
 
 }
+.parent2{
+    -fx-background-image: url("/assets/full_background.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+
+}
 
 
 
