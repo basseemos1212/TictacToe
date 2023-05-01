@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="signuplbg" stylesheets="@../css/splashui.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.SignupController">
+<AnchorPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1024.0" styleClass="signuplbg" stylesheets="@../css/splashui.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.SignupController">
    <children>
-      <VBox layoutX="286.0" layoutY="237.0" prefHeight="186.0" prefWidth="254.0" spacing="15.0">
+      <VBox layoutX="385.0" layoutY="278.0" prefHeight="186.0" prefWidth="254.0" spacing="15.0">
          <children>
-            <TextField fx:id="signupusername" promptText="UserName" styleClass="signuptextfield" />
+            <TextField fx:id="signupusername" prefHeight="61.0" prefWidth="282.0" promptText="UserName" styleClass="signuptextfield" stylesheets="@../css/fullpackstyle.css" />
             <HBox fx:id="passHB" alignment="CENTER" styleClass="passwordhbox">
                <children>
                   <PasswordField fx:id="signuppass" layoutX="300.0" layoutY="400.0" promptText="Password" styleClass="passwordtextfield" />
@@ -35,8 +35,8 @@
          <opaqueInsets>
             <Insets />
          </opaqueInsets></VBox>
-      <Text fx:id="signupLabel" layoutX="352.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="signuplabel" text="SignUp" />
-      <HBox alignment="CENTER" layoutX="274.0" layoutY="423.0" prefHeight="30.0" prefWidth="278.0">
+      <Text fx:id="signupLabel" layoutX="451.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="signuplabel" text="SignUp" />
+      <HBox alignment="CENTER" layoutX="373.0" layoutY="464.0" prefHeight="30.0" prefWidth="278.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="normalText" text="Already have an account?  " />
             <Hyperlink fx:id="gotosignin" onAction="#onGoToSignin" styleClass="hyperLink" text="Sign In" />

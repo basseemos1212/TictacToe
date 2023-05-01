@@ -2,9 +2,15 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1024.0" styleClass="root" stylesheets="@../css/homescreen.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.HomeScreenController">
@@ -21,7 +27,7 @@
       </StackPane>
       <StackPane alignment="CENTER_LEFT" layoutX="265.0" layoutY="360.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="150.0" prefWidth="564.0">
          <children>
-            <Button fx:id="twoPlayersBtn" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="Two Players" textAlignment="CENTER" StackPane.alignment="CENTER_LEFT">
+            <Button fx:id="twoPlayersBtn" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#pressTwoPlayer" text="Two Players" textAlignment="CENTER" StackPane.alignment="CENTER_LEFT">
                <StackPane.margin>
                   <Insets left="80.0" />
                </StackPane.margin>
@@ -45,5 +51,74 @@
             <ImageView fx:id="onlineImg" fitHeight="116.0" fitWidth="116.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" />
          </children>
       </StackPane>
+      <VBox layoutX="851.0" layoutY="225.0" prefHeight="134.0" prefWidth="156.0" style="-fx-background-color: #FFCE36;" styleClass="playerCard" stylesheets="@../css/fullpackstyle.css">
+         <children>
+            <Pane prefHeight="100.0" prefWidth="153.0">
+               <VBox.margin>
+                  <Insets left="5.0" right="10.0" top="20.0" />
+               </VBox.margin>
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="102.0" layoutX="22.0" layoutY="-17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/avatar.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Label fx:id="name" alignment="CENTER" prefHeight="39.0" prefWidth="196.0" text="Bassem" textOverrun="CLIP">
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="1.0">
+                     <stops>
+                        <Stop color="WHITE" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="855.0" layoutY="369.0" prefHeight="134.0" prefWidth="148.0" style="-fx-background-color: #FF76CB;" styleClass="recordedGames" stylesheets="@../css/fullpackstyle.css">
+         <children>
+            <ImageView fitHeight="65.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/record.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="savedGanes" alignment="CENTER" prefHeight="39.0" prefWidth="196.0" text="Saved Games" textOverrun="CLIP">
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="1.0">
+                     <stops>
+                        <Stop color="WHITE" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="852.0" layoutY="523.0" prefHeight="134.0" prefWidth="148.0" style="-fx-background-color: #00D1FF;" styleClass="recordedGames" stylesheets="@../css/fullpackstyle.css">
+         <children>
+            <ImageView fitHeight="65.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/about.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="aboutText" alignment="CENTER" prefHeight="39.0" prefWidth="196.0" text="About" textOverrun="CLIP">
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="1.0">
+                     <stops>
+                        <Stop color="WHITE" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+         </children>
+      </VBox>
+      <Button fx:id="recordScreenBtn" layoutX="848.0" layoutY="367.0" mnemonicParsing="false" onAction="#recordScreenNav" prefHeight="134.0" prefWidth="156.0" style="-fx-background-color: transparent;" />
+      <Button fx:id="aboutScreenBtn" layoutX="837.0" layoutY="504.0" mnemonicParsing="false" onAction="#aboutScreenNav" prefHeight="163.0" prefWidth="167.0" style="-fx-background-color: transparent;" />
    </children>
 </AnchorPane>

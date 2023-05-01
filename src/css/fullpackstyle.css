@@ -9,11 +9,6 @@
     /*-fx-opacity: 0.17;*/
       
 }
-@font-face {
-    font-family: 'MyFont';
-    src: url('C:\Users\Bassem\Desktop\Project\TicTacToe\src\assets\fonts\ChunkFive-Regular.otf');
-}
-
 .textfield
 {
 
@@ -71,4 +66,29 @@
    /*-fx-font-size: 30;*/   
    -fx-text-fill: linear-gradient(to bottom left,#748DFE,#788CFE);
    -fx-font-family: 'MyFont';
+}
+
+.playerCard
+{
+    -fx-background-radius: 0 50 50 50 ; 
+}
+
+.recordedGames
+{
+    -fx-background-radius: 0 50 50 50 ; 
+}
+.playerAvatar
+{
+    -fx-image: url("./assets/avatar.png");
+    
+}
+.whitebackground
+{
+    -fx-background-color: transparent;
+}
+.scroll-pane{
+    -fx-background-color: transparent;
+}
+.scroll-pane .viewport {
+       -fx-background-color: transparent;
 }
