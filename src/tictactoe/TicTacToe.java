@@ -5,6 +5,7 @@
  */
 package tictactoe;
 
+import Models.AppClient;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,9 +51,13 @@ public class TicTacToe extends Application {
                 Logger.getLogger(TicTacToe.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
+        
+
 
         stage.show();
+        stage.setResizable(false);
         delay.play();
+        
 
     }
 
@@ -60,6 +65,14 @@ public class TicTacToe extends Application {
     public void init() throws Exception {
         super.init(); 
         myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 15);
+        
+        try {
+           AppClient.getInstance("localhost", 3333);
+       } catch (IOException ex) {
+           ex.printStackTrace();
+           Logger.getLogger(TicTacToe.class.getName()).log(Level.SEVERE, null, ex);
+       }
+
 
     }
     
@@ -69,6 +82,8 @@ public class TicTacToe extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+
+
         launch(args);
 
     }

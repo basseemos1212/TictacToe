@@ -5,6 +5,8 @@
  */
 package tictactoe;
 
+import Models.AppClient;
+import Models.Client;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -43,6 +45,12 @@ import javafx.stage.Stage;
  * @author moham
  */
 public class SignupController implements Initializable {
+    
+   
+    
+    private AppClient appClient;
+    private Client client;
+
 
     @FXML
     private Text signupLabel;
@@ -91,7 +99,16 @@ public class SignupController implements Initializable {
 
         showHidePassword();
         validatePassword();
+        
+        
+        try {
+            this.appClient= AppClient.getInstance("localhost", 3333);
+            this.client = appClient.getClient();
 
+        } catch (IOException ex) {
+            Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     @FXML
@@ -110,8 +127,30 @@ public class SignupController implements Initializable {
             // TODO: Submit the form
             boolean isTwoPassFieldsMatch = checkIfTheTwoPasswordsMatch();
             if(isTwoPassFieldsMatch){
-                //Do THE SIGN UP
-                System.out.println("SIGNUP CLICKED!!");
+
+                String username = signupusername.getText();
+                
+                try {
+                    boolean success = client.signUp(username, password);
+                    if (success) {
+                        // do something on success, go Home screen for example
+                        System.out.println("succefully signed up player "  + username);
+                        
+                        
+                    } else {
+                        // User exists
+                        System.out.println("succefully signed up player (from client)");
+                        Alert alert = new Alert(AlertType.WARNING);
+                        alert.setTitle("Already Exists!");
+                        alert.setHeaderText("This username already exits, you can try to login with this name");
+                        alert.showAndWait();
+
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                
             }
         } else {
             // If the password does not match the criteria, show an alert dialog
