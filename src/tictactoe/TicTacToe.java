@@ -30,7 +30,7 @@ public class TicTacToe extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("SplashUI.fxml"));
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 1024, 700);
 
 //    Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         stage.setScene(scene);
@@ -43,7 +43,7 @@ public class TicTacToe extends Application {
                 // Load the FXML file for the first screen
                 Parent firstScreenRoot = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
 
-                Scene firstScreenScene = new Scene(firstScreenRoot, 800, 600);
+                Scene firstScreenScene = new Scene(firstScreenRoot, 1024, 700);
                 stage.setScene(firstScreenScene);
 
             } catch (IOException ex) {
@@ -52,6 +52,7 @@ public class TicTacToe extends Application {
         });
 
         stage.show();
+        stage.setResizable(false);
         delay.play();
 
     }
