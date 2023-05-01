@@ -3,8 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/css/fullpackstyle.css</file>
             <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/TicTacToe.java</file>
             <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/SignInController.java</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/RecordsScreen.fxml</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/css/splashui.css</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/AboutController.java</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/Models/Game.java</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/HomeScreenController.java</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/SplashUIController.java</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/GameCard.fxml</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/RecordsScreenController.java</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/GameCardController.java</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/css/homescreen.css</file>
         </group>
     </open-files>
 </project-private>
