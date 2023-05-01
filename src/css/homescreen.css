@@ -42,7 +42,7 @@
 
 #singleImg
 {
-    -fx-image: url('/assets/single.png');
+        -fx-image: url('/assets/single.png');
     -fx-fit-width: 116px;
     -fx-fit-height: 116px;
 }
