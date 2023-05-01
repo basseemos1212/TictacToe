@@ -13,6 +13,12 @@
     -fx-background-position: center;
 
 }
+.parent2{
+    -fx-background-image: url("/assets/full_background.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+
+}
 
 
 
@@ -57,6 +63,17 @@
     -fx-pref-height: 30px;
     -fx-prompt-text-fill: #788CFE;
 }
+.aboutTextArea{
+    -fx-background-color: transparent;
+    
+    -fx-background-radius: 10;
+    -fx-text-fill: #748DFE;
+    -fx-prompt-text-fill: #788CFE;
+    -fx-text-alignment:center;
+  
+    
+}
+
 
 
 .passwordtextfield{
