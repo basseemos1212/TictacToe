@@ -10,7 +10,7 @@
       <StackPane alignment="CENTER" layoutX="200.0" layoutY="125.0" prefHeight="150.0" prefWidth="200.0" />
       <ImageView fx:id="logoImage" fitHeight="436.0" fitWidth="518.0" layoutX="253.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/logogroup.png" />
+            <Image url="@../assets/Logo.png" />
          </image>
       </ImageView>
 

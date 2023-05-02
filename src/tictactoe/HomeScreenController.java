@@ -21,6 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -32,6 +33,8 @@ import javafx.stage.Stage;
  */
 public class HomeScreenController implements Initializable {
 
+    @FXML
+    private AnchorPane parent;
     @FXML
     private Button singleBtn;
     @FXML
@@ -45,18 +48,24 @@ public class HomeScreenController implements Initializable {
     @FXML
     private ImageView onlineImg;
     @FXML
-    private AnchorPane parent;
-    @FXML
     private Label name;
     @FXML
-    private Label savedGanes;
+    private VBox recordVBox;
     @FXML
-    private Label aboutText;
+    private ImageView recordImg;
+    @FXML
+    private VBox aboutVBox;
     @FXML
     private Button recordScreenBtn;
     @FXML
     private Button aboutScreenBtn;
-    Font myCustomFont2 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"),18);
+
+    /**
+     * Initializes the controller class.
+     */
+    Font myCustomFont2 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"),22);
+    @FXML
+    private Label scoreLabel;
 
     /**
      * Initializes the controller class.
@@ -67,9 +76,10 @@ public class HomeScreenController implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
         // TODO
         Font myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"),26);
+        Font myCustomFont3 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"),26);
         name.setFont(myCustomFont2);
-        savedGanes.setFont(myCustomFont2);
-        aboutText.setFont(myCustomFont2);
+        scoreLabel.setFont(myCustomFont3);
+        
         
         Set<Node> allNodes = parent.lookupAll("*");
         for (Node node : allNodes) {
@@ -100,6 +110,7 @@ public class HomeScreenController implements Initializable {
 
       
     }
+  
 
     @FXML
     private void pressTwoPlayer(ActionEvent event) throws IOException {
@@ -107,7 +118,7 @@ public class HomeScreenController implements Initializable {
     }
 
     @FXML
-    private void recordScreenNav(ActionEvent event)throws IOException {
+    private void recordScreenNav(ActionEvent event) throws IOException {
         navigate(event,"RecordsScreen.fxml");
     }
 
@@ -115,6 +126,5 @@ public class HomeScreenController implements Initializable {
     private void aboutScreenNav(ActionEvent event) throws IOException{
          navigate(event,"About.fxml");
     }
-        
-}
     
+}
