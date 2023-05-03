@@ -72,6 +72,11 @@
 {
     -fx-background-radius: 0 50 50 50 ; 
 }
+
+.recordedGames
+{
+    -fx-background-radius: 0 50 50 50 ; 
+}
 .playerAvatar
 {
     -fx-image: url("./assets/avatar.png");

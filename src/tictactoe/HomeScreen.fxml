@@ -2,9 +2,15 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1024.0" styleClass="root" stylesheets="@../css/homescreen.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.HomeScreenController">
@@ -45,5 +51,67 @@
             <ImageView fx:id="onlineImg" fitHeight="116.0" fitWidth="116.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" />
          </children>
       </StackPane>
+      <VBox layoutX="851.0" layoutY="225.0" prefHeight="170.0" prefWidth="156.0" style="-fx-background-color: #FFCE36;" styleClass="playerCard" stylesheets="@../css/fullpackstyle.css" AnchorPane.bottomAnchor="420.0">
+         <children>
+            <Pane prefHeight="100.0" prefWidth="153.0">
+               <VBox.margin>
+                  <Insets left="5.0" right="10.0" top="20.0" />
+               </VBox.margin>
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="102.0" layoutX="22.0" layoutY="-17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/avatar.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Label fx:id="name" alignment="CENTER" prefHeight="39.0" prefWidth="196.0" text="Bassem" textOverrun="CLIP">
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="1.0">
+                     <stops>
+                        <Stop color="WHITE" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+               <VBox.margin>
+                  <Insets top="-15.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="scoreLabel" alignment="CENTER" layoutX="10.0" layoutY="115.0" prefHeight="39.0" prefWidth="196.0" text="10" textOverrun="CLIP">
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="1.0">
+                     <stops>
+                        <Stop color="WHITE" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+               <VBox.margin>
+                  <Insets top="-10.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+      <VBox fx:id="recordVBox" alignment="CENTER" layoutX="128.0" layoutY="149.0" AnchorPane.bottomAnchor="500.6">
+         <children>
+            <ImageView fx:id="recordImg" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/record.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox fx:id="aboutVBox" alignment="CENTER" layoutX="897.0" layoutY="554.6" AnchorPane.bottomAnchor="95.0">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/about.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <Button fx:id="recordScreenBtn" layoutX="127.0" layoutY="148.99999999999997" mnemonicParsing="false" onAction="#recordScreenNav" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="500.6" />
+      <Button fx:id="aboutScreenBtn" layoutX="897.0" layoutY="550.6" mnemonicParsing="false" onAction="#aboutScreenNav" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="99.0" />
    </children>
 </AnchorPane>

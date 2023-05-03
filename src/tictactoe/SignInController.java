@@ -5,7 +5,11 @@
  */
 package tictactoe;
 
+import model.AppClient;
+import model.Client;
+import model.Player;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -36,17 +40,20 @@ import org.apache.derby.jdbc.ClientDriver;
  * @author Bassem
  */
 public class SignInController implements Initializable {
+    private AppClient appClient;
+    private Client client;
 
     @FXML
     private PasswordField passwordTextField;
     @FXML
     private TextField userNameTextField;
     @FXML
-    private Button sgnInButton;
-    @FXML
     private Button signUpButton;
-   
-
+    @FXML
+    private Button signInBtn;
+    
+    private Player player;
+   //HomeScreenController homeScreenController=new HomeScreenController(player) ;
     /**
      * Initializes the controller class.
      * @param arg0
@@ -54,26 +61,21 @@ public class SignInController implements Initializable {
      */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+        try {
+            this.appClient= AppClient.getInstance("localhost", 3333);
+            this.client = appClient.getClient();
+
+        } catch (IOException ex) {
+            Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         // TODO
     }    
 
+  
     @FXML
-    private void signIn(ActionEvent event) throws SQLException, IOException{
-         
-       /* if(validate()){
-                CheckSignIn(userNameTextField.getText(), passwordTextField.getText());
-                System.out.println("valid");
-           
-        }else{
-            System.out.println("not valid");
-        }*/
-       
-       navigate(event,"HomeScreen.fxml");
-
-    }
-
-    @FXML
-    private void signUp(ActionEvent event) {
+    private void signUpOnclick(ActionEvent event) throws IOException {
+        navigate(event, "SignUp.fxml");
        
     }  
     private Boolean validate(){
@@ -95,44 +97,8 @@ public class SignInController implements Initializable {
                   return true;
             }
     }
-    private void CheckSignIn(String username,String password){
-        
-        try {
-            Connection con;
-            DriverManager.registerDriver(new ClientDriver());
-            con =DriverManager.getConnection("jdbc:derby://localhost:1527/tictactoe","root","root");            
-            PreparedStatement pst=con.prepareStatement("SELECT * FROM ROOT.PLAYER where username=? ",ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
-            pst.setString(1, username);
-            ResultSet rs=pst.executeQuery();
-            
-            if(rs.first()){
-               if(password.equals(rs.getString("pasword"))){
-                   
-               
-               }else{
-                passwordTextField.setStyle("-fx-border-color: red ; -fx-border-widrh:2px");
-                passwordTextField.clear();
-                passwordTextField.setPromptText("Incorrect password");
-               }
-                
-            
-            }else{
-                userNameTextField.setStyle("-fx-border-color: red ; -fx-border-widrh:2px");
-                userNameTextField.clear();
-                userNameTextField.setPromptText("username Dont Exist");
-           
-                
-            }
-          
-            rs.close();
-            con.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-              
-            
-}
-        private void navigate(ActionEvent event, String url) throws IOException{
+     
+    private void navigate(ActionEvent event, String url) throws IOException{
     
                 // Load the FXML file for the first screen
         Parent root;
@@ -148,4 +114,48 @@ public class SignInController implements Initializable {
 
       
     }
+    
+        private void goToHome(ActionEvent event,Player player ) throws IOException{
+        // Load the FXML file for the HomeScreen
+        Parent root ;
+        Stage stage;
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("HomeScreen.fxml"));
+        root = loader.load();
+
+        // Get the controller instance for the HomeScreen
+        
+        HomeScreenController homeScreenController = loader.getController();
+         homeScreenController.setPlayer(player);
+
+        // Set the player object as a property of the HomeScreenController
+       
+
+        // Show the HomeScreen
+        Scene scene = new Scene(root);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+ 
+}
+  
+
+
+    @FXML
+    private void signInonClick(ActionEvent event) throws IOException {
+                String username  = userNameTextField.getText();
+                String password = passwordTextField.getText();
+                
+        try {
+             player = client.signIn(username, password);
+            System.out.println("signInonClick obj =" +player.getUsername());
+             goToHome(event,player );
+                  //navigate(event, "HomeScreen.fxml");
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
 }

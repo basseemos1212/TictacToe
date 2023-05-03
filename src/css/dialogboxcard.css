@@ -1,0 +1,23 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+#parent
+{
+    -fx-background-color: #3B1787;
+    /*-fx-background-radius: 30px;**/
+    -fx-pref-height: 300px;
+    -fx-pref-width: 500px;
+}
+#dialoBoxMsg1
+{
+    -fx-text-fill: linear-gradient(to right, #59DFFF, #788CFE);
+}
+#dialoBoxMsg2
+{
+    -fx-text-fill: linear-gradient(to right, #59DFFF, #788CFE);
+}
+#dialogHeaderLabel
+{
+    -fx-text-fill: linear-gradient(to right, #59DFFF, #788CFE);
+}

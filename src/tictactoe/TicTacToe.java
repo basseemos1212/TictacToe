@@ -5,7 +5,7 @@
  */
 package tictactoe;
 
-import Models.AppClient;
+import model.AppClient;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,7 +42,7 @@ public class TicTacToe extends Application {
         delay.setOnFinished(event -> {
             try {
                 // Load the FXML file for the first screen
-                Parent firstScreenRoot = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
+                Parent firstScreenRoot = FXMLLoader.load(getClass().getResource("SignIn.fxml"));
 
                 Scene firstScreenScene = new Scene(firstScreenRoot, 1024, 700);
                 stage.setScene(firstScreenScene);
