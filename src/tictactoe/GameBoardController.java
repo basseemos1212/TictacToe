@@ -7,16 +7,22 @@ package tictactoe;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 /**
@@ -25,22 +31,15 @@ import javafx.util.Duration;
  */
 public class GameBoardController implements Initializable {
 
-    private Image xImage = new Image("/assets/x.png");
+    private Image xImage = new Image("/assets/x_1.png");
 
-    private Image oImage = new Image("/assets/o.png");
+    private Image oImage = new Image("/assets/o_1.png");
 
     int xoCounter = 0;
     int test = 0;
 
     boolean endOFGame = false;
-//    @FXML
-//    private Label label;
-//    
-//    @FXML
-//    private void handleButtonAction(ActionEvent event) {
-//        System.out.println("You clicked me!");
-//        label.setText("Hello World!");
-//    }
+
     @FXML
     private ImageView playerOneImg;
     @FXML
@@ -68,14 +67,18 @@ public class GameBoardController implements Initializable {
     @FXML
     private Button gameBoardBtn9;
     @FXML
-    private ImageView playerTwoImg;
+    private ImageView playerOneImg2;
     @FXML
-    private Label playerTwoName;
+    private Label playerOneName2;
     @FXML
-    private ImageView playerTwoSmbl;
+    private ImageView playerOneSmbl2;
+    @FXML
+    private BorderPane borderPane;
+    private Font myCustomFont;
+
 
     @FXML
-    public void onClick(ActionEvent event) {
+    public void onClickListner(ActionEvent event) {
 
         Button onClick = (Button) event.getSource();
         System.out.println("test= " + test++);
@@ -241,18 +244,35 @@ public class GameBoardController implements Initializable {
     public void flashButton(Button button) {
 
         Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(0.3), evt -> button.setStyle("-fx-background-color: yellow")),
-                new KeyFrame(Duration.seconds(0.6), evt -> button.setStyle("-fx-background-color: #3B1787"))
+                new KeyFrame(Duration.seconds(0.3), evt -> {
+                    button.setStyle("-fx-background-color: yellow; -fx-text-fill: yellow;");
+                }),
+                new KeyFrame(Duration.seconds(0.6), evt -> {
+                    button.setStyle("-fx-background-color: #3B1787; -fx-text-fill: #3B1787;");
+                })
         );
         timeline.setCycleCount(7);
 
         timeline.play();
-        button.setStyle("-fx-background-color: yellow");
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 18);
+        Set<Node> allNodes = borderPane.lookupAll("*");
+        for (Node node : allNodes) {
+            if (node instanceof Text) {
+                ((Text) node).setFont(myCustomFont);
+
+            } else if (node instanceof Button) {
+                ((Button) node).setFont(myCustomFont);
+            } else if (node instanceof TextField) {
+                ((TextField) node).setFont(myCustomFont);
+            }else if (node instanceof Label) {
+                ((Label) node).setFont(myCustomFont);}
+        }
+
+  
     }
 
 }

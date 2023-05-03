@@ -3,15 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Models;
 
-/**
- *
- * @author Nouran
- */
-public class Player {
-    
-    private int id;
+package model;
+
+import java.io.Serializable;
+
+public class Player implements Serializable {
     private String username;
     private String password;
     private String ImagePath;
@@ -21,9 +18,17 @@ public class Player {
     public Player() {
     }
 
+
+    public Player(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
     
-    public Player(int id, String username, String password, String ImagePath, int score, int status) {
-        this.id = id;
+
+    
+    public Player(String username, String password, String ImagePath, int score, int status) 
+    {
+
         this.username = username;
         this.password = password;
         this.ImagePath = ImagePath;
@@ -31,13 +36,8 @@ public class Player {
         this.status = status;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+
 
     public String getUsername() {
         return username;
@@ -79,7 +79,7 @@ public class Player {
         this.status = status;
     }
     
-    
+
     
     
 }

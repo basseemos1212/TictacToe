@@ -5,8 +5,8 @@
  */
 package tictactoe;
 
-import Models.Game;
-import Models.Player;
+import model.Game;
+import model.Player;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Set;

@@ -16,15 +16,15 @@
          <children>
             <Pane prefHeight="720.0" prefWidth="1024.0">
                <children>
-                  <PasswordField fx:id="passwordTextField" layoutX="226.0" layoutY="322.0" prefHeight="65.0" prefWidth="573.0" promptText="Password" styleClass="textfield" />
-                  <TextField fx:id="userNameTextField" layoutX="226.0" layoutY="222.0" prefHeight="65.0" prefWidth="573.0" promptText="Username" style="-fx-font-family: MyFont;" styleClass="textfield" stylesheets="@../css/fullpackstyle.css" />
-                  <Button fx:id="sgnInButton" layoutX="226.0" layoutY="433.0" mnemonicParsing="false" onAction="#signIn" styleClass="button1" text="Sign In" />
+                  <PasswordField fx:id="passwordTextField" layoutX="397.0" layoutY="326.0" prefHeight="65.0" prefWidth="573.0" promptText="Password" styleClass="signuptextfield" />
+                  <TextField fx:id="userNameTextField" layoutX="397.0" layoutY="271.0" prefHeight="65.0" prefWidth="573.0" promptText="Username" style="-fx-font-family: MyFont;" styleClass="signuptextfield" stylesheets="@../css/fullpackstyle.css" />
+                  <Button fx:id="signInBtn" layoutX="397.0" layoutY="378.0" mnemonicParsing="false" onAction="#signInonClick" styleClass="signupbutton" text="Sign In" />
                   <ImageView fitHeight="34.0" fitWidth="115.0" layoutX="628.0" layoutY="554.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../assets/SignInButton.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="signUpButton" layoutX="614.0" layoutY="549.0" mnemonicParsing="false" onAction="#signUp" prefHeight="44.0" prefWidth="138.0" style="-fx-background-color: transparent;" />
+                  <Button fx:id="signUpButton" layoutX="614.0" layoutY="549.0" mnemonicParsing="false" onAction="#signUpOnclick" prefHeight="44.0" prefWidth="138.0" style="-fx-background-color: transparent;" />
                </children>
             </Pane>
          </children>
