@@ -94,22 +94,22 @@ public class RecordsScreenController implements Initializable {
     private List<Game> games(){
         List<Game> gm=new ArrayList<>();
         Game game1=new Game();
-        game1.setGameID("first");
+        game1.setGameID(1);
         game1.setPlayer1Img("/assets/avatar.png");
         game1.setPlayer2Img("/assets/single.png");
         gm.add(game1);
           Game game2=new Game();
-        game2.setGameID("first");
+        game2.setGameID(2);
         game2.setPlayer1Img("/assets/avatar.png");
         game2.setPlayer2Img("/assets/single.png");
         gm.add(game2);
           Game game3=new Game();
-        game3.setGameID("first");
+        game3.setGameID(3);
         game3.setPlayer1Img("/assets/avatar.png");
         game3.setPlayer2Img("/assets/single.png");
         gm.add(game1);
           Game game4=new Game();
-        game4.setGameID("first");
+        game4.setGameID(4);
         game4.setPlayer1Img("/assets/avatar.png");
         game4.setPlayer2Img("/assets/single.png");
         gm.add(game1);

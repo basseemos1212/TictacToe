@@ -10,15 +10,34 @@ package Models;
  * @author Bassem
  */
 public class Game {
-    private String gameID;
-    private String player1Img;
-    private String player2Img;
 
-    public String getGameID() {
+    private Integer gameID;
+    private String player1Img="/assets/avatar.png";
+    private String player2Img="/assets/avatar.png";
+    private String p1UserName;
+    private String p2UserName;
+
+    public String getP1UserName() {
+        return p1UserName;
+    }
+
+    public void setP1UserName(String p1UserName) {
+        this.p1UserName = p1UserName;
+    }
+
+    public String getP2UserName() {
+        return p2UserName;
+    }
+
+    public void setP2UserName(String p2UserName) {
+        this.p2UserName = p2UserName;
+    }
+
+    public Integer getGameID() {
         return gameID;
     }
 
-    public void setGameID(String gameID) {
+    public void setGameID(Integer gameID) {
         this.gameID = gameID;
     }
 
@@ -37,6 +56,5 @@ public class Game {
     public void setPlayer2Img(String player2Img) {
         this.player2Img = player2Img;
     }
-    
-    
+
 }
