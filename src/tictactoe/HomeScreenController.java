@@ -24,12 +24,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.Player;
 
 /**
  * FXML Controller class
  *
  * @author Nouran
  */
+
 public class HomeScreenController implements Initializable {
 
     @FXML
@@ -56,6 +58,9 @@ public class HomeScreenController implements Initializable {
     private Button recordScreenBtn;
     @FXML
     private Button aboutScreenBtn;
+    
+    private  Player player ;
+
     Font myCustomFont2 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"),18);
 
     /**
@@ -66,6 +71,7 @@ public class HomeScreenController implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         // TODO
+       // printPlayer(player);
         Font myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"),26);
         name.setFont(myCustomFont2);
         savedGanes.setFont(myCustomFont2);
@@ -83,6 +89,12 @@ public class HomeScreenController implements Initializable {
     }    
     
         }
+    }
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+        public void printPlayer(Player player) {
+            System.out.println("from home player is :"+ player.getUsername());
     }
         private void navigate(ActionEvent event, String url) throws IOException{
     
@@ -104,6 +116,7 @@ public class HomeScreenController implements Initializable {
     @FXML
     private void pressTwoPlayer(ActionEvent event) throws IOException {
         navigate(event,"GameBoard.fxml");
+        printPlayer(player);
     }
 
     @FXML

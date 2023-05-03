@@ -5,7 +5,7 @@
  */
 package tictactoe;
 
-import Models.Game;
+import model.Game;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;

@@ -5,11 +5,14 @@
  */
 package tictactoe;
 
+import model.AppClient;
+import model.Client;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.logging.Level;
@@ -26,7 +29,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Control;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -43,6 +49,12 @@ import javafx.stage.Stage;
  * @author moham
  */
 public class SignupController implements Initializable {
+    
+   
+    
+    private AppClient appClient;
+    private Client client;
+
 
     @FXML
     private Text signupLabel;
@@ -91,11 +103,20 @@ public class SignupController implements Initializable {
 
         showHidePassword();
         validatePassword();
+        
+        
+        try {
+            this.appClient= AppClient.getInstance("localhost", 3333);
+            this.client = appClient.getClient();
 
+        } catch (IOException ex) {
+            Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     @FXML
-    public void onSignupClicked() {
+    public void onSignupClicked(ActionEvent event ) {
         
         String password = signuppass.getText();
 
@@ -110,8 +131,35 @@ public class SignupController implements Initializable {
             // TODO: Submit the form
             boolean isTwoPassFieldsMatch = checkIfTheTwoPasswordsMatch();
             if(isTwoPassFieldsMatch){
-                //Do THE SIGN UP
-                System.out.println("SIGNUP CLICKED!!");
+
+                String username = signupusername.getText();
+                
+                try {
+                    boolean success = client.signUp(username, password);
+                    if (success) {
+                        // do something on success, go Home screen for example
+                        System.out.println("succefully signed up player "  + username);
+                       
+
+                         navigate(event, "SignIn.fxml");
+
+                        
+                       
+                        
+                    } else {
+                        // User exists
+                        System.out.println("succefully signed up player (from client)");
+                        Alert alert = new Alert(AlertType.WARNING);
+                        alert.setTitle("Already Exists!");
+                        alert.setHeaderText("This username already exits, you can try to login with this name");
+                        alert.showAndWait();
+
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                
             }
         } else {
             // If the password does not match the criteria, show an alert dialog
@@ -213,5 +261,33 @@ public class SignupController implements Initializable {
             return true;
         }
     }
+
+//    private void onTest(ActionEvent event) {
+////         Alert alert = new Alert(Alert.AlertType.NONE);
+////                       alert.setTitle("Sign-Up Success");
+////                       alert.setContentText("You have successfully signed up.");
+////                       alert.setResult(ButtonType.CANCEL);
+////                       alert.setWidth(400);
+////                       alert.setHeight(250);
+////
+////                        DialogPane dialogPane = alert.getDialogPane();
+////                        dialogPane.getStylesheets().add(getClass().getResource("/css/splashui.css").toExternalForm());
+////                        dialogPane.getStyleClass().add("myDialog");
+//Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//alert.setTitle("Information Dialog");
+//alert.setHeaderText("Look, an Information Dialog");
+//alert.setContentText("I have a great message for you!");
+//
+//ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+//alert.getButtonTypes().add(cancelButton);
+//
+//Optional<ButtonType> result = alert.showAndWait();
+//if (result.isPresent() && result.get() == cancelButton) {
+//    // Cancel button was clicked, do something here
+//}
+//
+//
+//                       // Optional<ButtonType> result = alert.showAndWait();
+//    }
 
 }
