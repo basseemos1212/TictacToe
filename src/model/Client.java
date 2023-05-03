@@ -5,6 +5,8 @@
  */
 package model;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -31,17 +33,26 @@ public class Client {
     }
 
     public boolean signUp(String username, String password) throws IOException {
-        outputStream.writeUTF("signup");
-        outputStream.writeUTF(username);
-        outputStream.writeUTF(password);
+        JsonObject jsonObject=new JsonObject();
+        jsonObject.addProperty("username", username);
+        jsonObject.addProperty("password", password);
+        jsonObject.addProperty("func", "signup");
+        Gson gson = new Gson();
+        String json = gson.toJson(jsonObject);
+        System.out.println(json);
+        outputStream.writeUTF(json);
         return inputStream.readBoolean();
     }
     
     
     public Player signIn(String username, String password) throws IOException, ClassNotFoundException {
-        outputStream.writeUTF("signin");
-        outputStream.writeUTF(username);
-        outputStream.writeUTF(password);
+        JsonObject jsonObject=new JsonObject();
+        jsonObject.addProperty("username", username);
+        jsonObject.addProperty("password", password);
+        jsonObject.addProperty("func", "signin");
+            Gson gson = new Gson();
+        outputStream.writeUTF(gson.toJson(jsonObject));
+    
         player=(Player) inputObjectStream.readObject();
         return player;
     
