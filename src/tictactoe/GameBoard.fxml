@@ -38,47 +38,47 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button fx:id="gameBoardBtn1" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#onClick" styleClass="square1">
+                        <Button fx:id="gameBoardBtn1" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#onClickListner" styleClass="square1">
                            <font>
                               <Font size="0.1" />
                            </font>
                         </Button>
-                        <Button fx:id="gameBoardBtn2" mnemonicParsing="false" onAction="#onClick" styleClass="square2" textOverrun="CLIP" GridPane.columnIndex="1">
+                        <Button fx:id="gameBoardBtn2" mnemonicParsing="false" onAction="#onClickListner" styleClass="square2" textOverrun="CLIP" GridPane.columnIndex="1">
                            <font>
                               <Font size="0.1" />
                            </font>
                         </Button>
-                        <Button fx:id="gameBoardBtn3" mnemonicParsing="false" onAction="#onClick" styleClass="square1" GridPane.columnIndex="2">
+                        <Button fx:id="gameBoardBtn3" mnemonicParsing="false" onAction="#onClickListner" styleClass="square1" GridPane.columnIndex="2">
                            <font>
                               <Font size="0.1" />
                            </font>
                         </Button>
-                        <Button fx:id="gameBoardBtn4" alignment="CENTER" mnemonicParsing="false" onAction="#onClick" styleClass="square2" GridPane.rowIndex="1">
+                        <Button fx:id="gameBoardBtn4" alignment="CENTER" mnemonicParsing="false" onAction="#onClickListner" styleClass="square2" GridPane.rowIndex="1">
                            <font>
                               <Font size="1.0" />
                            </font>
                         </Button>
-                        <Button fx:id="gameBoardBtn5" mnemonicParsing="false" onAction="#onClick" styleClass="square2" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Button fx:id="gameBoardBtn5" mnemonicParsing="false" onAction="#onClickListner" styleClass="square2" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font size="1.0" />
                            </font>
                         </Button>
-                        <Button fx:id="gameBoardBtn6" mnemonicParsing="false" onAction="#onClick" styleClass="square1" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <Button fx:id="gameBoardBtn6" mnemonicParsing="false" onAction="#onClickListner" styleClass="square1" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <font>
                               <Font size="1.0" />
                            </font>
                         </Button>
-                        <Button fx:id="gameBoardBtn7" mnemonicParsing="false" onAction="#onClick" styleClass="square1" GridPane.rowIndex="2">
+                        <Button fx:id="gameBoardBtn7" mnemonicParsing="false" onAction="#onClickListner" styleClass="square1" GridPane.rowIndex="2">
                            <font>
                               <Font size="1.0" />
                            </font>
                         </Button>
-                        <Button fx:id="gameBoardBtn8" mnemonicParsing="false" onAction="#onClick" styleClass="square2" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Button fx:id="gameBoardBtn8" mnemonicParsing="false" onAction="#onClickListner" styleClass="square2" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <font>
                               <Font size="1.0" />
                            </font>
                         </Button>
-                        <Button fx:id="gameBoardBtn9" alignment="CENTER" mnemonicParsing="false" onAction="#onClick" styleClass="square2" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <Button fx:id="gameBoardBtn9" alignment="CENTER" mnemonicParsing="false" onAction="#onClickListner" styleClass="square2" GridPane.columnIndex="2" GridPane.rowIndex="2">
                            <font>
                               <Font size="1.0" />
                            </font>

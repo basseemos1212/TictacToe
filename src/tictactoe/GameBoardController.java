@@ -78,7 +78,7 @@ public class GameBoardController implements Initializable {
 
 
     @FXML
-    public void onClick(ActionEvent event) {
+    public void onClickListner(ActionEvent event) {
 
         Button onClick = (Button) event.getSource();
         System.out.println("test= " + test++);

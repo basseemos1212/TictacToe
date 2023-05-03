@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
-import Models.Game;
+import model.Game;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.image.Image;
