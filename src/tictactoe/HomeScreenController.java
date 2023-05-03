@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Set;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -69,7 +70,7 @@ public class HomeScreenController implements Initializable {
     @FXML
     private Label scoreLabel;
     
-    private  Player player ;
+    public static   Player player ;
 
 
     /**
@@ -80,11 +81,14 @@ public class HomeScreenController implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         // TODO
-       // printPlayer(player);
+//        printPlayer(player);
         Font myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"),26);
         Font myCustomFont3 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"),26);
         name.setFont(myCustomFont2);
         scoreLabel.setFont(myCustomFont3);
+        Platform.runLater(() ->  name.setText(player.getUsername()));
+       
+        
         
         
         Set<Node> allNodes = parent.lookupAll("*");
@@ -128,6 +132,7 @@ public class HomeScreenController implements Initializable {
     private void pressTwoPlayer(ActionEvent event) throws IOException {
         navigate(event,"GameBoard.fxml");
         printPlayer(player);
+         
     }
 
     @FXML
