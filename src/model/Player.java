@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package model;
 
 import java.io.Serializable;
@@ -17,6 +18,7 @@ public class Player implements Serializable {
     public Player() {
     }
 
+
     public Player(String username, String password) {
         this.username = username;
         this.password = password;
@@ -26,12 +28,15 @@ public class Player implements Serializable {
     
     public Player(String username, String password, String ImagePath, int score, int status) 
     {
+
         this.username = username;
         this.password = password;
         this.ImagePath = ImagePath;
         this.score = score;
         this.status = status;
     }
+
+
 
 
     public String getUsername() {
@@ -75,8 +80,6 @@ public class Player implements Serializable {
     }
     
 
-   
-    
     
     
 }

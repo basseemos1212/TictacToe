@@ -58,5 +58,22 @@
     -fx-fit-width: 116px;
     -fx-fit-height: 116px;
 }
-
+#recordImg
+{
+   -fx-image: url('/assets/record.png'); 
+}
+#recordVBox
+{
+    -fx-background-color: #FF76CB;
+    -fx-background-radius: 0 50 50 50 ; 
+    -fx-pref-width:70px;
+    -fx-pref-height:70px;
+}
+#aboutVBox
+{
+    -fx-background-color:  #00D1FF;
+    -fx-background-radius: 0 50 50 50 ; 
+    -fx-pref-width:70px;
+    -fx-pref-height:70px;
+}
 

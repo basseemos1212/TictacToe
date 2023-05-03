@@ -6,6 +6,13 @@
 package model;
 
 import java.io.IOException;
+import java.net.ConnectException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import tictactoe.HelperClass;
 
 /**
  *
@@ -15,8 +22,11 @@ public class AppClient {
     private static AppClient instance = null;
     private Client client;
 
-    private AppClient(String serverIP, int serverPort) throws IOException {
-        client = new Client(serverIP, serverPort);
+    private AppClient(String serverIP, int serverPort) throws IOException
+    {
+       
+            client = new Client(serverIP, serverPort);
+        
     }
 
     public static AppClient getInstance(String serverIP, int serverPort) throws IOException {
