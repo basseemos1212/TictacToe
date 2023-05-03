@@ -14,7 +14,7 @@
 
 }
 .parent2{
-    -fx-background-image: url("/assets/full_background.png");
+    -fx-background-image: url("/assets/SignIn.png");
     -fx-background-size: cover;
     -fx-background-position: center;
 
@@ -126,4 +126,12 @@
 
     
 
+}
+.myDialog{
+    
+    
+    
+    -fx-background-image: url("/assets/Signupbg.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
 }
