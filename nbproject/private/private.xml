@@ -3,11 +3,29 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+
             <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/SignInController.java</file>
             <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/TicTacToe.java</file>
             <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/ClientUtility.java</file>
             <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/model/Client.java</file>
             <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/SignupController.java</file>
+
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/css/dialogboxcard.css</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/css/fullpackstyle.css</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/ChoosePlayerController.java</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/TicTacToe.java</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/model/Client.java</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/ChoosePlayerDialogController.java</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/model/Player.java</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/HomeScreenController.java</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/model/Game.java</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/recordedGames/dtbMrV.json</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/ChoosePlayerDialog.fxml</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/RecordsScreenController.java</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/GameBoardController.java</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/recordedGames/wmt9Cj.json</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/GameCardController.java</file>
+
         </group>
     </open-files>
 </project-private>
