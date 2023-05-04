@@ -387,7 +387,7 @@ public class GameBoardController implements Initializable {
 
     public void test() {
 
-        for (int i = 3; i < moves.size()-1; i++) {
+        for (int i = 3; i < moves.size() - 1; i++) {
             System.out.println(Integer.valueOf(moves.get(i)) == 1);
             System.out.println("while i = " + i + "moves = " + moves.get(i));
             Timeline timeline = new Timeline(
@@ -416,11 +416,11 @@ public class GameBoardController implements Initializable {
             }) : Integer.valueOf(moves.get(i)) == 8 ? new KeyFrame(Duration.seconds(i + 0.1), (event) -> {
 
                 RecordClick(gameBoardBtn8);
-            }) :Integer.valueOf(moves.get(i)) == 9 ? new KeyFrame(Duration.seconds(i + 0.1), (event) -> {
+            }) : Integer.valueOf(moves.get(i)) == 9 ? new KeyFrame(Duration.seconds(i + 0.1), (event) -> {
 
                 RecordClick(gameBoardBtn9);
             }) : new KeyFrame(Duration.seconds(i + 0.1), (event) -> {
-                        System.out.println("nothing");
+                System.out.println("nothing");
             }));
 
             timeline.setCycleCount(0);
@@ -474,7 +474,7 @@ public class GameBoardController implements Initializable {
 
     private void playRecordedGame() {
         String fileName = fileRecorded;
-        File file = new File("src/recordedGames/"+fileRecorded);
+        File file = new File("src/recordedGames/" + fileRecorded);
 
 // Read the JSON file using a BufferedReader
         StringBuilder sb = new StringBuilder();
@@ -495,7 +495,7 @@ public class GameBoardController implements Initializable {
         for (String move : jsonArray) {
             moves.add(move);
         }
-       
+
 // Print the Vector object
         for (String move : jsonArray) {
             System.out.println(move);
@@ -505,33 +505,18 @@ public class GameBoardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        ClientUtility.changeFontInAllNodes(borderPane);
 
-        myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 18);
-        Set<Node> allNodes = borderPane.lookupAll("*");
-
-        for (Node node : allNodes) {
-            if (node instanceof Text) {
-                ((Text) node).setFont(myCustomFont);
-
-            } else if (node instanceof Button) {
-                ((Button) node).setFont(myCustomFont);
-            } else if (node instanceof TextField) {
-                ((TextField) node).setFont(myCustomFont);
-            } else if (node instanceof Label) {
-                ((Label) node).setFont(myCustomFont);
-            }
-        }
         if (!playRecord) {
-              moves.add(formattedDate);
+            moves.add(formattedDate);
             moves.add(player1);
             moves.add(player2);
 
-        }else{
-     playRecordedGame();
+        } else {
+            playRecordedGame();
         }
         Platform.runLater(() -> {
-          
-         
+
             if (playRecord) {
                 playerOneName.setText(moves.get(1));
                 playerOneName2.setText(moves.get(2));
