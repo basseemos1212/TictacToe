@@ -123,10 +123,16 @@ public class RecordsScreenController implements Initializable {
 //                    moves.add(move);
 //                }
 //                System.out.println(moves);
+               for(int x=3;x<jsonArray.length;x++){
+                   moves.add(jsonArray[x]);
                
-                Game game =new Game(jsonArray[0], jsonArray[1], jsonArray[2], jsonArray[jsonArray.length-1]);
+               
+               }
+                System.out.println("we are in cart fileName=");
+                Game game =new Game(file.getName(), jsonArray[1], jsonArray[2], jsonArray[jsonArray.length-1],moves);
                 games.add(game);
                 System.out.println(jsonArray[jsonArray.length-1]);
+                moves.clear();
                 
      
                 
@@ -141,7 +147,8 @@ public class RecordsScreenController implements Initializable {
                 try {
                     HBox hbox = fxmlloader.load();
                     GameCardController gCardController = fxmlloader.getController();
-                    gCardController.setData(games.get(i).getPlayerName1(), games.get(i).getPlayerName2());
+                    gCardController.setData(games.get(i).getPlayerName1(), games.get(i).getPlayerName2(),games.get(i).getGameName());
+                    gCardController.setMoves(games.get(i).getMoves());
                     gamesVbox.getChildren().add(hbox);
 
                 } catch (IOException e) {

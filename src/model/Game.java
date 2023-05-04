@@ -17,13 +17,19 @@ public class Game {
     private String playerName1;
     private String playerName2;
     private String winner;
+    Vector<String> moves;
+
+    public Vector<String> getMoves() {
+        return moves;
+    }
    
 
-    public Game(String gameName, String playerName1, String playerName2, String winner) {
+    public Game(String gameName, String playerName1, String playerName2, String winner,Vector<String> moves) {
         this.gameName = gameName;
         this.playerName1 = playerName1;
         this.playerName2 = playerName2;
         this.winner = winner;
+        this.moves=moves;
         
     }
 

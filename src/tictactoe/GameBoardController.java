@@ -54,13 +54,12 @@ public class GameBoardController implements Initializable {
 
     int xoCounter = 0;
     int test = 0;
-
-    boolean endOFGame = false;
-    boolean playRecord = false;
-    boolean isRecoarding = false;
-    String fileRecorded = "wmt9Cj.json";
-    private String player1 = "";
-    private String player2 = "";
+    private boolean endOFGame = false;
+    public static boolean playRecord = false;
+    private boolean isRecoarding = false;
+    public static String fileRecorded;
+    public static String player1="";
+    public static String player2="";
     @FXML
     private ImageView playerOneImg;
     @FXML
@@ -114,6 +113,18 @@ public class GameBoardController implements Initializable {
 
     public void setPlayer2(String player2) {
         this.player2 = player2;
+    }
+
+    public void setPlayRecord(boolean playRecord) {
+        this.playRecord = playRecord;
+    }
+
+    public String getFileRecorded() {
+        return fileRecorded;
+    }
+
+    public void setFileRecorded(String fileRecorded) {
+        this.fileRecorded = fileRecorded;
     }
 
     @FXML
@@ -387,7 +398,7 @@ public class GameBoardController implements Initializable {
 
     public void test() {
 
-        for (int i = 3; i < moves.size()-1; i++) {
+        for (int i = 3; i < moves.size() - 1; i++) {
             System.out.println(Integer.valueOf(moves.get(i)) == 1);
             System.out.println("while i = " + i + "moves = " + moves.get(i));
             Timeline timeline = new Timeline(
@@ -416,11 +427,11 @@ public class GameBoardController implements Initializable {
             }) : Integer.valueOf(moves.get(i)) == 8 ? new KeyFrame(Duration.seconds(i + 0.1), (event) -> {
 
                 RecordClick(gameBoardBtn8);
-            }) :Integer.valueOf(moves.get(i)) == 9 ? new KeyFrame(Duration.seconds(i + 0.1), (event) -> {
+            }) : Integer.valueOf(moves.get(i)) == 9 ? new KeyFrame(Duration.seconds(i + 0.1), (event) -> {
 
                 RecordClick(gameBoardBtn9);
             }) : new KeyFrame(Duration.seconds(i + 0.1), (event) -> {
-                        System.out.println("nothing");
+                System.out.println("nothing");
             }));
 
             timeline.setCycleCount(0);
@@ -473,8 +484,7 @@ public class GameBoardController implements Initializable {
     }
 
     private void playRecordedGame() {
-        String fileName = fileRecorded;
-        File file = new File("src/recordedGames/"+fileRecorded);
+        File file = new File("src/recordedGames/" + fileRecorded);
 
 // Read the JSON file using a BufferedReader
         StringBuilder sb = new StringBuilder();
@@ -495,7 +505,7 @@ public class GameBoardController implements Initializable {
         for (String move : jsonArray) {
             moves.add(move);
         }
-       
+
 // Print the Vector object
         for (String move : jsonArray) {
             System.out.println(move);
@@ -506,6 +516,9 @@ public class GameBoardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        System.out.println("moves=" + moves);
+        System.out.println("fileName" + fileRecorded);
+        System.out.println("the boolean =" + playRecord);
         myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 18);
         Set<Node> allNodes = borderPane.lookupAll("*");
 
@@ -521,21 +534,29 @@ public class GameBoardController implements Initializable {
                 ((Label) node).setFont(myCustomFont);
             }
         }
-        if (!playRecord) {
-              moves.add(formattedDate);
-            moves.add(player1);
-            moves.add(player2);
+        if (playRecord) {
+            System.out.println("iam playing the record game with ");
 
-        }else{
-     playRecordedGame();
+            System.out.println("filename=" + fileRecorded);
+//     playRecordedGame();
         }
         Platform.runLater(() -> {
-          
-         
+            if (!playRecord) {
+                moves.add(formattedDate);
+                moves.add(player1);
+                moves.add(player2);
+
+            }
+
             if (playRecord) {
-                playerOneName.setText(moves.get(1));
-                playerOneName2.setText(moves.get(2));
+                playRecordedGame();
+                System.out.println("iam setting data to labels");
+                this.playerOneName.setText(moves.get(1));
+                this.playerOneName2.setText(moves.get(2));
                 test();
+            } else {
+                this.playerOneName.setText(player1);
+                this.playerOneName2.setText(player2);
             }
         });
 
