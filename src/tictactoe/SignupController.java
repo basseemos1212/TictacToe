@@ -88,18 +88,7 @@ public class SignupController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 18);
-        Set<Node> allNodes = parent.lookupAll("*");
-        for (Node node : allNodes) {
-            if (node instanceof Text) {
-                ((Text) node).setFont(myCustomFont);
-
-            } else if (node instanceof Button) {
-                ((Button) node).setFont(myCustomFont);
-            } else if (node instanceof TextField) {
-                ((TextField) node).setFont(myCustomFont);
-            }
-        }
+        ClientUtility.changeFontInAllNodes(parent);
 
         showHidePassword();
         validatePassword();
@@ -141,7 +130,7 @@ public class SignupController implements Initializable {
                         System.out.println("succefully signed up player "  + username);
                        
 
-                         navigate(event, "SignIn.fxml");
+                         ClientUtility.navigate(event, "SignIn.fxml");
 
                         
                        
@@ -175,26 +164,11 @@ public class SignupController implements Initializable {
 
     }
     
-    private void navigate(ActionEvent event, String url) throws IOException{
-    
-                // Load the FXML file for the first screen
-        Parent root;
-        Stage stage;
-        
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
-        root = loader.load();
-        stage =  (Stage)((Node)event.getSource()).getScene().getWindow();
 
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
-      
-    }
 
     @FXML
     private void onGoToSignin(ActionEvent event) throws IOException {
-        navigate(event, "SignIn.fxml");
+        ClientUtility.navigate(event, "SignIn.fxml");
     }
 
     @FXML
@@ -262,32 +236,5 @@ public class SignupController implements Initializable {
         }
     }
 
-//    private void onTest(ActionEvent event) {
-////         Alert alert = new Alert(Alert.AlertType.NONE);
-////                       alert.setTitle("Sign-Up Success");
-////                       alert.setContentText("You have successfully signed up.");
-////                       alert.setResult(ButtonType.CANCEL);
-////                       alert.setWidth(400);
-////                       alert.setHeight(250);
-////
-////                        DialogPane dialogPane = alert.getDialogPane();
-////                        dialogPane.getStylesheets().add(getClass().getResource("/css/splashui.css").toExternalForm());
-////                        dialogPane.getStyleClass().add("myDialog");
-//Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//alert.setTitle("Information Dialog");
-//alert.setHeaderText("Look, an Information Dialog");
-//alert.setContentText("I have a great message for you!");
-//
-//ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
-//alert.getButtonTypes().add(cancelButton);
-//
-//Optional<ButtonType> result = alert.showAndWait();
-//if (result.isPresent() && result.get() == cancelButton) {
-//    // Cancel button was clicked, do something here
-//}
-//
-//
-//                       // Optional<ButtonType> result = alert.showAndWait();
-//    }
 
 }

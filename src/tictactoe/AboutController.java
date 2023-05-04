@@ -35,19 +35,9 @@ public class AboutController implements Initializable {
      */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-          myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 18);
-        Set<Node> allNodes = parent.lookupAll("*");
-        for (Node node : allNodes) {
-            if (node instanceof Text) {
-                ((Text) node).setFont(myCustomFont);
+        ClientUtility.changeFontInAllNodes(parent);
+        
 
-            } else if (node instanceof Button) {
-                ((Button) node).setFont(myCustomFont);
-            } else if (node instanceof TextField) {
-                ((TextField) node).setFont(myCustomFont);
-            }
-        }
-        // TODO
     }    
     
 }

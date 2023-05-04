@@ -37,7 +37,6 @@ public class SplashUIController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-//        addRandomShapeImages(anchorPane);
 
         Glow glow = new Glow(0);
         SepiaTone sepia = new SepiaTone(0);
@@ -60,31 +59,5 @@ public class SplashUIController implements Initializable {
 
     }
 
-//    public void addRandomShapeImages(AnchorPane anchorPane) {
-//        Random rand = new Random();
-////        String[] imagePaths = {"team4xo.assets/O.png", "team4xo.assets/rect.png", "team4xo.assets/star.png", "team4xo.assets/tri.png", "team4xo.assets/tri2.png", "team4xo.assets/x.png"};
-//        String[] imagePaths = {
-//            "file:///C:/Users/moham/Desktop/xoassets/star.png",
-//            "file:///C:/Users/moham/Desktop/xoassets/tri2.png",
-//            "file:///C:/Users/moham/Desktop/xoassets/rect.png",
-//            "file:///C:/Users/moham/Desktop/xoassets/tri.png",
-//            "file:///C:/Users/moham/Desktop/xoassets/O.png",
-//            "C:/Users/moham/Desktop/xoassets/x.png"};
-//        for (int i = 0; i < 10; i++) {
-//            String imagePath = imagePaths[rand.nextInt(imagePaths.length)];
-//            Image image = new Image(imagePath);
-//            int x = rand.nextInt((int) anchorPane.getWidth());
-//            int y = rand.nextInt((int) anchorPane.getHeight());
-//            int size = rand.nextInt(50) + 20;
-//
-//            ImageView imageView = new ImageView(image);
-//            imageView.setX(x);
-//            imageView.setY(y);
-//            imageView.setFitWidth(size);
-//            imageView.setFitHeight(size);
-//            imageView.setOpacity(0.5);
-//            anchorPane.getChildren().add(imageView);
-//        }
-//    }
 
 }

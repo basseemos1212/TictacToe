@@ -40,37 +40,19 @@ public class DialogBoxCardController implements Initializable {
     private Label dialoBoxMsg1;
     @FXML
     private Label dialoBoxMsg2;
-    
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        Font myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"),22);
-        Font myCustomFont1 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"),22);
-        dialogHeaderLabel.setFont(myCustomFont);
-//        dialoBoxMsg1.setFont(myCustomFont1);
-//        dialoBoxMsg2.setFont(myCustomFont1);
-        
-        
-        /*Set<Node> allNodes = parent.lookupAll("*");
-        for (Node node : allNodes) {
-            if (node instanceof Text) {
-                ((Text) node).setFont(myCustomFont);
 
-            } else if (node instanceof Button) {
-                ((Button) node).setFont(myCustomFont);
-            } else if (node instanceof TextField) {
-                ((TextField) node).setFont(myCustomFont);
-    }    
-    
-        }*/
-    }    
+        ClientUtility.changeFontInAllNodes(parent);
+
+    }
 
     @FXML
     private void onClickOk(ActionEvent event) {
     }
-    
+
 }
