@@ -6,6 +6,7 @@
 package tictactoe;
 
 import model.Game;
+
 import model.Player;
 import java.io.IOException;
 import java.net.URL;
