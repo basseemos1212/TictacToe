@@ -29,6 +29,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -53,6 +54,8 @@ public class SignInController implements Initializable {
     private Button signInBtn;
     
     private Player player;
+    @FXML
+    private Label loginStatusLbl;
    //HomeScreenController homeScreenController=new HomeScreenController(player) ;
     /**
      * Initializes the controller class.
@@ -143,19 +146,33 @@ public class SignInController implements Initializable {
 
     @FXML
     private void signInonClick(ActionEvent event) throws IOException {
-                String username  = userNameTextField.getText();
-                String password = passwordTextField.getText();
-                
         try {
-             player = client.signIn(username, password);
-            System.out.println("signInonClick obj =" +player.getUsername());
-             goToHome(event,player );
-                  //navigate(event, "HomeScreen.fxml");
+            String username = userNameTextField.getText();
+            String password = passwordTextField.getText();
+            
+            
+            player = client.signIn(username, password);
 
+            System.out.println("signInonClick obj =" + player.getUsername());
+            if (player.getStatus() == 1) {
+                goToHome(event, player);
+            }
+            else if (player.getStatus() == -1) {
+                System.out.println("player not found!");
+                loginStatusLbl.setVisible(true);
+                loginStatusLbl.setText("player not found!");
+            }
+            
+            else if (player.getStatus() == 0){
+                System.out.println("Incorrect Password");
+                loginStatusLbl.setVisible(true);
+                loginStatusLbl.setText("Incorrect Password");
+                
+                
+// <Label fx:id="loginStatusLbl" layoutX="464.0" layoutY="419.0" styleClass="normalText" text="Incorrect Password" textFill="#e80a0a" visible="false" />
+            }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-    }
     
-}
+}}
