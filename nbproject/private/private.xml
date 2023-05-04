@@ -5,18 +5,19 @@
         <group>
             <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/css/dialogboxcard.css</file>
             <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/css/fullpackstyle.css</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/ChoosePlayerController.java</file>
             <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/TicTacToe.java</file>
             <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/model/Client.java</file>
             <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/ChoosePlayerDialogController.java</file>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/recordedGames/CXWlow.json</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/model/Player.java</file>
             <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/HomeScreenController.java</file>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/recordedGames/D2aVev.json</file>
             <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/model/Game.java</file>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/DialogBoxCardController.java</file>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/recordedGames/3eet8H.json</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/recordedGames/dtbMrV.json</file>
             <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/ChoosePlayerDialog.fxml</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/RecordsScreenController.java</file>
             <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/GameBoardController.java</file>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/recordedGames/i4M0FA.json</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/recordedGames/wmt9Cj.json</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/GameCardController.java</file>
         </group>
     </open-files>
 </project-private>
