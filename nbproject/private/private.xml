@@ -3,8 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/ahmed/Desktop/java%20project/TictacToe/src/tictactoe/SignupController.java</file>
             <file>file:/C:/Users/ahmed/Desktop/java%20project/TictacToe/src/model/AppClient.java</file>
+=======
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/SignupController.java</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/HomeScreenController.java</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/SplashUIController.java</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/SignInController.java</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/TicTacToe.java</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/model/Client.java</file>
+>>>>>>> 454402026e63d70c239dc930ebcbb958a657baec
         </group>
     </open-files>
 </project-private>

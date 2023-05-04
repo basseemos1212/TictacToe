@@ -124,10 +124,12 @@ public class SignInController implements Initializable {
         root = loader.load();
 
         // Get the controller instance for the HomeScreen
+        
         HomeScreenController homeScreenController = loader.getController();
+         homeScreenController.setPlayer(player);
 
         // Set the player object as a property of the HomeScreenController
-        homeScreenController.setPlayer(player);
+       
 
         // Show the HomeScreen
         Scene scene = new Scene(root);
@@ -158,4 +160,5 @@ public class SignInController implements Initializable {
         }
 
     }
+    
 }
