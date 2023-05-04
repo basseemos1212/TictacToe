@@ -11,14 +11,20 @@
 
 <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="78.0" prefWidth="1024.0" styleClass="whitebackground" stylesheets="@../css/fullpackstyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.GameCardController">
    <children>
-      <ImageView fx:id="player1img" fitHeight="73.0" fitWidth="92.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
-         <HBox.margin>
-            <Insets left="10.0" top="10.0" />
-         </HBox.margin>
-         <image>
-            <Image url="@../assets/avatar.png" />
-         </image>
-      </ImageView>
+      <Label fx:id="player1Name" alignment="CENTER" layoutX="401.0" layoutY="10.0" prefHeight="101.0" prefWidth="118.0" text="Bassem">
+         <font>
+            <Font name="Tahoma Bold" size="22.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="0.07619047619047614" startY="1.0">
+               <stops>
+                  <Stop color="#ffce36" />
+                  <Stop color="#38ffc0" offset="0.007662835249042145" />
+                  <Stop color="#ff6969" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
       <Label alignment="CENTER" prefHeight="101.0" prefWidth="118.0" text="Versus">
          <font>
             <Font name="Tahoma Bold" size="22.0" />
@@ -33,15 +39,21 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <ImageView fx:id="player2Img" fitHeight="73.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
-         <HBox.margin>
-            <Insets left="10.0" top="10.0" />
-         </HBox.margin>
-         <image>
-            <Image url="@../assets/single.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="73.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
+      <Label fx:id="player2Name" alignment="CENTER" layoutX="342.0" layoutY="10.0" prefHeight="101.0" prefWidth="118.0" text="Ahmed">
+         <font>
+            <Font name="Tahoma Bold" size="22.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" startY="1.0">
+               <stops>
+                  <Stop color="#ffce36" />
+                  <Stop color="#ff6969" offset="0.007662835249042145" />
+                  <Stop color="#38ffc0" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <ImageView fitHeight="73.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
          <HBox.margin>
             <Insets left="50.0" top="10.0" />
          </HBox.margin>

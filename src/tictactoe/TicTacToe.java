@@ -30,13 +30,13 @@ public class TicTacToe extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("SplashUI.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("RecordsScreen.fxml"));
         Scene scene = new Scene(root, 1024, 700);
 
 //    Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         stage.setScene(scene);
 
-        PauseTransition delay = new PauseTransition(Duration.seconds(3));
+        PauseTransition delay = new PauseTransition(Duration.seconds(20));
 
         // Navigate to the first screen after 3 seconds
         delay.setOnFinished(event -> {

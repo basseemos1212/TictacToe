@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import model.Game;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 
 /**
@@ -22,19 +23,18 @@ import javafx.scene.image.Image;
  */
 public class GameCardController implements Initializable {
 
-    @FXML
     private ImageView player1img;
     @FXML
-    private ImageView player2Img;
+    private Label player1Name;
+    @FXML
+    private Label player2Name;
 
     /**
      * Initializes the controller class.
      */
-    public void setData(Game game){
-        Image img1=new Image(getClass().getResourceAsStream(game.getPlayer1Img()));
-        player1img.setImage(img1);
-         Image img2=new Image(getClass().getResourceAsStream(game.getPlayer2Img()));
-        player1img.setImage(img2);
+    public void setData(String player1 ,String player2){
+        player1Name.setText(player1);
+        player2Name.setText(player2);
         //name
         //gameid 
         
