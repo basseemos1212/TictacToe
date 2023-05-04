@@ -141,14 +141,17 @@ public class SignInController implements Initializable {
 
     @FXML
     private void signInonClick(ActionEvent event) throws IOException {
-                String username  = userNameTextField.getText();
-                String password = passwordTextField.getText();
-                
+        String username = userNameTextField.getText();
+        String password = passwordTextField.getText();
+
         try {
-             player = client.signIn(username, password);
-            System.out.println("signInonClick obj =" +player.getUsername());
-             goToHome(event,player );
-                  //navigate(event, "HomeScreen.fxml");
+            player = client.signIn(username, password);
+
+            System.out.println("signInonClick obj =" + player.getUsername());
+            if (player.getStatus() == 1) {
+                goToHome(event, player);
+            }
+            //navigate(event, "HomeScreen.fxml");
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);

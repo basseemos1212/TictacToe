@@ -80,7 +80,7 @@ public class HomeScreenController implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         // TODO
-       // printPlayer(player);
+        printPlayer(player);
         Font myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"),26);
         Font myCustomFont3 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"),26);
         name.setFont(myCustomFont2);

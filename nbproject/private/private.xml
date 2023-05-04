@@ -3,32 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/assets/Logo.png</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/css/homescreen.css</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/GameCardController.java</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/TicTacToe.java</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/PlayerCardController.java</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/HelperClass.java</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/Models/Player.java</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/assets/Cloud-off.png</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/SignInController.java</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/Models/AppClient.java</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/ChoosePlayerController.java</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/SplashUIController.java</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/css/fullpackstyle.css</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/css/splashui.css</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/Models/Game.java</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/RecordsScreenController.java</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/PlayerCard.fxml</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/HomeScreenController.java</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/assets/SignIn.png</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/css/playercard.css</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/Models/Client.java</file>
-=======
             <file>file:/C:/Users/ahmed/Desktop/java%20project/TictacToe/src/tictactoe/SignupController.java</file>
             <file>file:/C:/Users/ahmed/Desktop/java%20project/TictacToe/src/model/AppClient.java</file>
->>>>>>> development
         </group>
     </open-files>
 </project-private>

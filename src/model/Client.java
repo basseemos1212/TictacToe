@@ -19,8 +19,10 @@ public class Client {
     private Socket socket;
     private DataInputStream inputStream;
     private DataOutputStream outputStream;
+    
     ObjectInputStream inputObjectStream ;
     Player player=new Player();
+    static String loginState;
 // Read the Player object from the ObjectInputStream.
     
     public Client(String serverIP, int serverPort) throws IOException {
@@ -43,6 +45,7 @@ public class Client {
         outputStream.writeUTF(username);
         outputStream.writeUTF(password);
         player=(Player) inputObjectStream.readObject();
+
         return player;
     
     }
