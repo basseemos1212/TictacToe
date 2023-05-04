@@ -8,6 +8,7 @@ package tictactoe;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Set;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -34,6 +35,8 @@ public class DialogBoxCardController implements Initializable {
     @FXML
     private ImageView dialogBoxImg;
     @FXML
+    private Button okButton;
+    @FXML
     private Label dialoBoxMsg1;
     @FXML
     private Label dialoBoxMsg2;
@@ -46,10 +49,10 @@ public class DialogBoxCardController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         Font myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"),22);
-        Font myCustomFont1 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"),17);
+        Font myCustomFont1 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"),22);
         dialogHeaderLabel.setFont(myCustomFont);
-        dialoBoxMsg1.setFont(myCustomFont1);
-        dialoBoxMsg2.setFont(myCustomFont1);
+//        dialoBoxMsg1.setFont(myCustomFont1);
+//        dialoBoxMsg2.setFont(myCustomFont1);
         
         
         /*Set<Node> allNodes = parent.lookupAll("*");
@@ -65,5 +68,9 @@ public class DialogBoxCardController implements Initializable {
     
         }*/
     }    
+
+    @FXML
+    private void onClickOk(ActionEvent event) {
+    }
     
 }
