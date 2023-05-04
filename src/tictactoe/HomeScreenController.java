@@ -18,6 +18,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -25,6 +26,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.control.DialogPane;
 import javafx.stage.Stage;
 import model.Player;
 
@@ -126,12 +128,30 @@ public class HomeScreenController implements Initializable {
 
       
     }
+  private void showmyDialog(){
+       try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ChoosePlayerDialog.fxml"));
+            DialogPane dialogPane = loader.load();
+
+            Dialog<Void> dialog = new Dialog<>();
+            dialog.getDialogPane().setContent(dialogPane);
+
+            // Set the dialog size to match the content
+            dialog.getDialogPane().getScene().getWindow().sizeToScene();
+
+            // Show the dialog as a modal dialog
+            dialog.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+      
   
+  }
 
     @FXML
     private void pressTwoPlayer(ActionEvent event) throws IOException {
-        navigate(event,"GameBoard.fxml");
-        printPlayer(player);
+        showmyDialog();
+        
          
     }
 

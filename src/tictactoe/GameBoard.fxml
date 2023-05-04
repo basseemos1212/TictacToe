@@ -17,7 +17,7 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.GameBoardController">
    <children>
-      <ImageView fitHeight="842.0" fitWidth="1156.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="841.0" fitWidth="1156.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/splash11.png" />
          </image>
@@ -158,6 +158,13 @@
                </children>
             </FlowPane>
          </right>
+         <bottom>
+            <Button fx:id="recordButton" mnemonicParsing="false" onAction="#onClickRecord" prefHeight="59.0" prefWidth="159.0" styleClass="toggle-button" text="Record" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </Button>
+         </bottom>
       </BorderPane>
    </children>
    <stylesheets>

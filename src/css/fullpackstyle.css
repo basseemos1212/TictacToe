@@ -12,16 +12,14 @@
 .textfield
 {
 
-   -fx-font-size: 23;
+/*   -fx-font-size: 23;*/
    -fx-border-color: #C9BBFF;
    -fx-border-width: 2;
-   -fx-padding: 10 10 10 10;
+   /*-fx-padding: 10 10 10 10;*/
    -fx-background-color: #C9BBFF;
-   -fx-pref-height: 65px;
-   -fx-pref-width: 573px;
    -fx-border-radius: 30;
    -fx-background-radius: 30;
-   -fx-font-family: 'MyFont';
+   /*-fx-font-family: 'MyFont';*/
    
   
 
