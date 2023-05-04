@@ -484,6 +484,9 @@ public class GameBoardController implements Initializable {
     }
 
     private void playRecordedGame() {
+
+        String fileName = fileRecorded;
+
         File file = new File("src/recordedGames/" + fileRecorded);
 
 // Read the JSON file using a BufferedReader
@@ -515,6 +518,7 @@ public class GameBoardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        ClientUtility.changeFontInAllNodes(borderPane);
 
         System.out.println("moves=" + moves);
         System.out.println("fileName" + fileRecorded);
@@ -547,6 +551,7 @@ public class GameBoardController implements Initializable {
                 moves.add(player2);
 
             }
+
 
             if (playRecord) {
                 playRecordedGame();
