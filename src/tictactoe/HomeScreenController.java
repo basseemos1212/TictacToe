@@ -28,6 +28,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.control.DialogPane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import model.Player;
 
 /**
@@ -134,6 +135,8 @@ public class HomeScreenController implements Initializable {
             DialogPane dialogPane = loader.load();
 
             Dialog<Void> dialog = new Dialog<>();
+            Window window = dialog.getDialogPane().getScene().getWindow();
+            window.setOnCloseRequest(event -> window.hide());
             dialog.getDialogPane().setContent(dialogPane);
 
             // Set the dialog size to match the content
@@ -163,6 +166,11 @@ public class HomeScreenController implements Initializable {
     @FXML
     private void aboutScreenNav(ActionEvent event) throws IOException{
          navigate(event,"About.fxml");
+    }
+
+    @FXML
+    private void pressOnline(ActionEvent event) throws IOException {
+        navigate(event,"About.fxml");
     }
     
 }

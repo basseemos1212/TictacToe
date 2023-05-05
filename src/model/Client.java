@@ -50,7 +50,7 @@ public class Client {
         jsonObject.addProperty("username", username);
         jsonObject.addProperty("password", password);
         jsonObject.addProperty("func", "signin");
-            Gson gson = new Gson();
+        Gson gson = new Gson();
         outputStream.writeUTF(gson.toJson(jsonObject));
     
         player=(Player) inputObjectStream.readObject();

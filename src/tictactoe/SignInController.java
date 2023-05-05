@@ -27,7 +27,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -85,6 +87,8 @@ public class SignInController implements Initializable {
         if (userNameTextField.getText().length() == 0 || passwordTextField.getText().length() == 0) {
 
             if (userNameTextField.getText().length() == 0) {
+
+
                 userNameTextField.setStyle("-fx-border-color: red ; -fx-border-widrh:2px");
                 userNameTextField.setPromptText("You should enter valid username");
             }
@@ -127,10 +131,12 @@ public class SignInController implements Initializable {
         String password = passwordTextField.getText();
 
         try {
+
             player = client.signIn(username, password);
             System.out.println("signInonClick obj =" + player.getUsername());
             goToHome(event, player);
             //navigate(event, "HomeScreen.fxml");
+
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);

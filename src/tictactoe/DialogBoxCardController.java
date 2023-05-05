@@ -10,9 +10,13 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -20,6 +24,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -47,6 +52,7 @@ public class DialogBoxCardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+
         ClientUtility.changeFontInAllNodes(parent);
 
     }
@@ -54,5 +60,24 @@ public class DialogBoxCardController implements Initializable {
     @FXML
     private void onClickOk(ActionEvent event) {
     }
+
+/*=======
+        
+        Font myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"),22);
+        Font myCustomFont1 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"),17);
+        dialogHeaderLabel.setFont(myCustomFont);
+        dialoBoxMsg1.setFont(myCustomFont1);
+        dialoBoxMsg2.setFont(myCustomFont1);
+        
+        
+    }  
+    private Stage dialogStage;
+
+    public void setDialogStage(Stage dialogStage) {
+        this.dialogStage = dialogStage;
+    }
+   
+    
+    */
 
 }
