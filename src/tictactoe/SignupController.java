@@ -17,6 +17,9 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
@@ -43,18 +46,16 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  *
  * @author moham
  */
 public class SignupController implements Initializable {
-    
-   
-    
+
     private AppClient appClient;
     private Client client;
-
 
     @FXML
     private Text signupLabel;
@@ -103,21 +104,20 @@ public class SignupController implements Initializable {
 
         showHidePassword();
         validatePassword();
-        
-        
+
         try {
-            this.appClient= AppClient.getInstance("localhost", 3333);
+            this.appClient = AppClient.getInstance("localhost", 3333);
             this.client = appClient.getClient();
 
         } catch (IOException ex) {
             Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     @FXML
-    public void onSignupClicked(ActionEvent event ) {
-        
+    public void onSignupClicked(ActionEvent event) {
+
         String password = signuppass.getText();
 
         // Define a regular expression to match the password criteria
@@ -130,22 +130,27 @@ public class SignupController implements Initializable {
         if (matches) {
             // TODO: Submit the form
             boolean isTwoPassFieldsMatch = checkIfTheTwoPasswordsMatch();
-            if(isTwoPassFieldsMatch){
+            if (isTwoPassFieldsMatch) {
 
                 String username = signupusername.getText();
-                
+
                 try {
                     boolean success = client.signUp(username, password);
                     if (success) {
                         // do something on success, go Home screen for example
-                        System.out.println("succefully signed up player "  + username);
-                       
+                        System.out.println("succefully signed up player " + username);
 
-                         navigate(event, "SignIn.fxml");
+                        flashPass();
+                        PauseTransition pause = new PauseTransition(Duration.millis(2000));
+                        pause.setOnFinished(e -> {
+                            try {
+                                navigate(event, "SignIn.fxml");
+                            } catch (IOException ex) {
+                                Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        });
+                        pause.play();
 
-                        
-                       
-                        
                     } else {
                         // User exists
                         System.out.println("succefully signed up player (from client)");
@@ -159,7 +164,6 @@ public class SignupController implements Initializable {
                     e.printStackTrace();
                 }
 
-                
             }
         } else {
             // If the password does not match the criteria, show an alert dialog
@@ -170,26 +174,57 @@ public class SignupController implements Initializable {
 
             alert.showAndWait();
         }
-        
-      
 
     }
-    
-    private void navigate(ActionEvent event, String url) throws IOException{
-    
-                // Load the FXML file for the first screen
+
+    public void flashPass() {
+
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(0.3), evt -> {
+                    signupbtn.setStyle("-fx-border-color: rgba(0, 255, 0, 0.5); -fx-border-width: 4px;-fx-border-radius: 10;");
+
+//                    passHB.setStyle("-fx-border-color: green; -fx-background-color: rgba(0, 255, 0, 0.5);");
+//                    signupusername.setStyle("-fx-border-color: green; -fx-background-color: rgba(0, 255, 0, 0.5);");
+//                    signuppass.setStyle("-fx-border-color: green; -fx-background-color: rgba(0, 255, 0, 0.5);");
+//                    signuppassTF.setStyle("-fx-border-color: green; -fx-background-color: rgba(0, 255, 0, 0.5);");
+//                    signuprepass.setStyle("-fx-border-color: green; -fx-background-color: rgba(0, 255, 0, 0.5);");
+//                    signuprepassTF.setStyle("-fx-border-color: green; -fx-background-color: rgba(0, 255, 0, 0.5);");
+//                    passtoggle.setStyle("-fx-border-color: green; -fx-background-color: rgba(0, 255, 0, 0.5);");
+//                    repasstoggle.setStyle("-fx-border-color: green; -fx-background-color: rgba(0, 255, 0, 0.5);");
+
+                }),
+                new KeyFrame(Duration.seconds(0.6), evt -> {
+                      signupbtn.setStyle("-fx-border-color: rgba(255, 255, 255, 0); -fx-border-width: 4px;");
+
+//                    passHB.setStyle("-fx-border-color: #d9d9d9;-fx-background-color: #d9d9d9;");
+//                    signupusername.setStyle("-fx-border-color: #d9d9d9;-fx-background-color: #d9d9d9;");
+//                    signuppass.setStyle("-fx-border-color: #d9d9d9;-fx-background-color: #d9d9d9;");
+//                    signuppassTF.setStyle("-fx-border-color: #d9d9d9;-fx-background-color: #d9d9d9;");
+//                    signuprepass.setStyle("-fx-border-color: #d9d9d9;-fx-background-color: #d9d9d9;");
+//                    signuprepassTF.setStyle("-fx-border-color: #d9d9d9;-fx-background-color: #d9d9d9;");
+//                    passtoggle.setStyle("-fx-border-color: #d9d9d9;-fx-background-color: #d9d9d9;");
+//                    repasstoggle.setStyle("-fx-border-color: #d9d9d9;-fx-background-color: #d9d9d9;");
+                })
+        );
+        timeline.setCycleCount(7);
+
+        timeline.play();
+    }
+
+    private void navigate(ActionEvent event, String url) throws IOException {
+
+        // Load the FXML file for the first screen
         Parent root;
         Stage stage;
-        
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
         root = loader.load();
-        stage =  (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
 
-      
     }
 
     @FXML
@@ -246,10 +281,10 @@ public class SignupController implements Initializable {
         });
 
     }
-    
-    public boolean checkIfTheTwoPasswordsMatch(){
+
+    public boolean checkIfTheTwoPasswordsMatch() {
         if (!signuppass.getText().equals(signuprepass.getText())) {
-            
+
             // The passwords don't match, show an alert dialog
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -257,7 +292,7 @@ public class SignupController implements Initializable {
             alert.setContentText("Please make sure to re-enter passwords correctly.");
             alert.showAndWait();
             return false;
-        }else{
+        } else {
             return true;
         }
     }
@@ -289,5 +324,4 @@ public class SignupController implements Initializable {
 //
 //                       // Optional<ButtonType> result = alert.showAndWait();
 //    }
-
 }
