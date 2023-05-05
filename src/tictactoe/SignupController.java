@@ -89,18 +89,7 @@ public class SignupController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 18);
-        Set<Node> allNodes = parent.lookupAll("*");
-        for (Node node : allNodes) {
-            if (node instanceof Text) {
-                ((Text) node).setFont(myCustomFont);
-
-            } else if (node instanceof Button) {
-                ((Button) node).setFont(myCustomFont);
-            } else if (node instanceof TextField) {
-                ((TextField) node).setFont(myCustomFont);
-            }
-        }
+        ClientUtility.changeFontInAllNodes(parent);
 
         showHidePassword();
         validatePassword();
@@ -151,6 +140,13 @@ public class SignupController implements Initializable {
                         });
                         pause.play();
 
+
+                         ClientUtility.navigate(event, "SignIn.fxml");
+
+                        
+                       
+                        
+
                     } else {
                         // User exists
                         System.out.println("succefully signed up player (from client)");
@@ -176,6 +172,7 @@ public class SignupController implements Initializable {
         }
 
     }
+
 
     public void flashPass() {
 
@@ -227,9 +224,10 @@ public class SignupController implements Initializable {
 
     }
 
+
     @FXML
     private void onGoToSignin(ActionEvent event) throws IOException {
-        navigate(event, "SignIn.fxml");
+        ClientUtility.navigate(event, "SignIn.fxml");
     }
 
     @FXML
@@ -297,6 +295,7 @@ public class SignupController implements Initializable {
         }
     }
 
+
 //    private void onTest(ActionEvent event) {
 ////         Alert alert = new Alert(Alert.AlertType.NONE);
 ////                       alert.setTitle("Sign-Up Success");
@@ -324,4 +323,5 @@ public class SignupController implements Initializable {
 //
 //                       // Optional<ButtonType> result = alert.showAndWait();
 //    }
+
 }

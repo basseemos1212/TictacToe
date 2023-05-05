@@ -41,6 +41,7 @@ import org.apache.derby.jdbc.ClientDriver;
  * @author Bassem
  */
 public class SignInController implements Initializable {
+
     private AppClient appClient;
     private Client client;
 
@@ -52,106 +53,87 @@ public class SignInController implements Initializable {
     private Button signUpButton;
     @FXML
     private Button signInBtn;
-    
-    private Player player;
+
+
     @FXML
     private Label loginStatusLbl;
    //HomeScreenController homeScreenController=new HomeScreenController(player) ;
+
     /**
      * Initializes the controller class.
+     *
      * @param arg0
      * @param arg1
      */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         try {
-            this.appClient= AppClient.getInstance("localhost", 3333);
+            this.appClient = AppClient.getInstance("localhost", 3333);
             this.client = appClient.getClient();
 
         } catch (IOException ex) {
             Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        // TODO
-    }    
 
-  
+        // TODO
+    }
+
     @FXML
     private void signUpOnclick(ActionEvent event) throws IOException {
-        navigate(event, "SignUp.fxml");
-       
-    }  
-    private Boolean validate(){
-                if(userNameTextField.getText().length()==0||passwordTextField.getText().length()==0){
-         
-           
-            if(userNameTextField.getText().length()==0){
+        ClientUtility.navigate(event, "SignUp.fxml");
+
+    }
+
+    private Boolean validate() {
+        if (userNameTextField.getText().length() == 0 || passwordTextField.getText().length() == 0) {
+
+            if (userNameTextField.getText().length() == 0) {
                 userNameTextField.setStyle("-fx-border-color: red ; -fx-border-widrh:2px");
                 userNameTextField.setPromptText("You should enter valid username");
-            } 
-            if(passwordTextField.getText().length()==0){
+            }
+            if (passwordTextField.getText().length() == 0) {
                 passwordTextField.setPromptText("You should enter valid password");
                 passwordTextField.setStyle("-fx-border-color: red ; -fx-border-widrh:2px");
             }
-           return false;
-            
-        }else{
+            return false;
+
+        } else {
             System.out.println("bassem");
-                  return true;
-            }
+            return true;
+        }
     }
-     
-    private void navigate(ActionEvent event, String url) throws IOException{
-    
-                // Load the FXML file for the first screen
+
+    private void goToHome(ActionEvent event, Player player) throws IOException {
+        // Load the FXML file for the HomeScreen
         Parent root;
         Stage stage;
-        
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
-        root = loader.load();
-        stage =  (Stage)((Node)event.getSource()).getScene().getWindow();
 
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
-      
-    }
-    
-        private void goToHome(ActionEvent event,Player player ) throws IOException{
-        // Load the FXML file for the HomeScreen
-        Parent root ;
-        Stage stage;
-        
         FXMLLoader loader = new FXMLLoader(getClass().getResource("HomeScreen.fxml"));
         root = loader.load();
 
         // Get the controller instance for the HomeScreen
-        
         HomeScreenController homeScreenController = loader.getController();
-         homeScreenController.setPlayer(player);
+        homeScreenController.setPlayer(player);
 
         // Set the player object as a property of the HomeScreenController
-       
-
         // Show the HomeScreen
         Scene scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
- 
-}
-  
 
+    }
 
     @FXML
     private void signInonClick(ActionEvent event) throws IOException {
+
         try {
             String username = userNameTextField.getText();
             String password = passwordTextField.getText();
             
             
             player = client.signIn(username, password);
+
 
             System.out.println("signInonClick obj =" + player.getUsername());
             if (player.getStatus() == 1) {
@@ -174,5 +156,7 @@ public class SignInController implements Initializable {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     
 }}
+
