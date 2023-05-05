@@ -27,7 +27,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -79,7 +81,7 @@ public class SignInController implements Initializable {
        
     }  
     private Boolean validate(){
-                if(userNameTextField.getText().length()==0||passwordTextField.getText().length()==0){
+            if(userNameTextField.getText().length()==0||passwordTextField.getText().length()==0){
          
            
             if(userNameTextField.getText().length()==0){
@@ -148,7 +150,7 @@ public class SignInController implements Initializable {
                 
         try {
              player = client.signIn(username, password);
-            System.out.println("signInonClick obj =" +player.getUsername());
+             System.out.println("signInonClick obj =" +player.getUsername());
              goToHome(event,player );
                   //navigate(event, "HomeScreen.fxml");
 

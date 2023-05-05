@@ -144,5 +144,10 @@ public class HomeScreenController implements Initializable {
     private void aboutScreenNav(ActionEvent event) throws IOException{
          navigate(event,"About.fxml");
     }
+
+    @FXML
+    private void pressOnline(ActionEvent event) throws IOException {
+        navigate(event,"About.fxml");
+    }
     
 }

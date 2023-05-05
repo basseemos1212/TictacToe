@@ -1,0 +1,10 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+    -fx-background-image: url('/assets/full_background.png');
+   -fx-background-size:cover;
+   -fx-background-radius: 50px; 
+
+}
