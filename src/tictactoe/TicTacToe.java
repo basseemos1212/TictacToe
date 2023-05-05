@@ -72,8 +72,6 @@ public class TicTacToe extends Application {
            ex.printStackTrace();
            Logger.getLogger(TicTacToe.class.getName()).log(Level.SEVERE, null, ex);
        }
-
-
     }
     
     

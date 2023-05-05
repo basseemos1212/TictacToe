@@ -6,6 +6,7 @@
 package tictactoe;
 
 import model.Game;
+
 import model.Player;
 import java.io.IOException;
 import java.net.URL;
@@ -46,52 +47,35 @@ public class ChoosePlayerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
-        List<Player> player=new ArrayList<>(players());
-        for(int i=0;i<player.size();i++){
-            FXMLLoader fxmlloader=new FXMLLoader();
+
+        ClientUtility.changeFontInAllNodes(screenPane);
+
+        List<Player> player = new ArrayList<>(players());
+        for (int i = 0; i < player.size(); i++) {
+            FXMLLoader fxmlloader = new FXMLLoader();
             fxmlloader.setLocation(getClass().getResource("PlayerCard.fxml"));
-            try{
-            HBox hbox=fxmlloader.load();
-            PlayerCardController playerCardController=fxmlloader.getController();
-            playerCardController.setData(player.get(i));
-            onlinePlayersVBox.getChildren().add(hbox);
-            
-            
-            } catch(IOException e){
+            try {
+                HBox hbox = fxmlloader.load();
+                PlayerCardController playerCardController = fxmlloader.getController();
+                playerCardController.setData(player.get(i));
+                onlinePlayersVBox.getChildren().add(hbox);
+
+            } catch (IOException e) {
                 e.printStackTrace();
-            
-            }
-        
-        myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 30);
-        Set<Node> allNodes = screenPane.lookupAll("*");
-        for (Node node : allNodes) {
-            if (node instanceof Text) {
-                ((Text) node).setFont(myCustomFont);
 
-            } else if (node instanceof Button) {
-                ((Button) node).setFont(myCustomFont);
-            } else if (node instanceof TextField) {
-                ((TextField) node).setFont(myCustomFont);
             }
-            else if (node instanceof Label) {
-                ((Label) node).setFont(myCustomFont);
-            }
+
         }
-    }   
-        
 
-    
-}
-    private List<Player> players()
-    {
-        
-        List<Player> playersList=new ArrayList<>();
-        Player player1=new Player();
+    }
+
+    private List<Player> players() {
+
+        List<Player> playersList = new ArrayList<>();
+        Player player1 = new Player();
         player1.setUsername("Farah Mohamed");
         player1.setImagePath("/assets/avatar.png");
-        
+
         playersList.add(player1);
         playersList.add(player1);
         playersList.add(player1);
@@ -99,10 +83,7 @@ public class ChoosePlayerController implements Initializable {
         playersList.add(player1);
         playersList.add(player1);
         playersList.add(player1);
-       
-             
-        
-        
+
         return playersList;
     }
 }
