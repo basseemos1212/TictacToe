@@ -1,26 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="screenPane" prefHeight="720.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.ChoosePlayerController">
-    <stylesheets>
-        <URL value="@/css/chooseplayer.css" />
-    </stylesheets>
+<AnchorPane fx:id="screenPane" prefHeight="720.0" prefWidth="1024.0" stylesheets="@../css/chooseplayer.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.ChoosePlayerController">
    <children>
       <Label fx:id="onlinePlayersLabel" layoutX="110.0" layoutY="140.0" text="Available Playes" />
-      <ScrollPane layoutX="129.0" layoutY="265.0" prefHeight="402.0" prefWidth="746.0" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="110.0">
-         <content>
-            <VBox fx:id="onlinePlayersVBox" prefHeight="400.0" prefWidth="802.0" spacing="10.0" style="-fx-background-color: #A79CDA;">
-               <padding>
-                  <Insets left="20.0" top="20.0" />
-               </padding>
-            </VBox>
-         </content>
-      </ScrollPane>
+      <ListView fx:id="onlinePlayersListview" layoutX="110.0" layoutY="187.0" prefHeight="402.0" prefWidth="746.0" styleClass="scroll-bar" />
    </children>
 </AnchorPane>

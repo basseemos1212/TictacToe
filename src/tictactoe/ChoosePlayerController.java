@@ -13,18 +13,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import model.AppClient;
+import model.Client;
 
 /**
  * FXML Controller class
@@ -38,51 +46,59 @@ public class ChoosePlayerController implements Initializable {
     private Font myCustomFont;
     @FXML
     private Label onlinePlayersLabel;
-    @FXML
     private VBox onlinePlayersVBox;
+
+    private AppClient appClient;
+    private Client client;
+
+//    ObservableList<Player> cardList = FXCollections.observableArrayList();
+    public static ObservableList<Player> onlinePlayersList = FXCollections.observableArrayList();
+
+    @FXML
+    private ListView<Player> onlinePlayersListview;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        try {
+            this.appClient = AppClient.getInstance("localhost", 3333);
+            this.client = appClient.getClient();
 
-        ClientUtility.changeFontInAllNodes(screenPane);
-
-        List<Player> player = new ArrayList<>(players());
-        for (int i = 0; i < player.size(); i++) {
-            FXMLLoader fxmlloader = new FXMLLoader();
-            fxmlloader.setLocation(getClass().getResource("PlayerCard.fxml"));
-            try {
-                HBox hbox = fxmlloader.load();
-                PlayerCardController playerCardController = fxmlloader.getController();
-                playerCardController.setData(player.get(i));
-                onlinePlayersVBox.getChildren().add(hbox);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-
-            }
-
+        } catch (IOException ex) {
+            Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+
+        ClientUtility.changeFontInAllNodes(screenPane);
+            
+
+        onlinePlayersListview.setItems(onlinePlayersList);
+        onlinePlayersListview.setCellFactory(param ->  new ListCell<Player>() {
+            protected void updateItem(Player player, boolean empty) {
+                super.updateItem(player, empty);
+
+                if (empty || player == null || player.getUsername().equals(client.player.getUsername())) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    // Create a custom card view and set it as the graphic for the cell
+                    FXMLLoader fxmlloader = new FXMLLoader();
+                    fxmlloader.setLocation(getClass().getResource("PlayerCard.fxml"));
+                    try {
+                        HBox hbox = fxmlloader.load();
+                        PlayerCardController playerCardController = fxmlloader.getController();
+                        playerCardController.setData(player);
+                        setGraphic(hbox);
+                    } catch (IOException ex) {
+                        Logger.getLogger(ChoosePlayerController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+
+        });
+
     }
 
-    private List<Player> players() {
-
-        List<Player> playersList = new ArrayList<>();
-        Player player1 = new Player();
-        player1.setUsername("Farah Mohamed");
-        player1.setImagePath("/assets/avatar.png");
-
-        playersList.add(player1);
-        playersList.add(player1);
-        playersList.add(player1);
-        playersList.add(player1);
-        playersList.add(player1);
-        playersList.add(player1);
-        playersList.add(player1);
-
-        return playersList;
-    }
 }

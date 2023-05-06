@@ -42,7 +42,8 @@ public class PlayerCardController implements Initializable {
      * Initializes the controller class.
      */
     public void setData(Player player){
-        Image img=new Image(getClass().getResourceAsStream(player.getImagePath()));
+//        Image img=new Image(getClass().getResourceAsStream(player.getImagePath()));
+        Image img=new Image(getClass().getResourceAsStream("/assets/avatar.png"));
         playerImg.setImage(img);
         playerName.setText(player.getUsername());
     }
