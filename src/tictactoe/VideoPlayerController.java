@@ -41,7 +41,8 @@ public class VideoPlayerController implements Initializable {
     @FXML
     private Button playAgainBtn;
     
-    private File file;
+    private String path;
+    private static String actualPath;
     private Media media;
     private MediaPlayer mediaPlayer;
     @FXML
@@ -57,9 +58,9 @@ public class VideoPlayerController implements Initializable {
        Font myCustomFont2 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"),35);
        
        playerName.setFont(myCustomFont2);
-        
-       file=new File("C:\\Users\\NOURAN  22\\Desktop\\win.mp4");
-       media=new Media(file.toURI().toString());
+       actualPath=getActualPath();
+       path=new File(actualPath).getAbsolutePath();
+       media=new Media(new File(path).toURI().toString());
        mediaPlayer=new MediaPlayer(media);
        mediaView.setMediaPlayer(mediaPlayer);
        mediaPlayer.play();
@@ -99,5 +100,15 @@ public class VideoPlayerController implements Initializable {
     @FXML
     private void onPlayAgainClick(ActionEvent event) {
     }
+
+    public static String getActualPath() {
+        return actualPath;
+    }
+
+    public void setActualPath(String actualPath) {
+        VideoPlayerController.actualPath = actualPath;
+    }
+
+    
     
 }

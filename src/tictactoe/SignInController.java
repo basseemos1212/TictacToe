@@ -79,7 +79,9 @@ public class SignInController implements Initializable {
 
     @FXML
     private void signUpOnclick(ActionEvent event) throws IOException {
-        ClientUtility.navigate(event, "SignUp.fxml");
+        VideoPlayerController vc=new VideoPlayerController();
+        vc.setActualPath("src/media/YouLose.mp4");
+        ClientUtility.navigate(event, "videoPlayer.fxml");
 
     }
 

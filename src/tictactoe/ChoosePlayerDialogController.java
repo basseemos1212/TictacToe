@@ -72,8 +72,9 @@ public class ChoosePlayerDialogController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        GameBoardController.player1=p1TextField.getText();
-        GameBoardController.player2=p2TextField.getText();
+        GameBoardController.game.setPlayerName1(p1TextField.getText());
+        GameBoardController.game.setPlayerName2(p2TextField.getText());
+        //GameBoardController.player2=p2TextField.getText();
         GameBoardController gbc = loader.getController();
       
 
