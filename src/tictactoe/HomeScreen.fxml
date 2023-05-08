@@ -40,7 +40,9 @@
       </StackPane>
       <StackPane alignment="CENTER_LEFT" layoutX="265.0" layoutY="510.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="150.0" prefWidth="564.0">
          <children>
-            <Button fx:id="onlineBtn" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#pressOnline" text="Online" textAlignment="CENTER" StackPane.alignment="CENTER_LEFT">
+
+            <Button fx:id="onlineBtn" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#goToOnline" text="Online" textAlignment="CENTER" StackPane.alignment="CENTER_LEFT">
+
                <StackPane.margin>
                   <Insets left="80.0" />
                </StackPane.margin>
@@ -51,7 +53,7 @@
             <ImageView fx:id="onlineImg" fitHeight="116.0" fitWidth="116.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" />
          </children>
       </StackPane>
-      <VBox layoutX="851.0" layoutY="225.0" prefHeight="170.0" prefWidth="156.0" style="-fx-background-color: #FFCE36;" styleClass="playerCard" stylesheets="@../css/fullpackstyle.css" AnchorPane.bottomAnchor="420.0">
+      <VBox alignment="CENTER" layoutX="851.0" layoutY="225.0" prefHeight="170.0" prefWidth="156.0" style="-fx-background-color: #FFCE36;" styleClass="playerCard" stylesheets="@../css/fullpackstyle.css" AnchorPane.bottomAnchor="420.0">
          <children>
             <Pane prefHeight="100.0" prefWidth="153.0">
                <VBox.margin>
@@ -65,7 +67,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Label fx:id="name" alignment="CENTER" prefHeight="39.0" prefWidth="196.0" text="Bassem" textOverrun="CLIP">
+            <Label fx:id="name" alignment="CENTER" prefHeight="39.0" prefWidth="196.0" text="Bassem" textAlignment="CENTER" textOverrun="CLIP">
                <textFill>
                   <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="1.0">
                      <stops>

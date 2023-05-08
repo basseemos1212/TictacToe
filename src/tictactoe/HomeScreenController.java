@@ -36,7 +36,6 @@ import model.Player;
  *
  * @author Nouran
  */
-
 public class HomeScreenController implements Initializable {
 
     @FXML
@@ -69,15 +68,15 @@ public class HomeScreenController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    Font myCustomFont2 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"),22);
+    Font myCustomFont2 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 22);
     @FXML
     private Label scoreLabel;
-    
-    public static   Player player ;
 
+    public static Player player;
 
     /**
      * Initializes the controller class.
+     *
      * @param arg0
      * @param arg1
      */
@@ -85,15 +84,12 @@ public class HomeScreenController implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
         // TODO
 //        printPlayer(player);
-        Font myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"),26);
-        Font myCustomFont3 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"),26);
+        Font myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 26);
+        Font myCustomFont3 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 26);
         name.setFont(myCustomFont2);
         scoreLabel.setFont(myCustomFont3);
-        Platform.runLater(() ->  name.setText(player.getUsername()));
-       
-        
-        
-        
+        Platform.runLater(() -> name.setText(player.getUsername()));
+
         Set<Node> allNodes = parent.lookupAll("*");
         for (Node node : allNodes) {
             if (node instanceof Text) {
@@ -103,34 +99,37 @@ public class HomeScreenController implements Initializable {
                 ((Button) node).setFont(myCustomFont);
             } else if (node instanceof TextField) {
                 ((TextField) node).setFont(myCustomFont);
-    }    
-    
+            }
+
         }
     }
+
     public void setPlayer(Player player) {
         this.player = player;
     }
-        public void printPlayer(Player player) {
-            System.out.println("from home player is :"+ player.getUsername());
+
+    public void printPlayer(Player player) {
+        System.out.println("from home player is :" + player.getUsername());
     }
-        private void navigate(ActionEvent event, String url) throws IOException{
-    
-                // Load the FXML file for the first screen
+
+    private void navigate(ActionEvent event, String url) throws IOException {
+
+        // Load the FXML file for the first screen
         Parent root;
         Stage stage;
-        
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
         root = loader.load();
-        stage =  (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
 
-      
     }
-  private void showmyDialog(){
-       try {
+
+    private void showmyDialog() {
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ChoosePlayerDialog.fxml"));
             DialogPane dialogPane = loader.load();
 
@@ -147,30 +146,35 @@ public class HomeScreenController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-      
-  
-  }
+
+    }
 
     @FXML
     private void pressTwoPlayer(ActionEvent event) throws IOException {
         showmyDialog();
-        
-         
+
     }
 
     @FXML
     private void recordScreenNav(ActionEvent event) throws IOException {
-        navigate(event,"RecordsScreen.fxml");
+        navigate(event, "RecordsScreen.fxml");
     }
 
     @FXML
-    private void aboutScreenNav(ActionEvent event) throws IOException{
-         navigate(event,"About.fxml");
+    private void aboutScreenNav(ActionEvent event) throws IOException {
+        navigate(event, "About.fxml");
+    }
+
+    @FXML
+    private void goToOnline(ActionEvent event) throws IOException {
+        navigate(event, "ChoosePlayer.fxml");
     }
 
     @FXML
     private void pressOnline(ActionEvent event) throws IOException {
-        navigate(event,"About.fxml");
+        //navigate(event,"About.fxml");
     }
     
+    
+
 }
