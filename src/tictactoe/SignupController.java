@@ -99,7 +99,10 @@ public class SignupController implements Initializable {
             this.client = appClient.getClient();
 
         } catch (IOException ex) {
-            Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
+            Stage stage = new Stage();
+            Toast.makeText(stage, "Server is off. Running on offline mode now!");
+
+           // Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -130,10 +133,12 @@ public class SignupController implements Initializable {
                         System.out.println("succefully signed up player " + username);
 
                         flashPass();
-                        PauseTransition pause = new PauseTransition(Duration.millis(7000));
+                        PauseTransition pause = new PauseTransition(Duration.millis(2000));
                         pause.setOnFinished(e -> {
                             try {
-                                navigate(event, "SignIn.fxml");
+                                
+                                ClientUtility.navigate(event, "SignIn.fxml");
+
                             } catch (IOException ex) {
                                 Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
                             }
@@ -141,7 +146,6 @@ public class SignupController implements Initializable {
                         pause.play();
 
 
-                         ClientUtility.navigate(event, "SignIn.fxml");
 
                         
                        
@@ -157,7 +161,10 @@ public class SignupController implements Initializable {
 
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    Stage stage = new Stage();
+                    Toast.makeText(stage, "Server is off. Running on offline mode now!");
+
+//                    e.printStackTrace();
                 }
 
             }
@@ -196,25 +203,6 @@ public class SignupController implements Initializable {
     
     
     }
-
-     
-
-    private void navigate(ActionEvent event, String url) throws IOException {
-
-        // Load the FXML file for the first screen
-        Parent root;
-        Stage stage;
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
-        root = loader.load();
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
-    }
-
 
     @FXML
     private void onGoToSignin(ActionEvent event) throws IOException {

@@ -25,6 +25,7 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import tictactoe.ChoosePlayerController;
+import tictactoe.Toast;
 
 /**
  *
@@ -35,19 +36,22 @@ public class Client {
     private Socket socket;
     private DataInputStream inputStream;
     private DataOutputStream outputStream;
-    public static Player player ;
-    
+    public static Player player;
+
     BlockingQueue<String> messageQueue;
 
     public Client(String serverIP, int serverPort) throws IOException {
-        socket = new Socket(serverIP, serverPort);
-        inputStream = new DataInputStream(socket.getInputStream());
-        outputStream = new DataOutputStream(socket.getOutputStream());
         
-        messageQueue = new LinkedBlockingQueue<>();
-        player = new Player();
+            socket = new Socket(serverIP, serverPort);
+            inputStream = new DataInputStream(socket.getInputStream());
+            outputStream = new DataOutputStream(socket.getOutputStream());
 
-        listenForMessages();
+            messageQueue = new LinkedBlockingQueue<>();
+            player = new Player();
+
+            listenForMessages();
+
+        
     }
 
     public boolean signUp(String username, String password) throws IOException {
@@ -95,9 +99,8 @@ public class Client {
             player.setUsername(userr);
             player.setPassword(password);
             player.setStatus(status);
-            
-//            player = new Player(userr, passe);
 
+//            player = new Player(userr, passe);
             //player = (Player) inputObjectStream.readObject();
         } catch (InterruptedException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);

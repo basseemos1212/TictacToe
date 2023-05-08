@@ -36,6 +36,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.control.DialogPane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Duration;
 import model.AppClient;
 import model.Client;
@@ -85,10 +86,9 @@ public class HomeScreenController implements Initializable {
 
     private Text scoreLabel;
 
-    public  Player player;
+    public Player player;
     @FXML
     private Button LogOutBtn;
-
 
     /**
      * Initializes the controller class.
@@ -106,11 +106,9 @@ public class HomeScreenController implements Initializable {
 
 //        scoreLabel.setFont(myCustomFont2);
         Platform.runLater(() -> loadSettings());
-        
+
         //Platform.runLater(() -> scoreLabel.setText(Integer.toString(client.player.getScore())));
-
         //loadSettings();
-
         Set<Node> allNodes = parent.lookupAll("*");
         for (Node node : allNodes) {
             if (node instanceof Text) {
@@ -123,15 +121,12 @@ public class HomeScreenController implements Initializable {
             }
 
         }
-        if (!checkLogin()){
-        
-          LogOutBtn.setDisable(true);
+        if (!checkLogin()) {
+
+            LogOutBtn.setDisable(true);
             LogOutBtn.setVisible(false);
         }
     }
-
-
-
 
     public void printPlayer(Player player) {
         System.out.println("from home player is :" + player.getUsername());
@@ -204,25 +199,23 @@ public class HomeScreenController implements Initializable {
             ex.printStackTrace();
         }
     }
-    
-private boolean checkLogin() {
-    File file = new File("settings.json");
-    if (file.exists()) {
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            Settings settings = mapper.readValue(file, Settings.class);
-            if (settings.getUsername() != null) {
-                return true; // user is already logged in
+
+    private boolean checkLogin() {
+        File file = new File("settings.json");
+        if (file.exists()) {
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                Settings settings = mapper.readValue(file, Settings.class);
+                if (settings.getUsername() != null) {
+                    return true; // user is already logged in
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (IOException ex) {
-            Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return false; // user is not logged in
+
     }
-    return false; // user is not logged in
-
-}
-
-   
 
     @FXML
     private void OnLogOut(ActionEvent event) {
@@ -239,70 +232,78 @@ private boolean checkLogin() {
 //        stage.setScene(scene);
 //        stage.show();
         flashPass();
-        
+
         scoreLabel.setText("0");
         name.setText("Player");
-        
-
 
 ////        Log
     }
-public void flashPass() {
-    PauseTransition pause = new PauseTransition(Duration.millis(5000));
-    pause.setOnFinished(event -> {
-        LogOutBtn.setStyle("-fx-border-color: rgba(255, 0, 0, 0.8); -fx-border-width: 4px;-fx-border-radius: 10;");
-    });
-    pause.play();
 
-    Timeline timeline = new Timeline(
-        new KeyFrame(Duration.seconds(0.3), evt -> {
+    public void flashPass() {
+        PauseTransition pause = new PauseTransition(Duration.millis(5000));
+        pause.setOnFinished(event -> {
             LogOutBtn.setStyle("-fx-border-color: rgba(255, 0, 0, 0.8); -fx-border-width: 4px;-fx-border-radius: 10;");
-        }),
-        new KeyFrame(Duration.seconds(0.6), evt -> {
-            LogOutBtn.setStyle("-fx-border-color: rgba(255, 255, 255, 0); -fx-border-width: 4px;");
-        }),
-        new KeyFrame(Duration.seconds(1.0), evt -> {
-            LogOutBtn.setDisable(true);
-            LogOutBtn.setVisible(false);
-        })
-    );
-    timeline.setCycleCount(2);
-    timeline.play();
+        });
+        pause.play();
 
-}
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(0.3), evt -> {
+                    LogOutBtn.setStyle("-fx-border-color: rgba(255, 0, 0, 0.8); -fx-border-width: 4px;-fx-border-radius: 10;");
+                }),
+                new KeyFrame(Duration.seconds(0.6), evt -> {
+                    LogOutBtn.setStyle("-fx-border-color: rgba(255, 255, 255, 0); -fx-border-width: 4px;");
+                }),
+                new KeyFrame(Duration.seconds(1.0), evt -> {
+                    LogOutBtn.setDisable(true);
+                    LogOutBtn.setVisible(false);
+                })
+        );
+        timeline.setCycleCount(2);
+        timeline.play();
 
-
+    }
 
 //    LogOutBtn.setDisable(true);
 //    LogOutBtn.setVisible(false);
-
     @FXML
     private void onlineOnClick(ActionEvent event) {
         try {
+            this.appClient = AppClient.getInstance("localhost", 3333);
+            this.client = appClient.getClient();
             if (checkLogin()) {
-                try {
-                    navigate(event, "ChoosePlayer.fxml");
-                } catch (IOException ex) {
-                    Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-                
-            }else{
-                navigate(event, "SignIn.fxml");
+                ClientUtility.navigate(event, "ChoosePlayer.fxml");
 
+            } else {
+                ClientUtility.navigate(event, "SignIn.fxml");
             }
-            ///if not
-        } catch (IOException ex) {
-            Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
+
+        } catch (Exception ex) {
+            Stage stage = new Stage();
+            Toast.makeText(stage, "Server is off. Running on offline mode now!");
         }
 
-
+//        try {
+//            if (checkLogin()) {
+//                try {
+//                    ClientUtility.navigate(event, "ChoosePlayer.fxml");
+//                } catch (IOException ex) {
+//                    Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//
+//            } else {
+//                ClientUtility.navigate(event, "SignIn.fxml");
+//
+//            }
+//            ///if not
+//        } catch (IOException ex) {
+////            Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
+//            Toast.showToast("Server is off. Running on offline mode now!");
+//        }
     }
 
     @FXML
     private void onSignleClick(ActionEvent event) throws IOException {
         navigate(event, "ChooseDiff.fxml");
     }
+
 }
-
-

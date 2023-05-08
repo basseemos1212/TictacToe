@@ -40,7 +40,6 @@ public class TicTacToe extends Application {
             Platform.exit();
             System.exit(0);
         });
-        
 
 //    Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         stage.setScene(scene);
@@ -72,14 +71,16 @@ public class TicTacToe extends Application {
         super.init();
         myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 15);
 
-        try {
-            this.appClient = AppClient.getInstance("localhost", 3333);
-            this.client = appClient.getClient();
+//
+//        try {
+//            this.appClient = AppClient.getInstance("localhost", 3333);
+//            this.client = appClient.getClient();
+//
+//        } catch (IOException ex) {
 
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            Logger.getLogger(TicTacToe.class.getName()).log(Level.SEVERE, null, ex);
-        }
+////            ex.printStackTrace();
+////            Logger.getLogger(TicTacToe.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
     /**

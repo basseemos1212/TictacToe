@@ -45,6 +45,7 @@ import org.apache.derby.jdbc.ClientDriver;
  * @author Bassem
  */
 public class SignInController implements Initializable {
+
     Player player;
     private AppClient appClient;
     private Client client;
@@ -57,12 +58,10 @@ public class SignInController implements Initializable {
     private Button signUpButton;
     @FXML
     private Button signInBtn;
-   
 
-   
     @FXML
     private Label loginStatusLbl;
-   //HomeScreenController homeScreenController=new HomeScreenController(player) ;
+    //HomeScreenController homeScreenController=new HomeScreenController(player) ;
     @FXML
     private CheckBox rememberBtn;
 
@@ -80,7 +79,10 @@ public class SignInController implements Initializable {
             this.client = appClient.getClient();
 
         } catch (IOException ex) {
-            Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
+            Stage stage = new Stage();
+            Toast.makeText(stage, "Server is off. Running on offline mode now!");
+
+            //Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         // TODO
@@ -121,8 +123,6 @@ public class SignInController implements Initializable {
 
         // Get the controller instance for the HomeScreen
 //        HomeScreenController homeScreenController = loader.getController();
-        
-
         // Set the player object as a property of the HomeScreenController
         // Show the HomeScreen
         Scene scene = new Scene(root);
@@ -135,61 +135,61 @@ public class SignInController implements Initializable {
     @FXML
     private void signInonClick(ActionEvent event) throws IOException {
 
-    try {
-        String username = userNameTextField.getText();
-        String password = passwordTextField.getText();
-        
-        player = client.signIn(username, password);
-        player.setScore(125);
+        try {
+            String username = userNameTextField.getText();
+            String password = passwordTextField.getText();
 
-        if (player.getStatus() == 1) {
-            goToHome(event, player);
-            if (rememberBtn.isSelected()) {
-                saveSettings();
-                
+            player = client.signIn(username, password);
+            player.setScore(125);
+
+            if (player.getStatus() == 1) {
+                goToHome(event, player);
+                if (rememberBtn.isSelected()) {
+                    saveSettings();
+
+                }
+            } else if (player.getStatus() == -1) {
+                loginStatusLbl.setText("player not found!");
+                loginStatusLbl.setVisible(true);
+            } else if (player.getStatus() == 0) {
+                loginStatusLbl.setText("Incorrect Password");
+                loginStatusLbl.setVisible(true);
             }
-        } else if (player.getStatus() == -1) {
-            loginStatusLbl.setText("player not found!");
-            loginStatusLbl.setVisible(true);
-        } else if (player.getStatus() == 0) {
-            loginStatusLbl.setText("Incorrect Password");
-            loginStatusLbl.setVisible(true);
+        } catch (ClassNotFoundException ex) {
+            //ex.printStackTrace();
+            Stage stage = new Stage();
+            Toast.makeText(stage, "Server is off. Running on offline mode now!");
+
         }
-    } catch (ClassNotFoundException ex) {
-        ex.printStackTrace();
     }
-}
 
+    private void loadSettings() {
+        try {
+            File file = new File("settings.json");
+            if (file.exists()) {
+                ObjectMapper mapper = new ObjectMapper();
+                Settings settings = mapper.readValue(file, Settings.class);
+                userNameTextField.setText(settings.getUsername());
+                passwordTextField.setText(settings.getPassword());
+                rememberBtn.setSelected(true);
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 
-private void loadSettings() {
-    try {
-        File file = new File("settings.json");
-        if (file.exists()) {
+    private void saveSettings() {
+        try {
+            Settings settings = new Settings();
+            settings.setUsername(userNameTextField.getText());
+            settings.setPassword(passwordTextField.getText());
+            settings.setScore(player.getScore());
+
             ObjectMapper mapper = new ObjectMapper();
-            Settings settings = mapper.readValue(file, Settings.class);
-            userNameTextField.setText(settings.getUsername());
-            passwordTextField.setText(settings.getPassword());
-            rememberBtn.setSelected(true);
+            mapper.writeValue(new File("settings.json"), settings);
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
-    } catch (IOException ex) {
-        ex.printStackTrace();
     }
-}
-private void saveSettings() {
-    try {
-        Settings settings = new Settings();
-        settings.setUsername(userNameTextField.getText());
-        settings.setPassword(passwordTextField.getText());
-        settings.setScore(player.getScore());
-
-
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(new File("settings.json"), settings);
-    } catch (IOException ex) {
-        ex.printStackTrace();
-    }
-}
-
 
 }
-
