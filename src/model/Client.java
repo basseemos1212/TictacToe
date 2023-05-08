@@ -22,7 +22,7 @@ public class Client {
     private DataInputStream inputStream;
     private DataOutputStream outputStream;
     ObjectInputStream inputObjectStream ;
-    Player player=new Player();
+    public Player player=new Player();
 // Read the Player object from the ObjectInputStream.
     
     public Client(String serverIP, int serverPort) throws IOException {

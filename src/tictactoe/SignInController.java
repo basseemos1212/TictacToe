@@ -5,6 +5,8 @@
  */
 package tictactoe;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.File;
 import model.AppClient;
 import model.Client;
 import model.Player;
@@ -28,11 +30,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Settings;
 import org.apache.derby.jdbc.ClientDriver;
 
 /**
@@ -41,7 +45,7 @@ import org.apache.derby.jdbc.ClientDriver;
  * @author Bassem
  */
 public class SignInController implements Initializable {
-
+    Player player;
     private AppClient appClient;
     private Client client;
 
@@ -54,10 +58,12 @@ public class SignInController implements Initializable {
     @FXML
     private Button signInBtn;
 
-
+   
     @FXML
     private Label loginStatusLbl;
    //HomeScreenController homeScreenController=new HomeScreenController(player) ;
+    @FXML
+    private CheckBox rememberBtn;
 
     /**
      * Initializes the controller class.
@@ -67,6 +73,7 @@ public class SignInController implements Initializable {
      */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+        loadSettings();
         try {
             this.appClient = AppClient.getInstance("localhost", 3333);
             this.client = appClient.getClient();
@@ -108,12 +115,12 @@ public class SignInController implements Initializable {
         Parent root;
         Stage stage;
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("HomeScreen.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("test2.fxml"));
         root = loader.load();
 
         // Get the controller instance for the HomeScreen
         HomeScreenController homeScreenController = loader.getController();
-        homeScreenController.setPlayer(player);
+        
 
         // Set the player object as a property of the HomeScreenController
         // Show the HomeScreen
@@ -127,36 +134,61 @@ public class SignInController implements Initializable {
     @FXML
     private void signInonClick(ActionEvent event) throws IOException {
 
-        try {
-            String username = userNameTextField.getText();
-            String password = passwordTextField.getText();
-            
-            
-            player = client.signIn(username, password);
+    try {
+        String username = userNameTextField.getText();
+        String password = passwordTextField.getText();
+        
+        player = client.signIn(username, password);
+        player.setScore(125);
 
-
-            System.out.println("signInonClick obj =" + player.getUsername());
-            if (player.getStatus() == 1) {
-                goToHome(event, player);
-            }
-            else if (player.getStatus() == -1) {
-                System.out.println("player not found!");
-                loginStatusLbl.setVisible(true);
-                loginStatusLbl.setText("player not found!");
-            }
-            
-            else if (player.getStatus() == 0){
-                System.out.println("Incorrect Password");
-                loginStatusLbl.setVisible(true);
-                loginStatusLbl.setText("Incorrect Password");
+        if (player.getStatus() == 1) {
+            goToHome(event, player);
+            if (rememberBtn.isSelected()) {
+                saveSettings();
                 
-                
-// <Label fx:id="loginStatusLbl" layoutX="464.0" layoutY="419.0" styleClass="normalText" text="Incorrect Password" textFill="#e80a0a" visible="false" />
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
+        } else if (player.getStatus() == -1) {
+            loginStatusLbl.setText("player not found!");
+            loginStatusLbl.setVisible(true);
+        } else if (player.getStatus() == 0) {
+            loginStatusLbl.setText("Incorrect Password");
+            loginStatusLbl.setVisible(true);
         }
+    } catch (ClassNotFoundException ex) {
+        ex.printStackTrace();
+    }
+}
 
-    
-}}
+
+private void loadSettings() {
+    try {
+        File file = new File("settings.json");
+        if (file.exists()) {
+            ObjectMapper mapper = new ObjectMapper();
+            Settings settings = mapper.readValue(file, Settings.class);
+            userNameTextField.setText(settings.getUsername());
+            passwordTextField.setText(settings.getPassword());
+            rememberBtn.setSelected(true);
+        }
+    } catch (IOException ex) {
+        ex.printStackTrace();
+    }
+}
+private void saveSettings() {
+    try {
+        Settings settings = new Settings();
+        settings.setUsername(userNameTextField.getText());
+        settings.setPassword(passwordTextField.getText());
+        settings.setScore(player.getScore());
+
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.writeValue(new File("settings.json"), settings);
+    } catch (IOException ex) {
+        ex.printStackTrace();
+    }
+}
+
+
+}
 

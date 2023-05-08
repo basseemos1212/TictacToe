@@ -29,7 +29,11 @@
     -fx-font-weight: bold;
 
 }
+.remlabel{
+    
+    -fx-fill: linear-gradient(to right, #59DFFF, #788CFE);
 
+}
 .normalText{
     
     -fx-font-size: 13px;

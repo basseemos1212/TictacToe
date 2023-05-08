@@ -22,9 +22,12 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -46,6 +49,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javax.imageio.ImageIO;
+import model.Settings;
 
 /**
  * FXML Controller class
@@ -61,6 +65,12 @@ public class RecordsScreenController implements Initializable {
     private VBox gamesVbox;
     List<Game> games = new ArrayList<>(games());
     private Vector<String> moves = new Vector<>();
+    @FXML
+    private Text score;
+    @FXML
+    private Label userName;
+    @FXML
+    private Button backBtn;
 
 
     /**
@@ -69,20 +79,16 @@ public class RecordsScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         readRecordedGames();
-
+        loadSettings();
  
 
-        myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 24);
+       myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 24);
         Set<Node> allNodes = parent.lookupAll("*");
         for (Node node : allNodes) {
-            if (node instanceof Text) {
-                ((Text) node).setFont(myCustomFont);
-
-            } else if (node instanceof Button) {
+           if (node instanceof Button) {
                 ((Button) node).setFont(myCustomFont);
-            } else if (node instanceof TextField) {
-                ((TextField) node).setFont(myCustomFont);
-            } else if (node instanceof Label) {
+            }
+            else if (node instanceof Label) {
                 ((Label) node).setFont(myCustomFont);
             }
 
@@ -188,6 +194,32 @@ public class RecordsScreenController implements Initializable {
 //        }
 //
 //    }
+    
+     private void loadSettings() {
+    try {
+        File file = new File("settings.json");
+        if (file.exists()) {
+            ObjectMapper mapper = new ObjectMapper();
+            Settings settings = mapper.readValue(file, Settings.class);
+            if(settings.getUsername()!=null){
+            userName.setText(settings.getUsername());}
+            
+            score.setText(Integer.toString(settings.getScore()));
+            
+        }
+    } catch (IOException ex) {
+        ex.printStackTrace();
+    }
+}
+
+    @FXML
+    private void onBack(ActionEvent event) {
+        try {
+            ClientUtility.navigate(event,"HomeScreen.fxml");
+        } catch (IOException ex) {
+            Logger.getLogger(RecordsScreenController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
 
 /**
