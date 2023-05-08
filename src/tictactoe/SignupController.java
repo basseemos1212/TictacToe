@@ -130,7 +130,7 @@ public class SignupController implements Initializable {
                         System.out.println("succefully signed up player " + username);
 
                         flashPass();
-                        PauseTransition pause = new PauseTransition(Duration.millis(2000));
+                        PauseTransition pause = new PauseTransition(Duration.millis(7000));
                         pause.setOnFinished(e -> {
                             try {
                                 navigate(event, "SignIn.fxml");
@@ -175,38 +175,29 @@ public class SignupController implements Initializable {
 
 
     public void flashPass() {
-
-        Timeline timeline = new Timeline(
+        PauseTransition pause = new PauseTransition(Duration.millis(5000));
+        pause.setOnFinished(event -> {   Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(0.3), evt -> {
-                    signupbtn.setStyle("-fx-border-color: rgba(0, 255, 0, 0.5); -fx-border-width: 4px;-fx-border-radius: 10;");
-
-//                    passHB.setStyle("-fx-border-color: green; -fx-background-color: rgba(0, 255, 0, 0.5);");
-//                    signupusername.setStyle("-fx-border-color: green; -fx-background-color: rgba(0, 255, 0, 0.5);");
-//                    signuppass.setStyle("-fx-border-color: green; -fx-background-color: rgba(0, 255, 0, 0.5);");
-//                    signuppassTF.setStyle("-fx-border-color: green; -fx-background-color: rgba(0, 255, 0, 0.5);");
-//                    signuprepass.setStyle("-fx-border-color: green; -fx-background-color: rgba(0, 255, 0, 0.5);");
-//                    signuprepassTF.setStyle("-fx-border-color: green; -fx-background-color: rgba(0, 255, 0, 0.5);");
-//                    passtoggle.setStyle("-fx-border-color: green; -fx-background-color: rgba(0, 255, 0, 0.5);");
-//                    repasstoggle.setStyle("-fx-border-color: green; -fx-background-color: rgba(0, 255, 0, 0.5);");
+                    signupbtn.setStyle("-fx-border-color: rgba(0, 255, 0, 0.8); -fx-border-width: 4px;-fx-border-radius: 10;");
 
                 }),
                 new KeyFrame(Duration.seconds(0.6), evt -> {
                       signupbtn.setStyle("-fx-border-color: rgba(255, 255, 255, 0); -fx-border-width: 4px;");
 
-//                    passHB.setStyle("-fx-border-color: #d9d9d9;-fx-background-color: #d9d9d9;");
-//                    signupusername.setStyle("-fx-border-color: #d9d9d9;-fx-background-color: #d9d9d9;");
-//                    signuppass.setStyle("-fx-border-color: #d9d9d9;-fx-background-color: #d9d9d9;");
-//                    signuppassTF.setStyle("-fx-border-color: #d9d9d9;-fx-background-color: #d9d9d9;");
-//                    signuprepass.setStyle("-fx-border-color: #d9d9d9;-fx-background-color: #d9d9d9;");
-//                    signuprepassTF.setStyle("-fx-border-color: #d9d9d9;-fx-background-color: #d9d9d9;");
-//                    passtoggle.setStyle("-fx-border-color: #d9d9d9;-fx-background-color: #d9d9d9;");
-//                    repasstoggle.setStyle("-fx-border-color: #d9d9d9;-fx-background-color: #d9d9d9;");
                 })
         );
         timeline.setCycleCount(7);
 
         timeline.play();
+    
+});
+    pause.play();
+
+    
+    
     }
+
+     
 
     private void navigate(ActionEvent event, String url) throws IOException {
 

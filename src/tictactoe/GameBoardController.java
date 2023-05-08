@@ -51,7 +51,7 @@ public class GameBoardController implements Initializable {
     private Image oImage = new Image("/assets/o_1.png");
 
     int xoCounter = 0;
-    int test = 0;
+    int number = 0;
     private boolean endOFGame = false;
     public static boolean playRecord = false;
     private boolean isRecoarding = false;
@@ -106,6 +106,8 @@ public class GameBoardController implements Initializable {
     String formattedDate = formatter.format(now);
     @FXML
     private Button recordButton;
+    @FXML
+    private Button backBtn;
 
     public void setPlayer1(String player1) {
         this.player1 = player1;
@@ -131,7 +133,7 @@ public class GameBoardController implements Initializable {
     public void onClickListner(ActionEvent event) {
 
         Button onClick = (Button) event.getSource();
-        System.out.println("test= " + test++);
+        System.out.println("test= " + number++);
         String move = String.valueOf(onClick.idProperty().get().charAt(12));
 
         if (onClick.getText().equals("") && endOFGame == false) {
@@ -369,7 +371,7 @@ public class GameBoardController implements Initializable {
     }
 
     public void RecordClick(Button bt) {
-        System.out.println("test= " + test++);
+        System.out.println("test= " + number++);
 
         if (bt.getText().equals("") && endOFGame == false) {
             if (xoCounter == 0) {
@@ -588,6 +590,7 @@ public class GameBoardController implements Initializable {
 
     }
 
+
     private int generateRandomNumber(List<Integer> excludedNumbers) {
         Random rand = new Random();
         int randomNumber;
@@ -635,4 +638,17 @@ public class GameBoardController implements Initializable {
             timeline.play();
     }
 
+
+   @FXML
+    private void onBack(ActionEvent event) {
+        try {
+            ClientUtility.navigate(event,"HomeScreen.fxml");
+        } catch (IOException ex) {
+            Logger.getLogger(RecordsScreenController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }
+    
+
+

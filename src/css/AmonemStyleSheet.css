@@ -108,3 +108,19 @@ and open the template in the editor.
     -fx-font-weight: bold;
     -fx-text-alignment: center;
 }
+.backbutton{
+    
+    -fx-graphic: url('/assets/back1.png');
+        -fx-background-color: linear-gradient(to right, #59DFFF, #788CFE);
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+      -fx-border-color: red;
+          -fx-border-radius: 10px;
+
+ -fx-pref-height: 30px;
+
+    -fx-pref-width: 30px;
+
+
+    
+}
