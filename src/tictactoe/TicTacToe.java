@@ -74,10 +74,10 @@ public class TicTacToe extends Application {
         try {
             this.appClient = AppClient.getInstance("localhost", 3333);
             this.client = appClient.getClient();
-            /*client.myBooleanProperty.addListener((observable, oldValue, newValue) -> {
+            client.myBooleanProperty.addListener((observable, oldValue, newValue) -> {
                 // This code will execute whenever the value of the boolean property changes
                 System.out.println("Boolean value changed from " + oldValue + " to " + newValue);
-            });*/
+            });
 
         } catch (IOException ex) {
             ex.printStackTrace();

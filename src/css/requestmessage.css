@@ -1,10 +1,38 @@
 /*
  * Empty Stylesheet file.
  */
-
-.mainFxmlClass {
-    -fx-background-image: url('/assets/full_background.png');
-   -fx-background-size:cover;
-   -fx-background-radius: 50px; 
-
+#parent
+{
+    -fx-background-color: #3B1787;
+    /*-fx-background-radius: 30px;**/
+    -fx-pref-height: 200px;
+    -fx-pref-width: 450px;
+    
+    
 }
+#acceptBtn {
+-fx-background-color: linear-gradient(to right, #59DFFF, #788CFE);
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+  
+    -fx-border-radius: 5px;
+     -fx-border-radius: 5px;
+}
+#rejectBtn {
+-fx-background-color: linear-gradient(to right, #59DFFF, #788CFE);
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+  
+    -fx-border-radius: 5px;
+    -fx-border-radius: 5px;
+}
+#bottom
+{
+    -fx-background-color: #3B1787;
+    /*-fx-background-radius: 30px;**/
+    -fx-pref-height: 200px;
+    -fx-pref-width: 450px;
+    
+    
+}
+

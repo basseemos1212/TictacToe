@@ -5,9 +5,20 @@
  */
 package tictactoe;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.DialogPane;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import model.AppClient;
+import model.Client;
 
 /**
  * FXML Controller class
@@ -16,12 +27,40 @@ import javafx.fxml.Initializable;
  */
 public class RequestMessageController implements Initializable {
 
+    @FXML
+    private DialogPane parent;
+    @FXML
+    private Label playerName;
+    @FXML
+    private HBox bottom;
+    @FXML
+    private Button acceptBtn;
+    @FXML
+    private Button rejectBtn;
+    private Client client;
+    private AppClient appClient;
+    private boolean requestSuccess=false;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        ClientUtility.changeFontInAllNodes(parent);
+        try {
+            this.appClient= AppClient.getInstance("localhost", 3333);
+            this.client = appClient.getClient();
+
+        } catch (IOException ex) {
+            Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }    
+
+    @FXML
+    private void onAcceptClick(ActionEvent event) {
+    }
+
+    @FXML
+    private void onRejectClick(ActionEvent event) {
+    }
     
 }

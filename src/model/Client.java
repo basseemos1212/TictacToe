@@ -39,8 +39,9 @@ public class Client {
     private DataOutputStream outputStream;
     ObjectInputStream inputObjectStream;
     public Player player;
+    public boolean isInvited=false;
     private BlockingQueue<String> messageQueue;
-    //public BooleanProperty myBooleanProperty = new SimpleBooleanProperty(false);
+    public BooleanProperty myBooleanProperty = new SimpleBooleanProperty(false);
 
     public Client(String serverIP, int serverPort) throws IOException {
         socket = new Socket(serverIP, serverPort);
@@ -48,6 +49,7 @@ public class Client {
         outputStream = new DataOutputStream(socket.getOutputStream());
         inputObjectStream = new ObjectInputStream(socket.getInputStream());
         messageQueue = new LinkedBlockingQueue<>();
+        //isInvited=getInviteRequest();
 
         listenForMessages();
     }
@@ -108,10 +110,12 @@ public class Client {
         try {
             String inviteRwquestMessage = readFromMessageQueue();
             System.out.println("from getInviteRequest "+inviteRwquestMessage);
+            
             //wait the response
             JsonObject responseJsonObject = new Gson().fromJson(inviteRwquestMessage, JsonObject.class);
             String sender = responseJsonObject.get("player1").getAsString();
-            System.out.println(sender+" sent a request ");
+            String reciever = responseJsonObject.get("player2").getAsString();
+            System.out.println(sender+" sent a request to "+reciever);
             return true;
             
 
@@ -119,9 +123,38 @@ public class Client {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
             
             
-        }
+        }   
         return false;
-    }
+            }
+        /*boolean inviteSuccess=false;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+              try {
+            String inviteRwquestMessage = readFromMessageQueue();
+            System.out.println("from getInviteRequest "+inviteRwquestMessage);
+            
+            //wait the response
+            JsonObject responseJsonObject = new Gson().fromJson(inviteRwquestMessage, JsonObject.class);
+            String sender = responseJsonObject.get("player1").getAsString();
+            String reciever = responseJsonObject.get("player2").getAsString();
+            System.out.println(sender+" sent a request to "+reciever);
+            if(reciever.equals(player))
+            inviteSuccess= true;
+            else
+                return false;
+            
+
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            
+            
+        }   
+            }
+        }).start();*/
+       
+
+    
     public void invite(String player1,String player2) throws IOException
     {
         JsonObject jsonObject =new JsonObject();
@@ -162,9 +195,13 @@ public class Client {
                             break;
                             case "inviteRequest":
                                 messageQueue.put(messageFromServer);
-                                System.out.println("from ListenForAll "+messageFromServer);
-                                getInviteRequest();
-                                //myBooleanProperty.set(true);
+                                System.out.println("from inviteRequest "+messageFromServer);
+//                                isInvited=getInviteRequest();
+                                System.out.println("isInvited response: "+isInvited);
+//                                Platform.runLater(() -> {
+//                                    Requ.onlinePlayersList.setAll(list);
+//                                });
+                                myBooleanProperty.set(getInviteRequest());
                                 break;
                             default:
                                 messageQueue.put(messageFromServer);
@@ -181,6 +218,20 @@ public class Client {
 
     private String readFromMessageQueue() throws InterruptedException {
         return messageQueue.take();
+    }
+    public void replyToInviteRequest(String senderUserName,String recieverUserName,String reply)
+    {
+        try {
+            JsonObject jsonObject =new JsonObject();
+            jsonObject.addProperty("func", "replyToInvite");
+            jsonObject.addProperty("senderUsername", senderUserName);
+            jsonObject.addProperty("recievererUsername", recieverUserName);
+            jsonObject.addProperty("reply", reply);
+            Gson gson=new Gson();
+            outputStream.writeUTF(gson.toJson(jsonObject));
+        } catch (IOException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
