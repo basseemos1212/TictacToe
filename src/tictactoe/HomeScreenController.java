@@ -281,15 +281,17 @@ public void flashPass() {
         try {
             if (checkLogin()) {
                 try {
-                    navigate(event, "test.fxml");
+                    navigate(event, "ChoosePlayer.fxml");
                 } catch (IOException ex) {
                     Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
                 
+            }else{
+                navigate(event, "SignIn.fxml");
+
             }
             ///if not
-            navigate(event, "SignIn.fxml");
         } catch (IOException ex) {
             Logger.getLogger(HomeScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }

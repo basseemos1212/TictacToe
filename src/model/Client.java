@@ -45,6 +45,7 @@ public class Client {
         outputStream = new DataOutputStream(socket.getOutputStream());
         
         messageQueue = new LinkedBlockingQueue<>();
+        player = new Player();
 
         listenForMessages();
     }
@@ -90,7 +91,12 @@ public class Client {
             JsonNode rootNode = objectMapper.readTree(loggedInMessage);
             String userr = rootNode.get("username").asText();
             String passe = rootNode.get("password").asText();
-            player = new Player(userr, password);
+            int status = rootNode.get("status").asInt();
+            player.setUsername(userr);
+            player.setPassword(password);
+            player.setStatus(status);
+            
+//            player = new Player(userr, passe);
 
             //player = (Player) inputObjectStream.readObject();
         } catch (InterruptedException ex) {

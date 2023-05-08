@@ -116,11 +116,11 @@ public class SignInController implements Initializable {
         Parent root;
         Stage stage;
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("test2.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ChoosePlayer.fxml"));
         root = loader.load();
 
         // Get the controller instance for the HomeScreen
-        HomeScreenController homeScreenController = loader.getController();
+//        HomeScreenController homeScreenController = loader.getController();
         
 
         // Set the player object as a property of the HomeScreenController
