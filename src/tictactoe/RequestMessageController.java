@@ -39,7 +39,6 @@ public class RequestMessageController implements Initializable {
     private Button rejectBtn;
     private Client client;
     private AppClient appClient;
-    private boolean requestSuccess=false;
     /**
      * Initializes the controller class.
      */
@@ -47,20 +46,26 @@ public class RequestMessageController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         ClientUtility.changeFontInAllNodes(parent);
         try {
-            this.appClient= AppClient.getInstance("localhost", 3333);
+            this.appClient = AppClient.getInstance("localhost", 3333);
             this.client = appClient.getClient();
 
+
         } catch (IOException ex) {
-            Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            Logger.getLogger(TicTacToe.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
 
     @FXML
     private void onAcceptClick(ActionEvent event) {
+        client.replyToInviteRequest("accept");
+
     }
 
     @FXML
     private void onRejectClick(ActionEvent event) {
+        client.replyToInviteRequest("reject");
+
     }
     
 }
