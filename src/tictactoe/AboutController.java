@@ -5,9 +5,13 @@
  */
 package tictactoe;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -26,6 +30,8 @@ public class AboutController implements Initializable {
         private Font myCustomFont;
         @FXML
         private Parent parent;
+    @FXML
+    private Button backBtn;
 
 
     /**
@@ -39,5 +45,15 @@ public class AboutController implements Initializable {
         
 
     }    
-    
+
+   @FXML
+    private void onBack(ActionEvent event) {
+        try {
+            ClientUtility.navigate(event,"HomeScreen.fxml");
+        } catch (IOException ex) {
+            Logger.getLogger(RecordsScreenController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
+    
+

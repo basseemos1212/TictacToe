@@ -35,9 +35,6 @@ public class Client {
     private Socket socket;
     private DataInputStream inputStream;
     private DataOutputStream outputStream;
-    ObjectInputStream inputObjectStream;
-    public Player player;
-    private BlockingQueue<String> messageQueue;
 
     public Client(String serverIP, int serverPort) throws IOException {
         socket = new Socket(serverIP, serverPort);
