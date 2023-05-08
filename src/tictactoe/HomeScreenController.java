@@ -82,11 +82,13 @@ public class HomeScreenController implements Initializable {
      */
     Font myCustomFont2 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 22);
     @FXML
+
     private Text scoreLabel;
 
     public  Player player;
     @FXML
     private Button LogOutBtn;
+
 
     /**
      * Initializes the controller class.
@@ -101,12 +103,14 @@ public class HomeScreenController implements Initializable {
         Font myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 26);
         Font myCustomFont3 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 26);
         name.setFont(myCustomFont2);
+
 //        scoreLabel.setFont(myCustomFont2);
         Platform.runLater(() -> loadSettings());
         
         //Platform.runLater(() -> scoreLabel.setText(Integer.toString(client.player.getScore())));
 
         //loadSettings();
+
         Set<Node> allNodes = parent.lookupAll("*");
         for (Node node : allNodes) {
             if (node instanceof Text) {
@@ -125,6 +129,7 @@ public class HomeScreenController implements Initializable {
             LogOutBtn.setVisible(false);
         }
     }
+
 
 
 
@@ -214,6 +219,7 @@ private boolean checkLogin() {
         }
     }
     return false; // user is not logged in
+
 }
 
    

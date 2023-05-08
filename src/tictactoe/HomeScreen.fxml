@@ -39,7 +39,9 @@
       </StackPane>
       <StackPane alignment="CENTER_LEFT" layoutX="265.0" layoutY="510.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="150.0" prefWidth="564.0">
          <children>
+
             <Button fx:id="onlineBtn" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#onlineOnClick" text="Online" textAlignment="CENTER" StackPane.alignment="CENTER_LEFT">
+
                <StackPane.margin>
                   <Insets left="80.0" />
                </StackPane.margin>
