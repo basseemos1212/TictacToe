@@ -1,4 +1,3 @@
-
 package tictactoe;
 
 import com.google.gson.Gson;
@@ -11,7 +10,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Set;
@@ -54,8 +56,10 @@ public class GameBoardController implements Initializable {
     public static boolean playRecord = false;
     private boolean isRecoarding = false;
     public static String fileRecorded;
-    public static String player1="";
-    public static String player2="";
+    public static String player1 = "Player1";
+    public static String player2 = "PC";
+    public static boolean isVersusPC = false;
+    List<Integer> excludedNumbers = new ArrayList<>(Arrays.asList());
     @FXML
     private ImageView playerOneImg;
     @FXML
@@ -137,7 +141,11 @@ public class GameBoardController implements Initializable {
                 ImageView xImageView = new ImageView(xImage);
                 onClick.setGraphic(xImageView);
                 moves.add(move);
+                excludedNumbers.add(Integer.valueOf(String.valueOf(onClick.idProperty().get().charAt(12))));
                 xoCounter = 1;
+                if(isVersusPC){
+                    pcPlay(generateRandomNumber(excludedNumbers));
+                }
             } else {
                 onClick.setText("o");
 
@@ -376,6 +384,7 @@ public class GameBoardController implements Initializable {
             } else {
                 bt.setText("o");
                 ImageView oImageView = new ImageView(oImage);
+                excludedNumbers.add(Integer.valueOf(String.valueOf(bt.idProperty().get().charAt(12))));
 
                 bt.setGraphic(oImageView);
                 xoCounter = 0;
@@ -387,6 +396,7 @@ public class GameBoardController implements Initializable {
             calculateResult();
 
         } else {
+            
 
         }
 
@@ -516,7 +526,6 @@ public class GameBoardController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         ClientUtility.changeFontInAllNodes(borderPane);
 
-
         System.out.println("moves=" + moves);
         System.out.println("fileName" + fileRecorded);
         System.out.println("the boolean =" + playRecord);
@@ -549,7 +558,6 @@ public class GameBoardController implements Initializable {
 
             }
 
-
             if (playRecord) {
                 playRecordedGame();
                 System.out.println("iam setting data to labels");
@@ -578,6 +586,53 @@ public class GameBoardController implements Initializable {
 
         }
 
+    }
+
+    private int generateRandomNumber(List<Integer> excludedNumbers) {
+        Random rand = new Random();
+        int randomNumber;
+        do {
+            randomNumber = rand.nextInt(9) + 1;
+        } while (excludedNumbers.contains(randomNumber));
+        return randomNumber;
+    }
+    private void pcPlay(int number){
+                    Timeline timeline = new Timeline(
+                    number == 1 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
+
+                RecordClick(gameBoardBtn1);
+
+            }) : number == 2 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
+
+                RecordClick(gameBoardBtn2);
+            }) : number == 3 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
+
+                RecordClick(gameBoardBtn3);
+            }) : number == 4 ? new KeyFrame(Duration.seconds(1+ 0.1), (event) -> {
+
+                RecordClick(gameBoardBtn4);
+            }) : number == 5 ? new KeyFrame(Duration.seconds(1+ 0.1), (event) -> {
+
+                RecordClick(gameBoardBtn5);
+            }) : number == 6 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
+
+                RecordClick(gameBoardBtn6);
+            }) : number == 7 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
+
+                RecordClick(gameBoardBtn7);
+            }) : number == 8 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
+
+                RecordClick(gameBoardBtn8);
+            }) : number == 9 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
+
+                RecordClick(gameBoardBtn9);
+            }) : new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
+                System.out.println("nothing");
+            }));
+
+            timeline.setCycleCount(0);
+
+            timeline.play();
     }
 
 }

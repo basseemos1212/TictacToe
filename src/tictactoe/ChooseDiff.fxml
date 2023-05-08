@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1024.0" styleClass="root" stylesheets="@../css/homescreen.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.ChooseDiffController">
+   <children>
+      <StackPane alignment="CENTER_LEFT" layoutX="265.0" layoutY="217.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="150.0" prefWidth="564.0">
+         <children>
+            <Button fx:id="easyButton" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#onClickEasy" text="Easy" textAlignment="CENTER" StackPane.alignment="CENTER_LEFT">
+               <StackPane.margin>
+                  <Insets left="80.0" />
+               </StackPane.margin>
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="easyImg" fitHeight="116.0" fitWidth="116.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </StackPane>
+      <StackPane alignment="CENTER_LEFT" layoutX="265.0" layoutY="360.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="150.0" prefWidth="564.0">
+         <children>
+            <Button fx:id="meduimButton" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#onClickMeduim" text="Meduim" textAlignment="CENTER" StackPane.alignment="CENTER_LEFT">
+               <StackPane.margin>
+                  <Insets left="80.0" />
+               </StackPane.margin>
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="meduimImg" fitHeight="116.0" fitWidth="116.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </StackPane>
+      <StackPane alignment="CENTER_LEFT" layoutX="265.0" layoutY="510.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="150.0" prefWidth="564.0">
+         <children>
+            <Button fx:id="hardButton" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#onClickHard" text="Hard" textAlignment="CENTER" StackPane.alignment="CENTER_LEFT">
+               <StackPane.margin>
+                  <Insets left="80.0" />
+               </StackPane.margin>
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="hardImg" fitHeight="116.0" fitWidth="116.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>
