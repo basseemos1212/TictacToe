@@ -35,12 +35,15 @@ public class Client {
     private Socket socket;
     private DataInputStream inputStream;
     private DataOutputStream outputStream;
+    public static Player player ;
+    
+    BlockingQueue<String> messageQueue;
 
     public Client(String serverIP, int serverPort) throws IOException {
         socket = new Socket(serverIP, serverPort);
         inputStream = new DataInputStream(socket.getInputStream());
         outputStream = new DataOutputStream(socket.getOutputStream());
-        inputObjectStream = new ObjectInputStream(socket.getInputStream());
+        
         messageQueue = new LinkedBlockingQueue<>();
 
         listenForMessages();

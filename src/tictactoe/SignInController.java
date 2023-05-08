@@ -57,7 +57,7 @@ public class SignInController implements Initializable {
     private Button signUpButton;
     @FXML
     private Button signInBtn;
-    Player player=new Player();
+   
 
    
     @FXML

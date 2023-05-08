@@ -16,7 +16,7 @@
    <children>
       <StackPane alignment="CENTER_LEFT" layoutX="265.0" layoutY="217.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="150.0" prefWidth="564.0">
          <children>
-            <Button fx:id="singleBtn" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="Single" textAlignment="CENTER" StackPane.alignment="CENTER_LEFT">
+            <Button fx:id="singleBtn" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#onSignleClick" text="Single" textAlignment="CENTER" StackPane.alignment="CENTER_LEFT">
                <StackPane.margin>
                   <Insets left="80.0" />
                </StackPane.margin>

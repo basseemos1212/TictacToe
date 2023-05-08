@@ -296,6 +296,11 @@ public void flashPass() {
 
 
     }
+
+    @FXML
+    private void onSignleClick(ActionEvent event) throws IOException {
+        navigate(event, "ChooseDiff.fxml");
+    }
 }
 
 
