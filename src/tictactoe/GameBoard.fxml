@@ -165,6 +165,9 @@
                </font>
             </Button>
          </bottom>
+         <top>
+            <Button fx:id="backBtn" mnemonicParsing="false" onAction="#onBack" prefHeight="27.0" prefWidth="24.0" styleClass="backbutton" BorderPane.alignment="CENTER_LEFT" />
+         </top>
       </BorderPane>
    </children>
    <stylesheets>

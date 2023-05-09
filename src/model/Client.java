@@ -34,6 +34,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import tictactoe.ChoosePlayerController;
 
+
 /**
  *
  * @author moham
@@ -43,8 +44,9 @@ public class Client {
     private Socket socket;
     private DataInputStream inputStream;
     private DataOutputStream outputStream;
+
     ObjectInputStream inputObjectStream;
-    public Player player;
+    public static Player player;
     public boolean isInvited = false;
     private BlockingQueue<String> messageQueue;
     public BooleanProperty myBooleanProperty = new SimpleBooleanProperty(false);
@@ -58,9 +60,11 @@ public class Client {
         outputStream = new DataOutputStream(socket.getOutputStream());
         inputObjectStream = new ObjectInputStream(socket.getInputStream());
         messageQueue = new LinkedBlockingQueue<>();
+      player = new Player();
         //isInvited=getInviteRequest();
 
         listenForMessages();
+
     }
 
     public boolean signUp(String username, String password) throws IOException {
@@ -104,8 +108,13 @@ public class Client {
             JsonNode rootNode = objectMapper.readTree(loggedInMessage);
             String userr = rootNode.get("username").asText();
             String passe = rootNode.get("password").asText();
-            player = new Player(userr, password);
 
+            int status = rootNode.get("status").asInt();
+            player.setUsername(userr);
+            player.setPassword(password);
+            player.setStatus(status);
+
+//            player = new Player(userr, passe);
             //player = (Player) inputObjectStream.readObject();
         } catch (InterruptedException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
@@ -113,7 +122,6 @@ public class Client {
 
         return player;
 
-    }
 
     public boolean getInviteRequest() //for the 2nd player
     {
@@ -216,6 +224,7 @@ public class Client {
 //                                
                                 goToBoard();
                                 break;
+
                             default:
                                 messageQueue.put(messageFromServer);
 
@@ -232,6 +241,7 @@ public class Client {
     private String readFromMessageQueue() throws InterruptedException {
         return messageQueue.take();
     }
+
 
     public void replyToInviteRequest(String reply) {
         try {
@@ -299,3 +309,4 @@ public class Client {
 //
 //    }
 }
+

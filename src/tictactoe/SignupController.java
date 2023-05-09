@@ -17,6 +17,9 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
@@ -43,18 +46,16 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  *
  * @author moham
  */
 public class SignupController implements Initializable {
-    
-   
-    
+
     private AppClient appClient;
     private Client client;
-
 
     @FXML
     private Text signupLabel;
@@ -92,21 +93,23 @@ public class SignupController implements Initializable {
 
         showHidePassword();
         validatePassword();
-        
-        
+
         try {
-            this.appClient= AppClient.getInstance("localhost", 3333);
+            this.appClient = AppClient.getInstance("localhost", 3333);
             this.client = appClient.getClient();
 
         } catch (IOException ex) {
-            Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
+            Stage stage = new Stage();
+            Toast.makeText(stage, "Server is off. Running on offline mode now!");
+
+           // Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     @FXML
-    public void onSignupClicked(ActionEvent event ) {
-        
+    public void onSignupClicked(ActionEvent event) {
+
         String password = signuppass.getText();
 
         // Define a regular expression to match the password criteria
@@ -119,22 +122,35 @@ public class SignupController implements Initializable {
         if (matches) {
             // TODO: Submit the form
             boolean isTwoPassFieldsMatch = checkIfTheTwoPasswordsMatch();
-            if(isTwoPassFieldsMatch){
+            if (isTwoPassFieldsMatch) {
 
                 String username = signupusername.getText();
-                
+
                 try {
                     boolean success = client.signUp(username, password);
                     if (success) {
                         // do something on success, go Home screen for example
-                        System.out.println("succefully signed up player "  + username);
-                       
+                        System.out.println("succefully signed up player " + username);
 
-                         ClientUtility.navigate(event, "SignIn.fxml");
+                        flashPass();
+                        PauseTransition pause = new PauseTransition(Duration.millis(2000));
+                        pause.setOnFinished(e -> {
+                            try {
+                                
+                                ClientUtility.navigate(event, "SignIn.fxml");
+
+                            } catch (IOException ex) {
+                                Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        });
+                        pause.play();
+
+
 
                         
                        
                         
+
                     } else {
                         // User exists
                         System.out.println("succefully signed up player (from client)");
@@ -145,10 +161,12 @@ public class SignupController implements Initializable {
 
                     }
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    Stage stage = new Stage();
+                    Toast.makeText(stage, "Server is off. Running on offline mode now!");
+
+//                    e.printStackTrace();
                 }
 
-                
             }
         } else {
             // If the password does not match the criteria, show an alert dialog
@@ -159,12 +177,32 @@ public class SignupController implements Initializable {
 
             alert.showAndWait();
         }
-        
-      
 
     }
-    
 
+
+    public void flashPass() {
+        PauseTransition pause = new PauseTransition(Duration.millis(5000));
+        pause.setOnFinished(event -> {   Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(0.3), evt -> {
+                    signupbtn.setStyle("-fx-border-color: rgba(0, 255, 0, 0.8); -fx-border-width: 4px;-fx-border-radius: 10;");
+
+                }),
+                new KeyFrame(Duration.seconds(0.6), evt -> {
+                      signupbtn.setStyle("-fx-border-color: rgba(255, 255, 255, 0); -fx-border-width: 4px;");
+
+                })
+        );
+        timeline.setCycleCount(7);
+
+        timeline.play();
+    
+});
+    pause.play();
+
+    
+    
+    }
 
     @FXML
     private void onGoToSignin(ActionEvent event) throws IOException {
@@ -220,10 +258,10 @@ public class SignupController implements Initializable {
         });
 
     }
-    
-    public boolean checkIfTheTwoPasswordsMatch(){
+
+    public boolean checkIfTheTwoPasswordsMatch() {
         if (!signuppass.getText().equals(signuprepass.getText())) {
-            
+
             // The passwords don't match, show an alert dialog
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -231,10 +269,38 @@ public class SignupController implements Initializable {
             alert.setContentText("Please make sure to re-enter passwords correctly.");
             alert.showAndWait();
             return false;
-        }else{
+        } else {
             return true;
         }
     }
 
+
+//    private void onTest(ActionEvent event) {
+////         Alert alert = new Alert(Alert.AlertType.NONE);
+////                       alert.setTitle("Sign-Up Success");
+////                       alert.setContentText("You have successfully signed up.");
+////                       alert.setResult(ButtonType.CANCEL);
+////                       alert.setWidth(400);
+////                       alert.setHeight(250);
+////
+////                        DialogPane dialogPane = alert.getDialogPane();
+////                        dialogPane.getStylesheets().add(getClass().getResource("/css/splashui.css").toExternalForm());
+////                        dialogPane.getStyleClass().add("myDialog");
+//Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//alert.setTitle("Information Dialog");
+//alert.setHeaderText("Look, an Information Dialog");
+//alert.setContentText("I have a great message for you!");
+//
+//ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+//alert.getButtonTypes().add(cancelButton);
+//
+//Optional<ButtonType> result = alert.showAndWait();
+//if (result.isPresent() && result.get() == cancelButton) {
+//    // Cancel button was clicked, do something here
+//}
+//
+//
+//                       // Optional<ButtonType> result = alert.showAndWait();
+//    }
 
 }

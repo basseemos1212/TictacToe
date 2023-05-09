@@ -5,6 +5,8 @@
  */
 package tictactoe;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.File;
 import model.AppClient;
 import model.Client;
 import model.Player;
@@ -29,11 +31,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+
 import javafx.scene.control.ButtonType;
+
+import javafx.scene.control.CheckBox;
+
 import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Settings;
 import org.apache.derby.jdbc.ClientDriver;
 
 /**
@@ -43,6 +51,7 @@ import org.apache.derby.jdbc.ClientDriver;
  */
 public class SignInController implements Initializable {
 
+    Player player;
     private AppClient appClient;
     private Client client;
 
@@ -55,8 +64,11 @@ public class SignInController implements Initializable {
     @FXML
     private Button signInBtn;
 
-    private Player player;
+    @FXML
+    private Label loginStatusLbl;
     //HomeScreenController homeScreenController=new HomeScreenController(player) ;
+    @FXML
+    private CheckBox rememberBtn;
 
     /**
      * Initializes the controller class.
@@ -66,12 +78,16 @@ public class SignInController implements Initializable {
      */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+        loadSettings();
         try {
             this.appClient = AppClient.getInstance("localhost", 3333);
             this.client = appClient.getClient();
 
         } catch (IOException ex) {
-            Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
+            Stage stage = new Stage();
+            Toast.makeText(stage, "Server is off. Running on offline mode now!");
+
+            //Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         // TODO
@@ -111,13 +127,11 @@ public class SignInController implements Initializable {
         Parent root;
         Stage stage;
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("HomeScreen.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ChoosePlayer.fxml"));
         root = loader.load();
 
         // Get the controller instance for the HomeScreen
-        HomeScreenController homeScreenController = loader.getController();
-        homeScreenController.setPlayer(player);
-
+//        HomeScreenController homeScreenController = loader.getController();
         // Set the player object as a property of the HomeScreenController
         // Show the HomeScreen
         Scene scene = new Scene(root);
@@ -129,21 +143,64 @@ public class SignInController implements Initializable {
 
     @FXML
     private void signInonClick(ActionEvent event) throws IOException {
-        String username = userNameTextField.getText();
-        String password = passwordTextField.getText();
 
         try {
 
-            player = client.signIn(username, password);
-            System.out.println("signInonClick obj =" + player.getUsername());
-            goToHome(event, player);
-            //navigate(event, "HomeScreen.fxml");
+            String username = userNameTextField.getText();
+            String password = passwordTextField.getText();
 
+            player = client.signIn(username, password);
+            player.setScore(125);
+
+            if (player.getStatus() == 1) {
+                goToHome(event, player);
+                if (rememberBtn.isSelected()) {
+                    saveSettings();
+
+                }
+            } else if (player.getStatus() == -1) {
+                loginStatusLbl.setText("player not found!");
+                loginStatusLbl.setVisible(true);
+            } else if (player.getStatus() == 0) {
+                loginStatusLbl.setText("Incorrect Password");
+                loginStatusLbl.setVisible(true);
+            }
 
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            //ex.printStackTrace();
+            Stage stage = new Stage();
+            Toast.makeText(stage, "Server is off. Running on offline mode now!");
 
+        }
+    }
+
+    private void loadSettings() {
+        try {
+            File file = new File("settings.json");
+            if (file.exists()) {
+                ObjectMapper mapper = new ObjectMapper();
+                Settings settings = mapper.readValue(file, Settings.class);
+                userNameTextField.setText(settings.getUsername());
+                passwordTextField.setText(settings.getPassword());
+                rememberBtn.setSelected(true);
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void saveSettings() {
+        try {
+            Settings settings = new Settings();
+            settings.setUsername(userNameTextField.getText());
+            settings.setPassword(passwordTextField.getText());
+            settings.setScore(player.getScore());
+
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.writeValue(new File("settings.json"), settings);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
 }

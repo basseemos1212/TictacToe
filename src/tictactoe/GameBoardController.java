@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tictactoe;
 
 import com.google.gson.Gson;
@@ -15,7 +10,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Set;
@@ -48,8 +46,21 @@ import model.Game;
  * @author Bassem
  */
 public class GameBoardController implements Initializable {
+    private Image xImage = new Image("/assets/x_1.png");
 
-    
+    private Image oImage = new Image("/assets/o_1.png");
+
+    int xoCounter = 0;
+    int number = 0;
+    private boolean endOFGame = false;
+    public static boolean playRecord = false;
+    private boolean isRecoarding = false;
+    public static String fileRecorded;
+    public static String player1 = "Player1";
+    public static String player2 = "PC";
+    public static boolean isVersusPC = false;
+    List<Integer> excludedNumbers = new ArrayList<>(Arrays.asList());
+
     @FXML
     private ImageView playerOneImg;
     @FXML
@@ -111,6 +122,8 @@ public class GameBoardController implements Initializable {
     String formattedDate = formatter.format(now);
     @FXML
     private Button recordButton;
+    @FXML
+    private Button backBtn;
 
    /* public void setPlayer1(String player1) {
         this.player1 = player1;
@@ -136,8 +149,10 @@ public class GameBoardController implements Initializable {
     public void onClickListner(ActionEvent event) {
 
         Button onClick = (Button) event.getSource();
-        System.out.println("test= " + test++);
-        String move = String.valueOf(onClick.idProperty().get().charAt(12));//index of cell
+
+        System.out.println("test= " + number++);
+        String move = String.valueOf(onClick.idProperty().get().charAt(12));
+
 
         if (onClick.getText().equals("") && endOFGame == false) {
             if (xoCounter == 0) {
@@ -145,8 +160,14 @@ public class GameBoardController implements Initializable {
 
                 ImageView xImageView = new ImageView(xImage);
                 onClick.setGraphic(xImageView);
-                game.getMoves().add(move);
+
+                moves.add(move);
+                excludedNumbers.add(Integer.valueOf(String.valueOf(onClick.idProperty().get().charAt(12))));
+
                 xoCounter = 1;
+                if(isVersusPC){
+                    pcPlay(generateRandomNumber(excludedNumbers));
+                }
             } else {
                 onClick.setText("o");
 
@@ -376,7 +397,8 @@ public class GameBoardController implements Initializable {
     }
 
     public void RecordClick(Button bt) {
-        System.out.println("test= " + test++);
+        System.out.println("test= " + number++);
+        String move = String.valueOf(bt.idProperty().get().charAt(12));
 
         if (bt.getText().equals("") && endOFGame == false) {
             if (xoCounter == 0) {
@@ -385,13 +407,15 @@ public class GameBoardController implements Initializable {
 
                 ImageView xImageView = new ImageView(xImage);
                 bt.setGraphic(xImageView);
+                moves.add(move);
 
                 xoCounter = 1;
 
             } else {
                 bt.setText("o");
                 ImageView oImageView = new ImageView(oImage);
-
+                excludedNumbers.add(Integer.valueOf(String.valueOf(bt.idProperty().get().charAt(12))));
+                moves.add(move);   
                 bt.setGraphic(oImageView);
                 xoCounter = 0;
 
@@ -403,6 +427,7 @@ public class GameBoardController implements Initializable {
             //apply the video
 
         } else {
+            
 
         }
 
@@ -564,7 +589,6 @@ public class GameBoardController implements Initializable {
 
             }
 
-
             if (playRecord) {
                 playRecordedGame();
                 System.out.println("iam setting data to labels");
@@ -595,4 +619,65 @@ public class GameBoardController implements Initializable {
 
     }
 
+
+    private int generateRandomNumber(List<Integer> excludedNumbers) {
+        Random rand = new Random();
+        int randomNumber;
+        do {
+            randomNumber = rand.nextInt(9) + 1;
+        } while (excludedNumbers.contains(randomNumber));
+        return randomNumber;
+    }
+    private void pcPlay(int number){
+                    Timeline timeline = new Timeline(
+                    number == 1 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
+
+                RecordClick(gameBoardBtn1);
+
+            }) : number == 2 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
+
+                RecordClick(gameBoardBtn2);
+            }) : number == 3 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
+
+                RecordClick(gameBoardBtn3);
+            }) : number == 4 ? new KeyFrame(Duration.seconds(1+ 0.1), (event) -> {
+
+                RecordClick(gameBoardBtn4);
+            }) : number == 5 ? new KeyFrame(Duration.seconds(1+ 0.1), (event) -> {
+
+                RecordClick(gameBoardBtn5);
+            }) : number == 6 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
+
+                RecordClick(gameBoardBtn6);
+            }) : number == 7 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
+
+                RecordClick(gameBoardBtn7);
+            }) : number == 8 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
+
+                RecordClick(gameBoardBtn8);
+            }) : number == 9 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
+
+                RecordClick(gameBoardBtn9);
+            }) : new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
+                System.out.println("nothing");
+            }));
+
+            timeline.setCycleCount(0);
+
+            timeline.play();
+    }
+
+
+   @FXML
+    private void onBack(ActionEvent event) {
+        try {
+            ClientUtility.navigate(event,"HomeScreen.fxml");
+        } catch (IOException ex) {
+            Logger.getLogger(RecordsScreenController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }
+    
+
+

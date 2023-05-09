@@ -8,8 +8,6 @@ package tictactoe;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,9 +16,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.DialogPane;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -28,22 +25,22 @@ import javafx.stage.Stage;
  *
  * @author Bassem
  */
-public class ChoosePlayerDialogController implements Initializable {
+public class ChooseDiffController implements Initializable {
 
     @FXML
-    private DialogPane parent;
+    private AnchorPane parent;
     @FXML
-    private Label dialogHeaderLabel;
+    private Button easyButton;
     @FXML
-    private Label dialoBoxMsg1;
+    private ImageView easyImg;
     @FXML
-    private Button okButton;
+    private Button meduimButton;
     @FXML
-    private Label dialoBoxMsg11;
+    private ImageView meduimImg;
     @FXML
-    private TextField p1TextField;
+    private Button hardButton;
     @FXML
-    private TextField p2TextField;
+    private ImageView hardImg;
 
     /**
      * Initializes the controller class.
@@ -54,12 +51,19 @@ public class ChoosePlayerDialogController implements Initializable {
     }    
 
     @FXML
-    private void onClickOk(ActionEvent event) throws IOException{
-        Stage stage = (Stage) parent.getScene().getWindow();
-          stage.close();
-          navigate(event,"GameBoard.fxml");
+    private void onClickEasy(ActionEvent event) throws IOException {
+        navigate(event,"GameBoard.fxml");
+        
     }
-     private void navigate(ActionEvent event, String url) throws IOException{
+
+    @FXML
+    private void onClickMeduim(ActionEvent event) {
+    }
+
+    @FXML
+    private void onClickHard(ActionEvent event) {
+    }
+      private void navigate(ActionEvent event, String url) throws IOException{
     
                 // Load the FXML file for the first screen
         Parent root;
@@ -72,13 +76,12 @@ public class ChoosePlayerDialogController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
-        GameBoardController.player1=p1TextField.getText();
-        GameBoardController.player2=p2TextField.getText();
-        GameBoardController.isVersusPC=false;
+        GameBoardController.isVersusPC=true;
+        GameBoardController.player1="player";
+        GameBoardController.player2="PC";
         GameBoardController.playRecord=false;
-       
-
+        
+        
         GameBoardController gbc = loader.getController();
       
 

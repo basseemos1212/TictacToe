@@ -7,6 +7,7 @@
 <AnchorPane fx:id="screenPane" prefHeight="720.0" prefWidth="1024.0" stylesheets="@../css/chooseplayer.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.ChoosePlayerController">
    <children>
       <Label fx:id="onlinePlayersLabel" layoutX="110.0" layoutY="140.0" text="Available Playes" />
-      <ListView fx:id="onlinePlayersListview" layoutX="110.0" layoutY="187.0" prefHeight="402.0" prefWidth="750.0" styleClass="scroll-bar" />
+
+      <ListView fx:id="onlinePlayersListview" layoutX="110.0" layoutY="187.0" prefHeight="402.0" prefWidth="746.0" styleClass="scroll-bar" />
    </children>
 </AnchorPane>
