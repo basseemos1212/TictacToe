@@ -13,10 +13,13 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.AppClient;
 import model.Client;
 
@@ -39,33 +42,40 @@ public class RequestMessageController implements Initializable {
     private Button rejectBtn;
     private Client client;
     private AppClient appClient;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+//        Stage stage = (Stage) parent.getScene().getWindow();
+        //stage.initStyle(StageStyle.UNDECORATED);
+
         ClientUtility.changeFontInAllNodes(parent);
         try {
             this.appClient = AppClient.getInstance("localhost", 3333);
             this.client = appClient.getClient();
 
-
         } catch (IOException ex) {
             ex.printStackTrace();
             Logger.getLogger(TicTacToe.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }    
+    }
 
     @FXML
     private void onAcceptClick(ActionEvent event) {
         client.replyToInviteRequest("accept");
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
 
     }
 
     @FXML
     private void onRejectClick(ActionEvent event) {
         client.replyToInviteRequest("reject");
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
 
     }
-    
+
 }

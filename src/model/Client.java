@@ -233,7 +233,7 @@ public class Client {
         return messageQueue.take();
     }
 
-    public void replyToInviteRequest(String reply) {
+    public void replyToInviteRequest(String reply) {//send from reciever to server the reply of the invite request.
         try {
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("func", "replyToInvite");
@@ -270,6 +270,22 @@ public class Client {
                     Platform.runLater(() -> {
 
                         acceptBooleanProperty.set(true);
+                    });
+
+                }
+
+            }
+            else if (reply.equals("reject")) {
+                if (sender.equals(player.getUsername())) {
+                    Platform.runLater(() -> {
+
+                        acceptBooleanProperty.set(false);
+                    });
+
+                } else if (reciever.equals(player.getUsername())) {
+                    Platform.runLater(() -> {
+
+                        acceptBooleanProperty.set(false);
                     });
 
                 }
