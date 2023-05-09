@@ -34,7 +34,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import tictactoe.ChoosePlayerController;
 
-
 /**
  *
  * @author moham
@@ -45,7 +44,6 @@ public class Client {
     private DataInputStream inputStream;
     private DataOutputStream outputStream;
 
-    ObjectInputStream inputObjectStream;
     public static Player player;
     public boolean isInvited = false;
     private BlockingQueue<String> messageQueue;
@@ -58,16 +56,15 @@ public class Client {
         socket = new Socket(serverIP, serverPort);
         inputStream = new DataInputStream(socket.getInputStream());
         outputStream = new DataOutputStream(socket.getOutputStream());
-        inputObjectStream = new ObjectInputStream(socket.getInputStream());
         messageQueue = new LinkedBlockingQueue<>();
-      player = new Player();
+        player = new Player();
         //isInvited=getInviteRequest();
 
         listenForMessages();
 
     }
 
-    public boolean signUp(String username, String password) throws IOException {
+   public boolean signUp(String username, String password) throws IOException {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("username", username);
         jsonObject.addProperty("password", password);
@@ -93,6 +90,7 @@ public class Client {
 
 //        return inputStream.readBoolean();
     }
+
 
     public Player signIn(String username, String password) throws IOException, ClassNotFoundException {
         JsonObject jsonObject = new JsonObject();
@@ -122,6 +120,7 @@ public class Client {
 
         return player;
 
+    }
 
     public boolean getInviteRequest() //for the 2nd player
     {
@@ -242,7 +241,6 @@ public class Client {
         return messageQueue.take();
     }
 
-
     public void replyToInviteRequest(String reply) {
         try {
             JsonObject jsonObject = new JsonObject();
@@ -309,4 +307,3 @@ public class Client {
 //
 //    }
 }
-

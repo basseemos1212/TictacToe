@@ -74,8 +74,6 @@ public class TicTacToe extends Application {
         super.init();
         myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 15);
 
-        
-
         try {
             this.appClient = AppClient.getInstance("localhost", 3333);
             this.client = appClient.getClient();
@@ -85,7 +83,7 @@ public class TicTacToe extends Application {
                     showmyDialog();
 
                 }
-                
+
                 System.out.println("Boolean value changed from " + oldValue + " to " + newValue);
             });
             client.acceptBooleanProperty.addListener((observable, oldValue, newValue) -> {
@@ -94,16 +92,17 @@ public class TicTacToe extends Application {
                     showBoard();
 
                 }
-                
+
                 System.out.println("Boolean value changed from " + oldValue + " to " + newValue);
             });
 
         } catch (IOException ex) {
-            ex.printStackTrace();
-            Logger.getLogger(TicTacToe.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
 
+            Platform.runLater(() -> {
+                Stage stage = new Stage();
+                Toast.makeText(stage, "Server is off. Running on offline mode now!");
+            });
+        }
 
     }
 
@@ -115,7 +114,6 @@ public class TicTacToe extends Application {
         launch(args);
 
     }
-
 
     private void showmyDialog() {
         try {
@@ -158,4 +156,3 @@ public class TicTacToe extends Application {
     }
 
 }
-

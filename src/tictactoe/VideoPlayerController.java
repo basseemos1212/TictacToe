@@ -23,7 +23,6 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import static tictactoe.HomeScreenController.player;
 
 /**
  * FXML Controller class

@@ -72,8 +72,8 @@ public class GameCardController implements Initializable {
    private void navigate(ActionEvent event, String url, String player1, String player2, Vector<String> moves, String fileName) throws IOException {
         GameBoardController.fileRecorded=fileName;
     GameBoardController.playRecord=true;
-     GameBoardController.game.setPlayerName1(player1);
-      GameBoardController.game.setPlayerName2(player2);
+     GameBoardController.player1=player1;
+      GameBoardController.player2=player2;
 
     // Load the FXML file for the first screen
     FXMLLoader loader = new FXMLLoader(getClass().getResource(url));

@@ -288,7 +288,7 @@ public class HomeScreenController implements Initializable {
                 ClientUtility.navigate(event, "SignIn.fxml");
             }
 
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             Stage stage = new Stage();
             Toast.makeText(stage, "Server is off. Running on offline mode now!");
         }

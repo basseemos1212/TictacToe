@@ -39,13 +39,13 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import model.AppClient;
 import model.Client;
-import model.Game;
 
 /**
  *
  * @author Bassem
  */
 public class GameBoardController implements Initializable {
+
     private Image xImage = new Image("/assets/x_1.png");
 
     private Image oImage = new Image("/assets/o_1.png");
@@ -60,7 +60,6 @@ public class GameBoardController implements Initializable {
     public static String player2 = "PC";
     public static boolean isVersusPC = false;
     List<Integer> excludedNumbers = new ArrayList<>(Arrays.asList());
-
     @FXML
     private ImageView playerOneImg;
     @FXML
@@ -95,28 +94,13 @@ public class GameBoardController implements Initializable {
     private ImageView playerOneSmbl2;
     @FXML
     private BorderPane borderPane;
-    private Image xImage = new Image("/assets/x_1.png");
-
-    private Image oImage = new Image("/assets/o_1.png");
-
-    int xoCounter = 0;
-    int test = 0;
-    private boolean endOFGame = false;
-    public static boolean playRecord = false;
-    private boolean isRecoarding = false;
-    public static String fileRecorded;
-    //public static String player1="";
-    //public static String player2="";
     private Font myCustomFont;
-    //private Vector<String> moves = new Vector<>();
+    private Vector<String> moves = new Vector<>();
     Button[] buttons = {gameBoardBtn1, gameBoardBtn2, gameBoardBtn3, gameBoardBtn4, gameBoardBtn5, gameBoardBtn6, gameBoardBtn7, gameBoardBtn8, gameBoardBtn9};
     private int gameID;
     private int order = 0;
-    //private AppClient appClient;
-    //private Client client;
-    private String winner="tie";
-    public static Game game=new Game();
-    
+    private AppClient appClient;
+    private Client client;
     Date now = new Date();
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy h:mm a");
     String formattedDate = formatter.format(now);
@@ -125,13 +109,13 @@ public class GameBoardController implements Initializable {
     @FXML
     private Button backBtn;
 
-   /* public void setPlayer1(String player1) {
+    public void setPlayer1(String player1) {
         this.player1 = player1;
     }
 
     public void setPlayer2(String player2) {
         this.player2 = player2;
-    }*/
+    }
 
     public void setPlayRecord(boolean playRecord) {
         this.playRecord = playRecord;
@@ -149,10 +133,8 @@ public class GameBoardController implements Initializable {
     public void onClickListner(ActionEvent event) {
 
         Button onClick = (Button) event.getSource();
-
         System.out.println("test= " + number++);
         String move = String.valueOf(onClick.idProperty().get().charAt(12));
-
 
         if (onClick.getText().equals("") && endOFGame == false) {
             if (xoCounter == 0) {
@@ -160,10 +142,8 @@ public class GameBoardController implements Initializable {
 
                 ImageView xImageView = new ImageView(xImage);
                 onClick.setGraphic(xImageView);
-
                 moves.add(move);
                 excludedNumbers.add(Integer.valueOf(String.valueOf(onClick.idProperty().get().charAt(12))));
-
                 xoCounter = 1;
                 if(isVersusPC){
                     pcPlay(generateRandomNumber(excludedNumbers));
@@ -174,7 +154,7 @@ public class GameBoardController implements Initializable {
                 ImageView oImageView = new ImageView(oImage);
                 onClick.setGraphic(oImageView);
                 xoCounter = 0;
-                game.getMoves().add(move);
+                moves.add(move);
             }
         }
         if (!endOFGame) {
@@ -199,7 +179,7 @@ public class GameBoardController implements Initializable {
                 flashButton(gameBoardBtn1);
                 flashButton(gameBoardBtn2);
                 flashButton(gameBoardBtn3);
-                game.getMoves().add(game.getPlayerName1());
+                moves.add(player1);
                 if (isRecoarding) {
                     recordGame();
                 }
@@ -209,20 +189,19 @@ public class GameBoardController implements Initializable {
                 flashButton(gameBoardBtn1);
                 flashButton(gameBoardBtn4);
                 flashButton(gameBoardBtn7);
-                game.getMoves().add(game.getPlayerName1());
+                moves.add(player1);
                 if (isRecoarding) {
                     recordGame();
                 }
                 endOFGame = true;
             }
-            winner="player 1";
         } else if (res1.equals("o")) {
             if (res1.equals(res2) && res1.equals(res3)) {
                 System.out.println("O win");
                 flashButton(gameBoardBtn1);
                 flashButton(gameBoardBtn2);
                 flashButton(gameBoardBtn3);
-                game.getMoves().add(game.getPlayerName2());
+                moves.add(player2);
                 if (isRecoarding) {
                     recordGame();
                 }
@@ -232,13 +211,12 @@ public class GameBoardController implements Initializable {
                 flashButton(gameBoardBtn1);
                 flashButton(gameBoardBtn4);
                 flashButton(gameBoardBtn7);
-                game.getMoves().add(game.getPlayerName2());
+                moves.add(player2);
                 if (isRecoarding) {
                     recordGame();
                 }
                 endOFGame = true;
             }
-            winner="player 2";
         }
 
         if (res5.equals("x")) {
@@ -247,7 +225,7 @@ public class GameBoardController implements Initializable {
                 flashButton(gameBoardBtn5);
                 flashButton(gameBoardBtn4);
                 flashButton(gameBoardBtn6);
-                game.getMoves().add(game.getPlayerName1());
+                moves.add(player1);
                 if (isRecoarding) {
                     recordGame();
                 }
@@ -257,7 +235,7 @@ public class GameBoardController implements Initializable {
                 flashButton(gameBoardBtn5);
                 flashButton(gameBoardBtn2);
                 flashButton(gameBoardBtn8);
-                game.getMoves().add(game.getPlayerName1());
+                moves.add(player1);
                 if (isRecoarding) {
                     recordGame();
                 }
@@ -267,7 +245,7 @@ public class GameBoardController implements Initializable {
                 flashButton(gameBoardBtn5);
                 flashButton(gameBoardBtn1);
                 flashButton(gameBoardBtn9);
-                game.getMoves().add(game.getPlayerName1());
+                moves.add(player1);
                 if (isRecoarding) {
                     recordGame();
                 }
@@ -277,20 +255,19 @@ public class GameBoardController implements Initializable {
                 flashButton(gameBoardBtn5);
                 flashButton(gameBoardBtn3);
                 flashButton(gameBoardBtn7);
-                game.getMoves().add(game.getPlayerName1());
+                moves.add(player1);
                 if (isRecoarding) {
                     recordGame();
                 }
                 endOFGame = true;
             }
-            winner="player 1";
         } else if (res5.equals("o")) {
             if (res5.equals(res4) && res5.equals(res6)) {
                 System.out.println("O win");
                 flashButton(gameBoardBtn5);
                 flashButton(gameBoardBtn4);
                 flashButton(gameBoardBtn6);
-                game.getMoves().add(game.getPlayerName2());
+                moves.add(player2);
                 if (isRecoarding) {
                     recordGame();
                 }
@@ -300,7 +277,7 @@ public class GameBoardController implements Initializable {
                 flashButton(gameBoardBtn5);
                 flashButton(gameBoardBtn2);
                 flashButton(gameBoardBtn8);
-                game.getMoves().add(game.getPlayerName2());
+                moves.add(player2);
                 if (isRecoarding) {
                     recordGame();
                 }
@@ -310,7 +287,7 @@ public class GameBoardController implements Initializable {
                 flashButton(gameBoardBtn5);
                 flashButton(gameBoardBtn1);
                 flashButton(gameBoardBtn9);
-                game.getMoves().add(game.getPlayerName2());
+                moves.add(player2);
                 if (isRecoarding) {
                     recordGame();
                 }
@@ -320,14 +297,13 @@ public class GameBoardController implements Initializable {
                 flashButton(gameBoardBtn5);
                 flashButton(gameBoardBtn3);
                 flashButton(gameBoardBtn7);
-                game.getMoves().add(game.getPlayerName2());
+                moves.add(player2);
                 if (isRecoarding) {
                     recordGame();
                 }
 
                 endOFGame = true;
             }
-            winner="player 2";
         }
 
         if (res9.equals("x")) {
@@ -336,7 +312,7 @@ public class GameBoardController implements Initializable {
                 flashButton(gameBoardBtn9);
                 flashButton(gameBoardBtn6);
                 flashButton(gameBoardBtn3);
-                game.getMoves().add(game.getPlayerName1());
+                moves.add(player1);
                 if (isRecoarding) {
                     recordGame();
                 }
@@ -347,20 +323,19 @@ public class GameBoardController implements Initializable {
                 flashButton(gameBoardBtn9);
                 flashButton(gameBoardBtn8);
                 flashButton(gameBoardBtn7);
-                game.getMoves().add(game.getPlayerName1());
+                moves.add(player1);
                 if (isRecoarding) {
                     recordGame();
                 }
                 endOFGame = true;
             }
-            winner="player 1";
         } else if (res9.equals("o")) {
             if (res9.equals(res6) && res9.equals(res3)) {
                 System.out.println("O win");
                 flashButton(gameBoardBtn9);
                 flashButton(gameBoardBtn6);
                 flashButton(gameBoardBtn3);
-                game.getMoves().add(game.getPlayerName2());
+                moves.add(player2);
                 if (isRecoarding) {
                     recordGame();
                 }
@@ -370,14 +345,13 @@ public class GameBoardController implements Initializable {
                 flashButton(gameBoardBtn9);
                 flashButton(gameBoardBtn8);
                 flashButton(gameBoardBtn7);
-                game.getMoves().add(game.getPlayerName2());
+                moves.add(player2);
                 if (isRecoarding) {
                     recordGame();
                 }
 
                 endOFGame = true;
             }
-            winner="player 2";
         }
     }
 
@@ -424,7 +398,6 @@ public class GameBoardController implements Initializable {
         if (!endOFGame) {
 
             calculateResult();
-            //apply the video
 
         } else {
             
@@ -435,36 +408,36 @@ public class GameBoardController implements Initializable {
 
     public void test() {
 
-        for (int i = 3; i < game.getMoves().size() - 1; i++) {
-            System.out.println(Integer.valueOf(game.getMoves().get(i)) == 1);
-            System.out.println("while i = " + i + "moves = " + game.getMoves().get(i));
+        for (int i = 3; i < moves.size() - 1; i++) {
+            System.out.println(Integer.valueOf(moves.get(i)) == 1);
+            System.out.println("while i = " + i + "moves = " + moves.get(i));
             Timeline timeline = new Timeline(
-                    Integer.valueOf(game.getMoves().get(i)) == 1 ? new KeyFrame(Duration.seconds(i + 0.1), (event) -> {
+                    Integer.valueOf(moves.get(i)) == 1 ? new KeyFrame(Duration.seconds(i + 0.1), (event) -> {
 
                 RecordClick(gameBoardBtn1);
 
-            }) : Integer.valueOf(game.getMoves().get(i)) == 2 ? new KeyFrame(Duration.seconds(i + 0.1), (event) -> {
+            }) : Integer.valueOf(moves.get(i)) == 2 ? new KeyFrame(Duration.seconds(i + 0.1), (event) -> {
 
                 RecordClick(gameBoardBtn2);
-            }) : Integer.valueOf(game.getMoves().get(i)) == 3 ? new KeyFrame(Duration.seconds(i + 0.1), (event) -> {
+            }) : Integer.valueOf(moves.get(i)) == 3 ? new KeyFrame(Duration.seconds(i + 0.1), (event) -> {
 
                 RecordClick(gameBoardBtn3);
-            }) : Integer.valueOf(game.getMoves().get(i)) == 4 ? new KeyFrame(Duration.seconds(i + 0.1), (event) -> {
+            }) : Integer.valueOf(moves.get(i)) == 4 ? new KeyFrame(Duration.seconds(i + 0.1), (event) -> {
 
                 RecordClick(gameBoardBtn4);
-            }) : Integer.valueOf(game.getMoves().get(i)) == 5 ? new KeyFrame(Duration.seconds(i + 0.1), (event) -> {
+            }) : Integer.valueOf(moves.get(i)) == 5 ? new KeyFrame(Duration.seconds(i + 0.1), (event) -> {
 
                 RecordClick(gameBoardBtn5);
-            }) : Integer.valueOf(game.getMoves().get(i)) == 6 ? new KeyFrame(Duration.seconds(i + 0.1), (event) -> {
+            }) : Integer.valueOf(moves.get(i)) == 6 ? new KeyFrame(Duration.seconds(i + 0.1), (event) -> {
 
                 RecordClick(gameBoardBtn6);
-            }) : Integer.valueOf(game.getMoves().get(i)) == 7 ? new KeyFrame(Duration.seconds(i + 0.1), (event) -> {
+            }) : Integer.valueOf(moves.get(i)) == 7 ? new KeyFrame(Duration.seconds(i + 0.1), (event) -> {
 
                 RecordClick(gameBoardBtn7);
-            }) : Integer.valueOf(game.getMoves().get(i)) == 8 ? new KeyFrame(Duration.seconds(i + 0.1), (event) -> {
+            }) : Integer.valueOf(moves.get(i)) == 8 ? new KeyFrame(Duration.seconds(i + 0.1), (event) -> {
 
                 RecordClick(gameBoardBtn8);
-            }) : Integer.valueOf(game.getMoves().get(i)) == 9 ? new KeyFrame(Duration.seconds(i + 0.1), (event) -> {
+            }) : Integer.valueOf(moves.get(i)) == 9 ? new KeyFrame(Duration.seconds(i + 0.1), (event) -> {
 
                 RecordClick(gameBoardBtn9);
             }) : new KeyFrame(Duration.seconds(i + 0.1), (event) -> {
@@ -495,7 +468,7 @@ public class GameBoardController implements Initializable {
 
 // Print the random string
         String randomString = sb.toString() + ".json";
-        for (String move : game.getMoves()) {
+        for (String move : moves) {
             System.out.println(move);
         }
 
@@ -505,7 +478,7 @@ public class GameBoardController implements Initializable {
         }
 //        File file = new File(folder, fileName);
         JsonArray movesJson = new JsonArray();
-        for (String move : game.getMoves()) {
+        for (String move : moves) {
             movesJson.add(move);
         }
 
@@ -543,7 +516,7 @@ public class GameBoardController implements Initializable {
 
 // Create a new Vector object and add the elements from the JSON array
         for (String move : jsonArray) {
-            game.getMoves().add(move);
+            moves.add(move);
         }
 
 // Print the Vector object
@@ -557,7 +530,7 @@ public class GameBoardController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         ClientUtility.changeFontInAllNodes(borderPane);
 
-        System.out.println("moves=" + game.getMoves());
+        System.out.println("moves=" + moves);
         System.out.println("fileName" + fileRecorded);
         System.out.println("the boolean =" + playRecord);
         myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 18);
@@ -583,21 +556,21 @@ public class GameBoardController implements Initializable {
         }
         Platform.runLater(() -> {
             if (!playRecord) {
-                game.getMoves().add(formattedDate);
-                game.getMoves().add(game.getPlayerName1());
-                game.getMoves().add(game.getPlayerName2());
+                moves.add(formattedDate);
+                moves.add(player1);
+                moves.add(player2);
 
             }
 
             if (playRecord) {
                 playRecordedGame();
                 System.out.println("iam setting data to labels");
-                this.playerOneName.setText(game.getMoves().get(1));
-                this.playerOneName2.setText(game.getMoves().get(2));
+                this.playerOneName.setText(moves.get(1));
+                this.playerOneName2.setText(moves.get(2));
                 test();
             } else {
-                this.playerOneName.setText(game.getPlayerName1());
-                this.playerOneName2.setText(game.getPlayerName2());
+                this.playerOneName.setText(player1);
+                this.playerOneName2.setText(player2);
             }
         });
 
@@ -679,5 +652,3 @@ public class GameBoardController implements Initializable {
 
 }
     
-
-
