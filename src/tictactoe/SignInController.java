@@ -29,8 +29,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+
+import javafx.scene.control.ButtonType;
+
 import javafx.scene.control.CheckBox;
+
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -90,7 +95,9 @@ public class SignInController implements Initializable {
 
     @FXML
     private void signUpOnclick(ActionEvent event) throws IOException {
-        ClientUtility.navigate(event, "SignUp.fxml");
+        //VideoPlayerController vc=new VideoPlayerController();
+        //vc.setActualPath("src/media/YouLose.mp4");
+        ClientUtility.navigate(event, "RequestMessage.fxml");
 
     }
 
@@ -98,6 +105,8 @@ public class SignInController implements Initializable {
         if (userNameTextField.getText().length() == 0 || passwordTextField.getText().length() == 0) {
 
             if (userNameTextField.getText().length() == 0) {
+
+
                 userNameTextField.setStyle("-fx-border-color: red ; -fx-border-widrh:2px");
                 userNameTextField.setPromptText("You should enter valid username");
             }
@@ -136,6 +145,7 @@ public class SignInController implements Initializable {
     private void signInonClick(ActionEvent event) throws IOException {
 
         try {
+
             String username = userNameTextField.getText();
             String password = passwordTextField.getText();
 
@@ -155,6 +165,7 @@ public class SignInController implements Initializable {
                 loginStatusLbl.setText("Incorrect Password");
                 loginStatusLbl.setVisible(true);
             }
+
         } catch (ClassNotFoundException ex) {
             //ex.printStackTrace();
             Stage stage = new Stage();

@@ -37,9 +37,11 @@ import javafx.scene.text.Text;
 import javafx.scene.control.DialogPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+
 import javafx.util.Duration;
 import model.AppClient;
 import model.Client;
+
 import model.Player;
 import model.Settings;
 
@@ -84,11 +86,13 @@ public class HomeScreenController implements Initializable {
     Font myCustomFont2 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 22);
     @FXML
 
+
     private Text scoreLabel;
 
     public Player player;
     @FXML
     private Button LogOutBtn;
+
 
     /**
      * Initializes the controller class.
@@ -104,11 +108,13 @@ public class HomeScreenController implements Initializable {
         Font myCustomFont3 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 26);
         name.setFont(myCustomFont2);
 
+
 //        scoreLabel.setFont(myCustomFont2);
         Platform.runLater(() -> loadSettings());
 
         //Platform.runLater(() -> scoreLabel.setText(Integer.toString(client.player.getScore())));
         //loadSettings();
+
         Set<Node> allNodes = parent.lookupAll("*");
         for (Node node : allNodes) {
             if (node instanceof Text) {
@@ -120,6 +126,7 @@ public class HomeScreenController implements Initializable {
                 ((TextField) node).setFont(myCustomFont);
             }
 
+
         }
         if (!checkLogin()) {
 
@@ -127,6 +134,7 @@ public class HomeScreenController implements Initializable {
             LogOutBtn.setVisible(false);
         }
     }
+
 
     public void printPlayer(Player player) {
         System.out.println("from home player is :" + player.getUsername());
@@ -154,6 +162,8 @@ public class HomeScreenController implements Initializable {
             DialogPane dialogPane = loader.load();
 
             Dialog<Void> dialog = new Dialog<>();
+            Window window = dialog.getDialogPane().getScene().getWindow();
+            window.setOnCloseRequest(event -> window.hide());
             dialog.getDialogPane().setContent(dialogPane);
 
             // Set the dialog size to match the content
@@ -176,6 +186,7 @@ public class HomeScreenController implements Initializable {
     @FXML
     private void recordScreenNav(ActionEvent event) throws IOException {
         navigate(event, "RecordsScreen.fxml");
+
     }
 
     @FXML
@@ -305,5 +316,6 @@ public class HomeScreenController implements Initializable {
     private void onSignleClick(ActionEvent event) throws IOException {
         navigate(event, "ChooseDiff.fxml");
     }
+
 
 }

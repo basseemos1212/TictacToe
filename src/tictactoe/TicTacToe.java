@@ -16,8 +16,11 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Duration;
 import model.Client;
 
@@ -71,16 +74,37 @@ public class TicTacToe extends Application {
         super.init();
         myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 15);
 
-//
-//        try {
-//            this.appClient = AppClient.getInstance("localhost", 3333);
-//            this.client = appClient.getClient();
-//
-//        } catch (IOException ex) {
+        
 
-////            ex.printStackTrace();
-////            Logger.getLogger(TicTacToe.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            this.appClient = AppClient.getInstance("localhost", 3333);
+            this.client = appClient.getClient();
+            client.myBooleanProperty.addListener((observable, oldValue, newValue) -> {
+                // This code will execute whenever the value of the boolean property changes
+                if (newValue) {
+                    showmyDialog();
+
+                }
+                
+                System.out.println("Boolean value changed from " + oldValue + " to " + newValue);
+            });
+            client.acceptBooleanProperty.addListener((observable, oldValue, newValue) -> {
+                // This code will execute whenever the value of the boolean property changes
+                if (newValue) {
+                    showBoard();
+
+                }
+                
+                System.out.println("Boolean value changed from " + oldValue + " to " + newValue);
+            });
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            Logger.getLogger(TicTacToe.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+
+
     }
 
     /**
@@ -92,4 +116,46 @@ public class TicTacToe extends Application {
 
     }
 
+
+    private void showmyDialog() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("RequestMessage.fxml"));
+            DialogPane dialogPane = loader.load();
+
+            Dialog<Void> dialog = new Dialog<>();
+            Window window = dialog.getDialogPane().getScene().getWindow();
+            window.setOnCloseRequest(event -> {
+
+                window.hide();
+                client.replyToInviteRequest("reject");
+
+            });
+            dialog.getDialogPane().setContent(dialogPane);
+
+            // Set the dialog size to match the content
+            dialog.getDialogPane().getScene().getWindow().sizeToScene();
+
+            // Show the dialog as a modal dialog
+            dialog.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void showBoard() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("GameBoard.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }
+
