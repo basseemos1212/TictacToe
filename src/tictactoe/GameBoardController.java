@@ -372,6 +372,7 @@ public class GameBoardController implements Initializable {
 
     public void RecordClick(Button bt) {
         System.out.println("test= " + number++);
+        String move = String.valueOf(bt.idProperty().get().charAt(12));
 
         if (bt.getText().equals("") && endOFGame == false) {
             if (xoCounter == 0) {
@@ -380,6 +381,7 @@ public class GameBoardController implements Initializable {
 
                 ImageView xImageView = new ImageView(xImage);
                 bt.setGraphic(xImageView);
+                moves.add(move);
 
                 xoCounter = 1;
 
@@ -387,7 +389,7 @@ public class GameBoardController implements Initializable {
                 bt.setText("o");
                 ImageView oImageView = new ImageView(oImage);
                 excludedNumbers.add(Integer.valueOf(String.valueOf(bt.idProperty().get().charAt(12))));
-
+                moves.add(move);   
                 bt.setGraphic(oImageView);
                 xoCounter = 0;
 

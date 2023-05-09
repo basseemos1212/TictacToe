@@ -74,6 +74,9 @@ public class ChoosePlayerDialogController implements Initializable {
         stage.show();
         GameBoardController.player1=p1TextField.getText();
         GameBoardController.player2=p2TextField.getText();
+        GameBoardController.isVersusPC=false;
+        GameBoardController.playRecord=false;
+       
         GameBoardController gbc = loader.getController();
       
 

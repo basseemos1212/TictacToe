@@ -77,6 +77,11 @@ public class ChooseDiffController implements Initializable {
         stage.setScene(scene);
         stage.show();
         GameBoardController.isVersusPC=true;
+        GameBoardController.player1="player";
+        GameBoardController.player2="PC";
+        GameBoardController.playRecord=false;
+        
+        
         GameBoardController gbc = loader.getController();
       
 
