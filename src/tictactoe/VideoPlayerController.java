@@ -106,6 +106,7 @@ public class VideoPlayerController implements Initializable {
 
     public void setActualPath(String actualPath) {
         VideoPlayerController.actualPath = actualPath;
+        
     }
 
     

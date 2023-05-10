@@ -34,6 +34,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import tictactoe.ChoosePlayerController;
 import tictactoe.GameBoardController;
+import tictactoe.OnlineBoardController;
 
 /**
  *
@@ -65,7 +66,7 @@ public class Client {
 
     }
 
-   public boolean signUp(String username, String password) throws IOException {
+    public boolean signUp(String username, String password) throws IOException {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("username", username);
         jsonObject.addProperty("password", password);
@@ -91,7 +92,6 @@ public class Client {
 
 //        return inputStream.readBoolean();
     }
-
 
     public Player signIn(String username, String password) throws IOException, ClassNotFoundException {
         JsonObject jsonObject = new JsonObject();
@@ -180,6 +180,29 @@ public class Client {
 
     }
 
+    public void play(String player1, String player2, String counter, String move, String owner) throws IOException {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("func", "playMove");
+        jsonObject.addProperty("player1", player1);
+        jsonObject.addProperty("player2", player2);
+        jsonObject.addProperty("counter", counter);
+        jsonObject.addProperty("move", move);
+        jsonObject.addProperty("owner", owner);
+
+        Gson gson = new Gson();
+        outputStream.writeUTF(gson.toJson(jsonObject));
+
+    }
+        public void putInOutGame(String msg) throws IOException {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("func", msg);
+     
+
+        Gson gson = new Gson();
+        outputStream.writeUTF(gson.toJson(jsonObject));
+
+    }
+
     public void listenForMessages() {
         new Thread(new Runnable() {
             @Override
@@ -221,9 +244,35 @@ public class Client {
                             case "checkAcceptance":
                                 messageQueue.put(messageFromServer);
                                 System.out.println("from checkAccept " + messageFromServer);
-                                
+
 //                                
                                 goToBoard();
+                                break;
+                            case "play":
+                                messageQueue.put(messageFromServer);
+                                System.out.println("from play " + messageFromServer);
+                                try {
+                                    String playMoveMsg = readFromMessageQueue();
+                                    System.out.println("from playOnlineMove " + playMoveMsg);
+                                    if (OnlineBoardController.xoCounter == 0) {
+                                        OnlineBoardController.xoCounter = 1;
+                                    } else {
+                                        OnlineBoardController.xoCounter = 0;
+                                    }
+                                    
+
+                                    //wait the response
+                                    JsonObject responseJsonObject = new Gson().fromJson(playMoveMsg, JsonObject.class);
+
+                                    OnlineBoardController.playXO.set(responseJsonObject.get("move").getAsInt());
+
+                                } catch (InterruptedException ex) {
+                                    Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+
+                                }
+
+//                                
+//                                goToBoard();
                                 break;
 
                             default:
@@ -267,22 +316,20 @@ public class Client {
             JsonObject responseJsonObject = new Gson().fromJson(inviteRwquestMessage, JsonObject.class);
             String sender = responseJsonObject.get("sender").getAsString();
             String reciever = responseJsonObject.get("reciever").getAsString();
+            OnlineBoardController.player1 = sender;
+            OnlineBoardController.player2 = reciever;
             String reply = responseJsonObject.get("reply").getAsString();
 
             if (reply.equals("accept")) {
                 if (sender.equals(player.getUsername())) {
                     Platform.runLater(() -> {
-                        
-                        GameBoardController.player1=sender;
-                        GameBoardController.player2=reciever;
-                        
+
                         acceptBooleanProperty.set(true);
                     });
 
                 } else if (reciever.equals(player.getUsername())) {
                     Platform.runLater(() -> {
-                          GameBoardController.player1=sender;
-                        GameBoardController.player2=reciever;
+
                         acceptBooleanProperty.set(true);
                     });
 
@@ -297,6 +344,9 @@ public class Client {
 
     }
 
+    public void playOnlineMove() {
+
+    }
 //    private void navigate( Stage stage,String url) throws IOException {
 //
 //        // Load the FXML file for the first screen

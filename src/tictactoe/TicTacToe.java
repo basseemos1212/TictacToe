@@ -33,6 +33,8 @@ public class TicTacToe extends Application {
     private Font myCustomFont;
     AppClient appClient;
     Client client;
+    
+
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -144,7 +146,7 @@ public class TicTacToe extends Application {
     private void showBoard() {
         try {
             
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("GameBoard.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("OnlineBoard.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
