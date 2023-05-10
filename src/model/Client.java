@@ -33,6 +33,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import tictactoe.ChoosePlayerController;
+import tictactoe.GameBoardController;
 
 /**
  *
@@ -220,6 +221,7 @@ public class Client {
                             case "checkAcceptance":
                                 messageQueue.put(messageFromServer);
                                 System.out.println("from checkAccept " + messageFromServer);
+                                
 //                                
                                 goToBoard();
                                 break;
@@ -270,13 +272,17 @@ public class Client {
             if (reply.equals("accept")) {
                 if (sender.equals(player.getUsername())) {
                     Platform.runLater(() -> {
-
+                        
+                        GameBoardController.player1=sender;
+                        GameBoardController.player2=reciever;
+                        
                         acceptBooleanProperty.set(true);
                     });
 
                 } else if (reciever.equals(player.getUsername())) {
                     Platform.runLater(() -> {
-
+                          GameBoardController.player1=sender;
+                        GameBoardController.player2=reciever;
                         acceptBooleanProperty.set(true);
                     });
 

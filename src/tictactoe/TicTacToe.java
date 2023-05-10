@@ -143,6 +143,7 @@ public class TicTacToe extends Application {
 
     private void showBoard() {
         try {
+            
             FXMLLoader loader = new FXMLLoader(getClass().getResource("GameBoard.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
