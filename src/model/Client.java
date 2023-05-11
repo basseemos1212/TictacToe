@@ -66,10 +66,12 @@ public class Client {
 
     }
 
-    public boolean signUp(String username, String password) throws IOException {
+    public boolean signUp(String username, String password, String ImagePath) throws IOException {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("username", username);
         jsonObject.addProperty("password", password);
+        jsonObject.addProperty("ImagePath", ImagePath);
+
         jsonObject.addProperty("func", "signup");
         Gson gson = new Gson();
         String json = gson.toJson(jsonObject);
@@ -109,9 +111,13 @@ public class Client {
             String passe = rootNode.get("password").asText();
 
             int status = rootNode.get("status").asInt();
+            String ImagePath = rootNode.get("ImagePath").asText();
+
             player.setUsername(userr);
             player.setPassword(password);
             player.setStatus(status);
+            player.setImagePath(ImagePath);
+
 
 //            player = new Player(userr, passe);
             //player = (Player) inputObjectStream.readObject();

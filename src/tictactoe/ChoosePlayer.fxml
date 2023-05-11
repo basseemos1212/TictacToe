@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 
 <AnchorPane fx:id="screenPane" prefHeight="720.0" prefWidth="1024.0" stylesheets="@../css/chooseplayer.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.ChoosePlayerController">
    <children>
       <Label fx:id="onlinePlayersLabel" layoutX="110.0" layoutY="140.0" text="Available Playes" />
 
       <ListView fx:id="onlinePlayersListview" layoutX="110.0" layoutY="187.0" prefHeight="402.0" prefWidth="746.0" styleClass="scroll-bar" />
+      <Pane layoutX="20.0" layoutY="14.0" prefHeight="33.0" prefWidth="55.0" stylesheets="@../css/AmonemStyleSheet.css">
+         <children>
+            <Button fx:id="backBtn" mnemonicParsing="false" onAction="#onBack" prefHeight="27.0" prefWidth="24.0" styleClass="backbutton" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

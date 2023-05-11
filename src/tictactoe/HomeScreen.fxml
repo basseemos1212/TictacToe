@@ -79,7 +79,7 @@
                         </Text>
                      </children>
                   </AnchorPane>
-                  <ImageView fitHeight="100.0" fitWidth="102.0" layoutX="22.0" layoutY="-17.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="playerImage" fitHeight="100.0" fitWidth="102.0" layoutX="22.0" layoutY="-17.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../assets/avatar.png" />
                      </image>
