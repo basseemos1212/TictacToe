@@ -154,29 +154,28 @@ public class HomeScreenController implements Initializable {
    
     }
     public void setPlayerValues() {
-        
-            if (client.player.getUsername() != null) {
-                String imagePath = client.player.getImagePath();
+        if (client.player != null) {
+            String imagePath = client.player.getImagePath();
+            if (imagePath != null) {
                 Image newImage = new Image(imagePath);
                 playerImage.setImage(newImage);
-                name.setText(client.player.getUsername());
-
-            if (client.player.getScore() != 0) {    
-                scoreLabel.setText(Integer.toString(client.player.getScore()));}
-            
-//            if (imagePath != null) {
-//                Image newImage = new Image(imagePath);
-//                playerImage.setImage(newImage);
-//            } else {
-//            Image newImage = new Image("assets/avatar.png");
-//            playerImage.setImage(newImage);
-//            }
+            } else {
+                Image newImage = new Image("assets/avatar.png");
+                playerImage.setImage(newImage);
+            }
+            name.setText(client.player.getUsername());
+            if (client.player.getScore() != 0) {
+                scoreLabel.setText(Integer.toString(client.player.getScore()));
+            }
         } else {
             Image newImage = new Image("assets/avatar.png");
             playerImage.setImage(newImage);
+            name.setText("guest");
+            scoreLabel.setText(" ");
         }
-        
-}
+    }
+
+
 
 
     public void printPlayer(Player player) {
@@ -272,7 +271,7 @@ public class HomeScreenController implements Initializable {
             try {
                 ObjectMapper mapper = new ObjectMapper();
                 Settings settings = mapper.readValue(file, Settings.class);
-                if (settings.getUsername() != null||client.player.getUsername()!= null) {
+                if (settings.getUsername() != null) {
                     return true; // user is already logged in
                 }
             } catch (IOException ex) {
