@@ -330,7 +330,7 @@ public class HomeScreenController implements Initializable {
         try {
             this.appClient = AppClient.getInstance("localhost", 3333);
             this.client = appClient.getClient();
-            if (client.player.getUsername()!=null) {
+            if (client.player.getUsername()!="Guest") {
                 ClientUtility.navigate(event, "ChoosePlayer.fxml");
 
             } else {
