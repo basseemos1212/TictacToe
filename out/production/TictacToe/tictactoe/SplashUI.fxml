@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="720.0" prefWidth="1024.0" styleClass="parent" stylesheets="@../css/splashui.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.SplashUIController">
+   <children>
+      <StackPane alignment="CENTER" layoutX="200.0" layoutY="125.0" prefHeight="150.0" prefWidth="200.0" />
+      <ImageView fx:id="logoImage" fitHeight="436.0" fitWidth="518.0" layoutX="253.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Logo.png" />
+         </image>
+      </ImageView>
+
+   </children>
+</AnchorPane>

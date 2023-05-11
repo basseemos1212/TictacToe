@@ -35,6 +35,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.control.DialogPane;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -92,6 +93,8 @@ public class HomeScreenController implements Initializable {
     public Player player;
     @FXML
     private Button LogOutBtn;
+    @FXML
+    private ImageView playerImage;
 
 
     /**
@@ -133,6 +136,9 @@ public class HomeScreenController implements Initializable {
             LogOutBtn.setDisable(true);
             LogOutBtn.setVisible(false);
         }
+        if (client.player!=null){
+        Image newImage = new Image(client.player.getImagePath()); // load the new image from a file or other data source
+        playerImage.setImage(newImage);}
     }
 
 
@@ -191,7 +197,19 @@ public class HomeScreenController implements Initializable {
 
     @FXML
     private void aboutScreenNav(ActionEvent event) throws IOException {
-        navigate(event, "About.fxml");
+        VideoPlayerController vc=new VideoPlayerController();
+        vc.setActualPath("src/media/win.mp4");
+   
+         Parent root;
+        Stage stage;
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("videoPlayer.fxml"));
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     private void loadSettings() {
@@ -204,7 +222,7 @@ public class HomeScreenController implements Initializable {
                     name.setText(settings.getUsername());
                 }
                 scoreLabel.setText(Integer.toString(settings.getScore()));
-
+                
             }
         } catch (IOException ex) {
             ex.printStackTrace();
