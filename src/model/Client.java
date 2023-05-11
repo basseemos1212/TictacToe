@@ -122,7 +122,7 @@ public class Client {
         return player;
 
     }
-
+//need handeling
     public boolean getInviteRequest() //for the 2nd player
     {
         try {

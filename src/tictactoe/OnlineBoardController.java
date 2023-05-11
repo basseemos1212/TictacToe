@@ -799,7 +799,7 @@ public class OnlineBoardController implements Initializable {
                                                             } catch (IOException ex) {
                                                                 Logger.getLogger(OnlineBoardController.class.getName()).log(Level.SEVERE, null, ex);
                                                             }
-                                                        }) : number == 6 ? new KeyFrame(Duration.seconds(0.3+ 0.1), (event) -> {
+                                                        }) : number == 6 ? new KeyFrame(Duration.seconds(0.3 + 0.1), (event) -> {
 
                                                                     try {
                                                                         RecordClick(gameBoardBtn6);
@@ -820,7 +820,7 @@ public class OnlineBoardController implements Initializable {
                                                                                     } catch (IOException ex) {
                                                                                         Logger.getLogger(OnlineBoardController.class.getName()).log(Level.SEVERE, null, ex);
                                                                                     }
-                                                                                }) : number == 9 ? new KeyFrame(Duration.seconds(0.3+ 0.1), (event) -> {
+                                                                                }) : number == 9 ? new KeyFrame(Duration.seconds(0.3 + 0.1), (event) -> {
 
                                                                                             try {
                                                                                                 RecordClick(gameBoardBtn9);
@@ -846,15 +846,15 @@ public class OnlineBoardController implements Initializable {
     }
 
     private void playVideo(String status) {
-   
+        VideoPlayerController vc = new VideoPlayerController();
+        vc.setActualPath("src/media/"+ status + ".mp4");
         try {
-   
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("videoPlayer.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-                 VideoPlayerController vc = new VideoPlayerController();
-        vc.setActualPath("src/media/" + status + ".mp4");
+
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
