@@ -91,6 +91,7 @@ public class HomeScreenController implements Initializable {
     private Text scoreLabel;
 
     public Player player;
+    
     @FXML
     private Button LogOutBtn;
     @FXML
@@ -136,10 +137,46 @@ public class HomeScreenController implements Initializable {
             LogOutBtn.setDisable(true);
             LogOutBtn.setVisible(false);
         }
-        if (client.player!=null){
-        Image newImage = new Image(client.player.getImagePath()); // load the new image from a file or other data source
-        playerImage.setImage(newImage);}
+        if (client.player != null) {
+            String imagePath = client.player.getImagePath();
+            if (imagePath != null) {
+                Image newImage = new Image(imagePath);
+                playerImage.setImage(newImage);
+            } else {
+            Image newImage = new Image("assets/avatar.png");
+            playerImage.setImage(newImage);
+            }
+        } else {
+            Image newImage = new Image("assets/avatar.png");
+            playerImage.setImage(newImage);
+        }
+        setPlayerValues();
+   
     }
+    public void setPlayerValues() {
+        
+            if (client.player.getUsername() != null) {
+                String imagePath = client.player.getImagePath();
+                Image newImage = new Image(imagePath);
+                playerImage.setImage(newImage);
+                name.setText(client.player.getUsername());
+
+            if (client.player.getScore() != 0) {    
+                scoreLabel.setText(Integer.toString(client.player.getScore()));}
+            
+//            if (imagePath != null) {
+//                Image newImage = new Image(imagePath);
+//                playerImage.setImage(newImage);
+//            } else {
+//            Image newImage = new Image("assets/avatar.png");
+//            playerImage.setImage(newImage);
+//            }
+        } else {
+            Image newImage = new Image("assets/avatar.png");
+            playerImage.setImage(newImage);
+        }
+        
+}
 
 
     public void printPlayer(Player player) {
@@ -235,7 +272,7 @@ public class HomeScreenController implements Initializable {
             try {
                 ObjectMapper mapper = new ObjectMapper();
                 Settings settings = mapper.readValue(file, Settings.class);
-                if (settings.getUsername() != null) {
+                if (settings.getUsername() != null||client.player.getUsername()!= null) {
                     return true; // user is already logged in
                 }
             } catch (IOException ex) {
@@ -299,7 +336,7 @@ public class HomeScreenController implements Initializable {
         try {
             this.appClient = AppClient.getInstance("localhost", 3333);
             this.client = appClient.getClient();
-            if (checkLogin()) {
+            if (client.player.getUsername()!=null) {
                 ClientUtility.navigate(event, "ChoosePlayer.fxml");
 
             } else {

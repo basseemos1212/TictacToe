@@ -847,7 +847,7 @@ public class OnlineBoardController implements Initializable {
 
     private void playVideo(String status) {
         VideoPlayerController vc = new VideoPlayerController();
-        vc.setActualPath("src/media/"+ status + ".mp4");
+        vc.setActualPath("src/media/"+ status +".mp4");
         try {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("videoPlayer.fxml"));

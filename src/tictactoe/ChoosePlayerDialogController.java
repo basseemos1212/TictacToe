@@ -34,8 +34,16 @@ public class ChoosePlayerDialogController implements Initializable {
     private DialogPane parent;
     @FXML
     private Label dialogHeaderLabel;
+    @FXML
     private TextField p1TextField;
+    @FXML
     private TextField p2TextField;
+    @FXML
+    private Label dialoBoxMsg1;
+    @FXML
+    private Button okButton;
+    @FXML
+    private Label dialoBoxMsg11;
 
     /**
      * Initializes the controller class.
@@ -45,6 +53,7 @@ public class ChoosePlayerDialogController implements Initializable {
         // TODO
     }    
 
+    @FXML
     private void onClickOk(ActionEvent event) throws IOException{
         Stage stage = (Stage) parent.getScene().getWindow();
           stage.close();

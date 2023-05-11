@@ -9,10 +9,10 @@ package model;
 import java.io.Serializable;
 
 public class Player implements Serializable {
-    private String username ="player";
+    private String username ;
     private String password;
     private String ImagePath;
-    private int score =0;
+    private int score ;
     private int status;
 
     public Player() {

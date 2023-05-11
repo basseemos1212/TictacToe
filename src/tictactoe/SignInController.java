@@ -97,7 +97,7 @@ public class SignInController implements Initializable {
     private void signUpOnclick(ActionEvent event) throws IOException {
         //VideoPlayerController vc=new VideoPlayerController();
         //vc.setActualPath("src/media/YouLose.mp4");
-        ClientUtility.navigate(event, "RequestMessage.fxml");
+        ClientUtility.navigate(event, "SignUp.fxml");
 
     }
 
