@@ -29,7 +29,7 @@
                      </image>
                   </ImageView>
                   <Button fx:id="signUpButton" layoutX="614.0" layoutY="549.0" mnemonicParsing="false" onAction="#signUpOnclick" prefHeight="44.0" prefWidth="138.0" style="-fx-background-color: transparent;" />
-                  <Label fx:id="loginStatusLbl" layoutX="504.0" layoutY="413.0" styleClass="normalText" text="Label" textFill="#d41515d6" visible="false" />
+                  <Label fx:id="loginStatusLbl" layoutX="400.0" layoutY="413.0" styleClass="normalText" text="Label" textFill="#d41515d6" visible="false" />
                   <CheckBox fx:id="rememberBtn" layoutX="488.0" layoutY="423.0" mnemonicParsing="false" prefHeight="6.0" prefWidth="2.0" />
                   <Text layoutX="514.0" layoutY="438.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="remlabel" text="remember me">
                      <font>
