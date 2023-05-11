@@ -5,11 +5,14 @@
         <group>
             <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/HomeScreenController.java</file>
             <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/TicTacToe.java</file>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/VideoPlayerController.java</file>
         </group>
         <group>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/HomeScreenController.java</file>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/TicTacToe.java</file>
+            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/SignInController.java</file>
+            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/TicTacToe.java</file>
+            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/GameBoardController.java</file>
+            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/HomeScreenController.java</file>
+            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/model/Client.java</file>
+            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/minimax/Move.java</file>
         </group>
     </open-files>
 </project-private>

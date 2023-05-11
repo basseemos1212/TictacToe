@@ -137,24 +137,13 @@ public class HomeScreenController implements Initializable {
             LogOutBtn.setDisable(true);
             LogOutBtn.setVisible(false);
         }
-        if (client.player != null) {
-            String imagePath = client.player.getImagePath();
-            if (imagePath != null) {
-                Image newImage = new Image(imagePath);
-                playerImage.setImage(newImage);
-            } else {
-            Image newImage = new Image("assets/avatar.png");
-            playerImage.setImage(newImage);
-            }
-        } else {
-            Image newImage = new Image("assets/avatar.png");
-            playerImage.setImage(newImage);
-        }
+
         setPlayerValues();
    
     }
     public void setPlayerValues() {
-        if (client.player != null) {
+        if (Client.player != null) {
+            System.out.println(client.player.getUsername());
             String imagePath = client.player.getImagePath();
             if (imagePath != null) {
                 Image newImage = new Image(imagePath);
@@ -170,8 +159,8 @@ public class HomeScreenController implements Initializable {
         } else {
             Image newImage = new Image("assets/avatar.png");
             playerImage.setImage(newImage);
-            name.setText("guest");
-            scoreLabel.setText(" ");
+            name.setText("Guest");
+            scoreLabel.setText("");
         }
     }
 
@@ -257,7 +246,13 @@ public class HomeScreenController implements Initializable {
                 if (settings.getUsername() != null) {
                     name.setText(settings.getUsername());
                 }
-                scoreLabel.setText(Integer.toString(settings.getScore()));
+                if (settings.getScore() != 0) {
+                    scoreLabel.setText(String.valueOf(settings.getScore()));
+                }else{
+                    scoreLabel.setText("");
+
+                }
+
                 
             }
         } catch (IOException ex) {
@@ -299,7 +294,7 @@ public class HomeScreenController implements Initializable {
         flashPass();
 
         scoreLabel.setText("0");
-        name.setText("Player");
+        name.setText("Guest");
 
 ////        Log
     }

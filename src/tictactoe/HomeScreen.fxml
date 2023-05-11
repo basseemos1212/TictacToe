@@ -68,7 +68,7 @@
                               <Font name="System Bold" size="24.0" />
                            </font>
                         </Text>
-                        <Text fx:id="scoreLabel" layoutX="16.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                        <Text fx:id="scoreLabel" layoutX="14.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="63.3375244140625">
                            <styleClass>
                               <String fx:value="labelStyle" />
                               <String fx:value="remlabel" />

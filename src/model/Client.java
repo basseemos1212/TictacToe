@@ -59,7 +59,7 @@ public class Client {
         inputStream = new DataInputStream(socket.getInputStream());
         outputStream = new DataOutputStream(socket.getOutputStream());
         messageQueue = new LinkedBlockingQueue<>();
-        player = new Player();
+        player = new Player("Guest");
         //isInvited=getInviteRequest();
 
         listenForMessages();
