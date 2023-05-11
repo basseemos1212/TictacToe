@@ -36,15 +36,13 @@ public class DialogBoxCardController implements Initializable {
     @FXML
     private DialogPane parent;
     @FXML
-    private Label dialogHeaderLabel;
-    @FXML
-    private ImageView dialogBoxImg;
-    @FXML
-    private Button okButton;
-    @FXML
     private Label dialoBoxMsg1;
     @FXML
     private Label dialoBoxMsg2;
+    @FXML
+    private Label dialogHeaderLabel1;
+    @FXML
+    private ImageView dialogBoxImg1;
 
     /**
      * Initializes the controller class.
@@ -57,27 +55,5 @@ public class DialogBoxCardController implements Initializable {
 
     }
 
-    @FXML
-    private void onClickOk(ActionEvent event) {
-    }
-
-/*=======
-        
-        Font myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"),22);
-        Font myCustomFont1 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"),17);
-        dialogHeaderLabel.setFont(myCustomFont);
-        dialoBoxMsg1.setFont(myCustomFont1);
-        dialoBoxMsg2.setFont(myCustomFont1);
-        
-        
-    }  
-    private Stage dialogStage;
-
-    public void setDialogStage(Stage dialogStage) {
-        this.dialogStage = dialogStage;
-    }
-   
-    
-    */
 
 }

@@ -191,9 +191,9 @@ public class HomeScreenController implements Initializable {
 
     @FXML
     private void aboutScreenNav(ActionEvent event) throws IOException {
-        VideoPlayerController vc=new VideoPlayerController();
-        vc.setActualPath("src/media/win.mp4");
-        navigate(event, "videoPlayer.fxml");
+        //VideoPlayerController vc=new VideoPlayerController();
+        //vc.setActualPath("src/media/win.mp4");
+        navigate(event, "RequestMessage.fxml");
     }
 
     private void loadSettings() {

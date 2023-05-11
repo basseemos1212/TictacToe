@@ -39,6 +39,8 @@ public class RequestMessageController implements Initializable {
     private Button rejectBtn;
     private Client client;
     private AppClient appClient;
+    @FXML
+    private Label label;
     /**
      * Initializes the controller class.
      */

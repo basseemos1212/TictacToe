@@ -14,12 +14,15 @@ import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import javafx.util.Duration;
 import model.Client;
@@ -119,24 +122,35 @@ public class TicTacToe extends Application {
 
     private void showmyDialog() {
         try {
+            Dialog<Void> dialog = new Dialog<>();
+            dialog.initStyle(StageStyle.TRANSPARENT);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("RequestMessage.fxml"));
             DialogPane dialogPane = loader.load();
 
-            Dialog<Void> dialog = new Dialog<>();
-            Window window = dialog.getDialogPane().getScene().getWindow();
+            
+            /*Window window = dialog.getDialogPane().getScene().getWindow();
             window.setOnCloseRequest(event -> {
 
                 window.hide();
                 client.replyToInviteRequest("reject");
 
-            });
-            dialog.getDialogPane().setContent(dialogPane);
+            });*/
+           // dialog.getDialogPane().setContent(dialogPane);
 
             // Set the dialog size to match the content
-            dialog.getDialogPane().getScene().getWindow().sizeToScene();
+            //dialog.getDialogPane().getScene().getWindow().sizeToScene();
 
             // Show the dialog as a modal dialog
-            dialog.show();
+             AnchorPane dialogContainer = new AnchorPane();
+        dialogContainer.setPadding(new Insets(0));
+        dialogContainer.setPrefSize(400, 200); // Set the preferred size of the container
+        AnchorPane.setTopAnchor(dialogPane, 0.0);
+        AnchorPane.setBottomAnchor(dialogPane, 0.0);
+        AnchorPane.setLeftAnchor(dialogPane, 0.0);
+        AnchorPane.setRightAnchor(dialogPane, 0.0);
+        dialogContainer.getChildren().add(dialogPane);
+        dialog.setDialogPane(dialogPane);
+            dialog.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
         }

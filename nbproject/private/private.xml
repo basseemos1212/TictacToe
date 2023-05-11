@@ -3,31 +3,28 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/ChoosePlayerController.java</file>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/model/AppClient.java</file>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/TicTacToe.java</file>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/SignInController.java</file>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/ChoosePlayerDialogController.java</file>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/model/Client.java</file>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/ChooseDiffController.java</file>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/VideoPlayerController.java</file>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/SignupController.java</file>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/HomeScreenController.java</file>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/Toast.java</file>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/GameBoardController.java</file>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/GameCardController.java</file>
+            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/GameBoardController.java</file>
+            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/SignupController.java</file>
+            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/TicTacToe.java</file>
+            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/PlayerCardController.java</file>
+            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/VideoPlayerController.java</file>
+            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/OnlineBoardController.java</file>
+            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/SignInController.java</file>
+            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/HomeScreenController.java</file>
+            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/ChoosePlayerController.java</file>
+            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/model/Client.java</file>
         </group>
         <group>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/ClientUtility.java</file>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/HomeScreenController.java</file>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/ChoosePlayerController.java</file>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/TicTacToe.java</file>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/model/AppClient.java</file>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/SignInController.java</file>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/model/Client.java</file>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/OnlineBoardController.java</file>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/GameBoardController.java</file>
-            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/VideoPlayerController.java</file>
+            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/GameBoardController.java</file>
+            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/SignupController.java</file>
+            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/TicTacToe.java</file>
+            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/PlayerCardController.java</file>
+            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/VideoPlayerController.java</file>
+            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/OnlineBoardController.java</file>
+            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/SignInController.java</file>
+            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/HomeScreenController.java</file>
+            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/ChoosePlayerController.java</file>
+            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/model/Client.java</file>
         </group>
     </open-files>
 </project-private>

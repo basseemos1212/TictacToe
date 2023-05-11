@@ -14,6 +14,7 @@ public class Player implements Serializable {
     private String ImagePath;
     private int score =0;
     private int status;
+    private boolean inGame=false;
 
     public Player() {
     }
@@ -78,8 +79,16 @@ public class Player implements Serializable {
     public void setStatus(int status) {
         this.status = status;
     }
-    
 
+    public boolean isInGame() {
+        return inGame;
+    }
+
+    public void setInGame(boolean inGame) {
+        this.inGame = inGame;
+    }
+    
+    
     
     
 }

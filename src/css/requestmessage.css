@@ -1,15 +1,39 @@
 /*
  * Empty Stylesheet file.
  */
-#parent
+.dialog-pane {
+    -fx-background-color: #3B1787;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+        
+
+}
+
+.dialog-pane .content {
+    -fx-background-color: #3B1787;
+}
+
+.dialog-pane .button-bar {
+    -fx-background-color: #3B1787;
+}
+
+.dialog-pane .content .hbox {
+    -fx-background-color: #3B1787;
+}
+.hbox {
+    -fx-spacing: 10;
+    -fx-background-color: #3B1787;
+    -fx-alignment: center_right;
+}
+/*#parent
 {
     -fx-background-color: #3B1787;
-    /*-fx-background-radius: 30px;**/
+    
     -fx-pref-height: 200px;
     -fx-pref-width: 450px;
     
     
-}
+}*/
 #acceptBtn {
 -fx-background-color: linear-gradient(to right, #59DFFF, #788CFE);
     -fx-background-radius: 10;
@@ -34,5 +58,14 @@
     -fx-pref-width: 450px;
     
     
+}
+#playerName
+{
+    -fx-text-fill: linear-gradient(to right, #59DFFF, #788CFE);
+}
+#label
+{
+    -fx-text-fill: linear-gradient(to right, #59DFFF, #788CFE);
+
 }
 
