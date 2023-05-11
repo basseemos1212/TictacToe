@@ -652,5 +652,3 @@ public class GameBoardController implements Initializable {
 
 }
     
-
-

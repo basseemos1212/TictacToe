@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane id="AnchorPane" fx:id="parent" prefHeight="720.0" prefWidth="1024.0" styleClass="signuptextfield" stylesheets="@../css/splashui.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.AboutController">
+   <children>
+      <Pane prefHeight="720.0" prefWidth="1024.0">
+         <children>
+            <ImageView fitHeight="752.0" fitWidth="1050.0" layoutX="-16.0" layoutY="-13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/blankbg.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="208.0" fitWidth="247.0" layoutX="389.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/logogroup.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <AnchorPane layoutX="64.0" layoutY="54.0" prefHeight="27.0" prefWidth="6.0" stylesheets="@../css/AmonemStyleSheet.css">
+         <children>
+            <Button fx:id="backBtn" mnemonicParsing="false" onAction="#onBack" prefHeight="27.0" prefWidth="24.0" styleClass="backbutton" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -35,11 +35,14 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.control.DialogPane;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+
 import javafx.util.Duration;
 import model.AppClient;
 import model.Client;
+
 import model.Player;
 import model.Settings;
 
@@ -84,11 +87,15 @@ public class HomeScreenController implements Initializable {
     Font myCustomFont2 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 22);
     @FXML
 
+
     private Text scoreLabel;
 
     public Player player;
     @FXML
     private Button LogOutBtn;
+    @FXML
+    private ImageView playerImage;
+
 
     /**
      * Initializes the controller class.
@@ -104,11 +111,13 @@ public class HomeScreenController implements Initializable {
         Font myCustomFont3 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 26);
         name.setFont(myCustomFont2);
 
+
 //        scoreLabel.setFont(myCustomFont2);
         Platform.runLater(() -> loadSettings());
 
         //Platform.runLater(() -> scoreLabel.setText(Integer.toString(client.player.getScore())));
         //loadSettings();
+
         Set<Node> allNodes = parent.lookupAll("*");
         for (Node node : allNodes) {
             if (node instanceof Text) {
@@ -120,13 +129,18 @@ public class HomeScreenController implements Initializable {
                 ((TextField) node).setFont(myCustomFont);
             }
 
+
         }
         if (!checkLogin()) {
 
             LogOutBtn.setDisable(true);
             LogOutBtn.setVisible(false);
         }
+        if (client.player!=null){
+        Image newImage = new Image(client.player.getImagePath()); // load the new image from a file or other data source
+        playerImage.setImage(newImage);}
     }
+
 
     public void printPlayer(Player player) {
         System.out.println("from home player is :" + player.getUsername());
@@ -154,6 +168,8 @@ public class HomeScreenController implements Initializable {
             DialogPane dialogPane = loader.load();
 
             Dialog<Void> dialog = new Dialog<>();
+            Window window = dialog.getDialogPane().getScene().getWindow();
+            window.setOnCloseRequest(event -> window.hide());
             dialog.getDialogPane().setContent(dialogPane);
 
             // Set the dialog size to match the content
@@ -176,11 +192,24 @@ public class HomeScreenController implements Initializable {
     @FXML
     private void recordScreenNav(ActionEvent event) throws IOException {
         navigate(event, "RecordsScreen.fxml");
+
     }
 
     @FXML
     private void aboutScreenNav(ActionEvent event) throws IOException {
-        navigate(event, "About.fxml");
+        VideoPlayerController vc=new VideoPlayerController();
+        vc.setActualPath("src/media/win.mp4");
+   
+         Parent root;
+        Stage stage;
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("videoPlayer.fxml"));
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     private void loadSettings() {
@@ -193,7 +222,7 @@ public class HomeScreenController implements Initializable {
                     name.setText(settings.getUsername());
                 }
                 scoreLabel.setText(Integer.toString(settings.getScore()));
-
+                
             }
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -277,7 +306,7 @@ public class HomeScreenController implements Initializable {
                 ClientUtility.navigate(event, "SignIn.fxml");
             }
 
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             Stage stage = new Stage();
             Toast.makeText(stage, "Server is off. Running on offline mode now!");
         }
@@ -305,5 +334,6 @@ public class HomeScreenController implements Initializable {
     private void onSignleClick(ActionEvent event) throws IOException {
         navigate(event, "ChooseDiff.fxml");
     }
+
 
 }

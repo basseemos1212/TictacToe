@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -51,13 +52,17 @@ public class ChoosePlayerController implements Initializable {
 
     private AppClient appClient;
     private Client client;
+
     private Player player;
+ 
 
 //    ObservableList<Player> cardList = FXCollections.observableArrayList();
     public static ObservableList<Player> onlinePlayersList = FXCollections.observableArrayList();
 
     @FXML
     private ListView<Player> onlinePlayersListview;
+    @FXML
+    private Button backBtn;
 
     /**
      * Initializes the controller class.
@@ -101,6 +106,15 @@ public class ChoosePlayerController implements Initializable {
 
         });
 
+    }
+
+    @FXML
+    private void onBack(ActionEvent event) {
+    try {
+            ClientUtility.navigate(event,"HomeScreen.fxml");
+        } catch (IOException ex) {
+            Logger.getLogger(RecordsScreenController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

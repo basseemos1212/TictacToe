@@ -1,0 +1,124 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 9, 2023, 5:37:05 PM
+    Author     : ahmed
+*/
+
+.avDef{
+
+    -fx-graphic: url('/assets/p1L.png');
+    -fx-background-color: linear-gradient(to right, #59DFFF, #788CFE);
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+    -fx-border-color: #22a9c9;
+    -fx-border-radius: 10px;
+
+    -fx-pref-height: 30px;
+
+    -fx-pref-width: 30px;
+
+
+
+}
+.av1{
+
+    -fx-graphic: url('/assets/p1.png');
+    -fx-background-color: linear-gradient(to right, #59DFFF, #788CFE);
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+    -fx-border-color: #22a9c9;
+    -fx-border-radius: 10px;
+
+    -fx-pref-height: 30px;
+
+    -fx-pref-width: 30px;
+
+
+
+}
+
+.av2{
+
+    -fx-graphic: url('/assets/p2.png');
+    -fx-background-color: linear-gradient(to right, #59DFFF, #788CFE);
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+    -fx-border-color: #22a9c9;
+    -fx-border-radius: 10px;
+
+    -fx-pref-height: 30px;
+
+    -fx-pref-width: 30px;
+
+
+
+}
+
+.av3{
+
+    -fx-graphic: url('/assets/p3.png');
+    -fx-background-color: linear-gradient(to right, #59DFFF, #788CFE);
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+    -fx-border-color: #22a9c9;
+    -fx-border-radius: 10px;
+
+    -fx-pref-height: 30px;
+
+    -fx-pref-width: 30px;
+
+
+
+}
+.av4{
+
+    -fx-graphic: url('/assets/p4.png');
+    -fx-background-color: linear-gradient(to right, #59DFFF, #788CFE);
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+    -fx-border-color: #22a9c9;
+    -fx-border-radius: 10px;
+
+    -fx-pref-height: 30px;
+
+    -fx-pref-width: 30px;
+
+
+
+}
+.av5{
+
+    -fx-graphic: url('/assets/p5.png');
+    -fx-background-color: linear-gradient(to right, #59DFFF, #788CFE);
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+    -fx-border-color: #22a9c9;
+    -fx-border-radius: 10px;
+
+    -fx-pref-height: 30px;
+
+    -fx-pref-width: 30px;
+
+
+
+}
+.av6{
+
+    -fx-graphic: url('/assets/p6.png');
+    -fx-background-color: linear-gradient(to right, #59DFFF, #788CFE);
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+    -fx-border-color: #22a9c9;
+    -fx-border-radius: 10px;
+
+    -fx-pref-height: 30px;
+
+    -fx-pref-width: 30px;
+
+
+
+}

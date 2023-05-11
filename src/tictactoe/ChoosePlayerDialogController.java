@@ -34,15 +34,7 @@ public class ChoosePlayerDialogController implements Initializable {
     private DialogPane parent;
     @FXML
     private Label dialogHeaderLabel;
-    @FXML
-    private Label dialoBoxMsg1;
-    @FXML
-    private Button okButton;
-    @FXML
-    private Label dialoBoxMsg11;
-    @FXML
     private TextField p1TextField;
-    @FXML
     private TextField p2TextField;
 
     /**
@@ -53,7 +45,6 @@ public class ChoosePlayerDialogController implements Initializable {
         // TODO
     }    
 
-    @FXML
     private void onClickOk(ActionEvent event) throws IOException{
         Stage stage = (Stage) parent.getScene().getWindow();
           stage.close();
@@ -72,11 +63,13 @@ public class ChoosePlayerDialogController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
         GameBoardController.player1=p1TextField.getText();
         GameBoardController.player2=p2TextField.getText();
         GameBoardController.isVersusPC=false;
         GameBoardController.playRecord=false;
        
+
         GameBoardController gbc = loader.getController();
       
 

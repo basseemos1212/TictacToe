@@ -1,13 +1,17 @@
 /*
  * Empty Stylesheet file.
  */
-
+/*.root {
+    -fx-background-radius: 70;
+}*/
 #parent
 {
     -fx-background-color: #3B1787;
     /*-fx-background-radius: 30px;**/
     -fx-pref-height: 300px;
     -fx-pref-width: 500px;
+    -fx-background-insets: 0;
+    
 }
 #dialoBoxMsg1
 {
@@ -24,4 +28,10 @@
 #dialogHeaderLabel
 {
     -fx-text-fill: linear-gradient(to right, #59DFFF, #788CFE);
+}
+.colorblue{
+    
+        -fx-background-color: #3B1787;
+
+    
 }
