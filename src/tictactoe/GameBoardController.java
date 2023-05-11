@@ -25,17 +25,22 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.AppClient;
 import model.Client;
@@ -145,7 +150,7 @@ public class GameBoardController implements Initializable {
                 moves.add(move);
                 excludedNumbers.add(Integer.valueOf(String.valueOf(onClick.idProperty().get().charAt(12))));
                 xoCounter = 1;
-                if(isVersusPC){
+                if (isVersusPC) {
                     pcPlay(generateRandomNumber(excludedNumbers));
                 }
             } else {
@@ -184,6 +189,7 @@ public class GameBoardController implements Initializable {
                     recordGame();
                 }
                 endOFGame = true;
+                playVideo(true);
             } else if (res1.equals(res4) && res1.equals(res7)) {
                 System.out.println("X win");
                 flashButton(gameBoardBtn1);
@@ -194,6 +200,7 @@ public class GameBoardController implements Initializable {
                     recordGame();
                 }
                 endOFGame = true;
+                playVideo(true);
             }
         } else if (res1.equals("o")) {
             if (res1.equals(res2) && res1.equals(res3)) {
@@ -206,6 +213,8 @@ public class GameBoardController implements Initializable {
                     recordGame();
                 }
                 endOFGame = true;
+                playVideo(false);
+
             } else if (res1.equals(res4) && res1.equals(res7)) {
                 System.out.println("O win");
                 flashButton(gameBoardBtn1);
@@ -216,6 +225,8 @@ public class GameBoardController implements Initializable {
                     recordGame();
                 }
                 endOFGame = true;
+                playVideo(false);
+
             }
         }
 
@@ -230,6 +241,7 @@ public class GameBoardController implements Initializable {
                     recordGame();
                 }
                 endOFGame = true;
+                playVideo(true);
             } else if (res5.equals(res2) && res5.equals(res8)) {
                 System.out.println("X win");
                 flashButton(gameBoardBtn5);
@@ -240,6 +252,7 @@ public class GameBoardController implements Initializable {
                     recordGame();
                 }
                 endOFGame = true;
+                playVideo(true);
             } else if (res5.equals(res1) && res5.equals(res9)) {
                 System.out.println("X win");
                 flashButton(gameBoardBtn5);
@@ -250,6 +263,7 @@ public class GameBoardController implements Initializable {
                     recordGame();
                 }
                 endOFGame = true;
+                playVideo(true);
             } else if (res5.equals(res3) && res5.equals(res7)) {
                 System.out.println("X win");
                 flashButton(gameBoardBtn5);
@@ -260,6 +274,7 @@ public class GameBoardController implements Initializable {
                     recordGame();
                 }
                 endOFGame = true;
+                playVideo(true);
             }
         } else if (res5.equals("o")) {
             if (res5.equals(res4) && res5.equals(res6)) {
@@ -272,6 +287,7 @@ public class GameBoardController implements Initializable {
                     recordGame();
                 }
                 endOFGame = true;
+                playVideo(false);
             } else if (res5.equals(res2) && res5.equals(res8)) {
                 System.out.println("O win");
                 flashButton(gameBoardBtn5);
@@ -282,6 +298,7 @@ public class GameBoardController implements Initializable {
                     recordGame();
                 }
                 endOFGame = true;
+                playVideo(false);
             } else if (res5.equals(res1) && res5.equals(res9)) {
                 System.out.println("O win");
                 flashButton(gameBoardBtn5);
@@ -292,6 +309,7 @@ public class GameBoardController implements Initializable {
                     recordGame();
                 }
                 endOFGame = true;
+                playVideo(false);
             } else if (res5.equals(res3) && res5.equals(res7)) {
                 System.out.println("O win");
                 flashButton(gameBoardBtn5);
@@ -303,6 +321,8 @@ public class GameBoardController implements Initializable {
                 }
 
                 endOFGame = true;
+                playVideo(false);
+
             }
         }
 
@@ -318,6 +338,7 @@ public class GameBoardController implements Initializable {
                 }
 
                 endOFGame = true;
+                playVideo(true);
             } else if (res9.equals(res8) && res9.equals(res7)) {
                 System.out.println("X win");
                 flashButton(gameBoardBtn9);
@@ -328,6 +349,8 @@ public class GameBoardController implements Initializable {
                     recordGame();
                 }
                 endOFGame = true;
+                playVideo(true);
+
             }
         } else if (res9.equals("o")) {
             if (res9.equals(res6) && res9.equals(res3)) {
@@ -340,6 +363,7 @@ public class GameBoardController implements Initializable {
                     recordGame();
                 }
                 endOFGame = true;
+                playVideo(false);
             } else if (res9.equals(res8) && res9.equals(res7)) {
                 System.out.println("O win");
                 flashButton(gameBoardBtn9);
@@ -351,6 +375,7 @@ public class GameBoardController implements Initializable {
                 }
 
                 endOFGame = true;
+                playVideo(false);
             }
         }
     }
@@ -389,7 +414,7 @@ public class GameBoardController implements Initializable {
                 bt.setText("o");
                 ImageView oImageView = new ImageView(oImage);
                 excludedNumbers.add(Integer.valueOf(String.valueOf(bt.idProperty().get().charAt(12))));
-                moves.add(move);   
+                moves.add(move);
                 bt.setGraphic(oImageView);
                 xoCounter = 0;
 
@@ -400,7 +425,6 @@ public class GameBoardController implements Initializable {
             calculateResult();
 
         } else {
-            
 
         }
 
@@ -592,7 +616,6 @@ public class GameBoardController implements Initializable {
 
     }
 
-
     private int generateRandomNumber(List<Integer> excludedNumbers) {
         Random rand = new Random();
         int randomNumber;
@@ -601,54 +624,118 @@ public class GameBoardController implements Initializable {
         } while (excludedNumbers.contains(randomNumber));
         return randomNumber;
     }
-    private void pcPlay(int number){
-                    Timeline timeline = new Timeline(
-                    number == 1 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
 
-                RecordClick(gameBoardBtn1);
+    private void pcPlay(int number) {
+        Timeline timeline = new Timeline(
+                number == 1 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
 
-            }) : number == 2 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
+                            RecordClick(gameBoardBtn1);
 
-                RecordClick(gameBoardBtn2);
-            }) : number == 3 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
+                        }) : number == 2 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
 
-                RecordClick(gameBoardBtn3);
-            }) : number == 4 ? new KeyFrame(Duration.seconds(1+ 0.1), (event) -> {
+                                    RecordClick(gameBoardBtn2);
+                                }) : number == 3 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
 
-                RecordClick(gameBoardBtn4);
-            }) : number == 5 ? new KeyFrame(Duration.seconds(1+ 0.1), (event) -> {
+                                            RecordClick(gameBoardBtn3);
+                                        }) : number == 4 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
 
-                RecordClick(gameBoardBtn5);
-            }) : number == 6 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
+                                                    RecordClick(gameBoardBtn4);
+                                                }) : number == 5 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
 
-                RecordClick(gameBoardBtn6);
-            }) : number == 7 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
+                                                            RecordClick(gameBoardBtn5);
+                                                        }) : number == 6 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
 
-                RecordClick(gameBoardBtn7);
-            }) : number == 8 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
+                                                                    RecordClick(gameBoardBtn6);
+                                                                }) : number == 7 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
 
-                RecordClick(gameBoardBtn8);
-            }) : number == 9 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
+                                                                            RecordClick(gameBoardBtn7);
+                                                                        }) : number == 8 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
 
-                RecordClick(gameBoardBtn9);
-            }) : new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
-                System.out.println("nothing");
-            }));
+                                                                                    RecordClick(gameBoardBtn8);
+                                                                                }) : number == 9 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
 
-            timeline.setCycleCount(0);
+                                                                                            RecordClick(gameBoardBtn9);
+                                                                                        }) : new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
+                                                                                            System.out.println("nothing");
+                                                                                        }));
 
-            timeline.play();
+        timeline.setCycleCount(0);
+
+        timeline.play();
     }
 
-
-   @FXML
+    @FXML
     private void onBack(ActionEvent event) {
         try {
-            ClientUtility.navigate(event,"HomeScreen.fxml");
+            ClientUtility.navigate(event, "HomeScreen.fxml");
         } catch (IOException ex) {
             Logger.getLogger(RecordsScreenController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+    private void playVideo(boolean state) {
+        String lastPlayer = moves.lastElement();
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("OfflineVideo.fxml"));
+
+            AnchorPane root = loader.load();
+            OfflineVideoController controller = loader.getController();
+            controller.setGameBoardController(this);
+
+//            if (lastPlayer.equals("Player1")) {
+                controller.showVideo("You", state);
+//                System.out.println("PLAYR1 WON");
+//            } else {
+//                controller.showVideo("You", state);
+//                System.out.println("PLAYR1 LOST");
+//
+//            }
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+
+            //stage.setTitle("My Dialog");
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(GameBoardController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void closeBoard() {
+        try {
+            Parent root;
+            Stage stage;
+
+            FXMLLoader loader = new FXMLLoader(ClientUtility.class.getResource("HomeScreen.fxml"));
+            root = loader.load();
+            stage = (Stage) borderPane.getScene().getWindow();
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(GameBoardController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    void playAgain() {
+                try {
+            Parent root;
+            Stage stage;
+
+            FXMLLoader loader = new FXMLLoader(ClientUtility.class.getResource("GameBoard.fxml"));
+            root = loader.load();
+            stage = (Stage) borderPane.getScene().getWindow();
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(GameBoardController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }
-    
