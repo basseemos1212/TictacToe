@@ -40,7 +40,9 @@
       <StackPane alignment="CENTER_LEFT" layoutX="265.0" layoutY="510.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="150.0" prefWidth="564.0">
          <children>
 
+
             <Button fx:id="onlineBtn" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#onlineOnClick" text="Online" textAlignment="CENTER" StackPane.alignment="CENTER_LEFT">
+
 
                <StackPane.margin>
                   <Insets left="80.0" />
@@ -52,7 +54,7 @@
             <ImageView fx:id="onlineImg" fitHeight="116.0" fitWidth="116.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" />
          </children>
       </StackPane>
-      <VBox layoutX="851.0" layoutY="225.0" prefHeight="170.0" prefWidth="156.0" style="-fx-background-color: #FFCE36;" styleClass="playerCard" stylesheets="@../css/fullpackstyle.css" AnchorPane.bottomAnchor="420.0">
+      <VBox alignment="CENTER" layoutX="851.0" layoutY="225.0" prefHeight="170.0" prefWidth="156.0" style="-fx-background-color: #FFCE36;" styleClass="playerCard" stylesheets="@../css/fullpackstyle.css" AnchorPane.bottomAnchor="420.0">
          <children>
             <Pane prefHeight="148.0" prefWidth="145.0" stylesheets="@../css/splashui.css">
                <VBox.margin>
@@ -84,6 +86,7 @@
                   </ImageView>
                </children>
             </Pane>
+
          </children>
       </VBox>
       <VBox fx:id="recordVBox" alignment="CENTER" layoutX="128.0" layoutY="149.0" AnchorPane.bottomAnchor="500.6">

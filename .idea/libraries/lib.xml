@@ -1,0 +1,23 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/lib/json-20230227 (1).jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/gson-2.8.0-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/gson-2.10.1-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/jackson-annotations-2.15.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/json-20230227.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/derbynet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/json-20230227-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/jackson-databind-2.15.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/gson-2.8.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/json-20230227-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/derbyclient.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/derby.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/jackson-core-2.15.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/gson-2.8.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/jackson-databind-2.15.0 (1).jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

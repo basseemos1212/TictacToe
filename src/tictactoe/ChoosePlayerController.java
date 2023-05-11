@@ -52,7 +52,9 @@ public class ChoosePlayerController implements Initializable {
 
     private AppClient appClient;
     private Client client;
+
     private Player player;
+ 
 
 //    ObservableList<Player> cardList = FXCollections.observableArrayList();
     public static ObservableList<Player> onlinePlayersList = FXCollections.observableArrayList();
