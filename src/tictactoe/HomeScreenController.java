@@ -142,12 +142,12 @@ public class HomeScreenController implements Initializable {
         }
      if(client.player!=null){
          
-        if (!checkRmbr() && client.player.getUsername() == "Guest") {
+        /*if (!checkRmbr() && client.player.getUsername() == "Guest") {
             System.out.println("btn : " + client.player.getUsername());
             System.out.println(!checkRmbr());
             LogOutBtn.setDisable(true);
             LogOutBtn.setVisible(false);
-        }
+        }*/
 
     }
     }

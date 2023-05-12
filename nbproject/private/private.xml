@@ -3,55 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/RequestMessageController.java</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/css/splashui.css</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/TicTacToe.java</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/css/requestmessage.css</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/RequestMessage.fxml</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/HomeScreenController.java</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/css/dialogboxcard.css</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/DialogBoxCardController.java</file>
-        </group>
-        <group>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/RequestMessageController.java</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/css/splashui.css</file>
             <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/TicTacToe.java</file>
             <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/PlayerCardController.java</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/css/requestmessage.css</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/RequestMessage.fxml</file>
+            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/SignInController.java</file>
             <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/HomeScreenController.java</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/css/dialogboxcard.css</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/DialogBoxCardController.java</file>
             <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/model/Client.java</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/ChoosePlayerController.java</file>
-            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/SignInController.java</file>
-            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/OfflineVideoController.java</file>
-            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/videoPlayer.fxml</file>
-            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/TicTacToe.java</file>
-            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/model/Player.java</file>
-            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/GameBoardController.java</file>
-            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/HomeScreenController.java</file>
-            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/VideoPlayerController.java</file>
-            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/RequestMessageController.java</file>
-            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/OnlineBoardController.java</file>
-            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/model/Client.java</file>
-            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/OfflineVideo.fxml</file>
         </group>
-        <group>
-            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/videoPlayer.fxml</file>
-            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/TicTacToe.java</file>
-            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/model/Player.java</file>
-            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/GameBoardController.java</file>
-            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/RequestMessageController.java</file>
-            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/model/Client.java</file>
-            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/OfflineVideo.fxml</file>
-            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/ChooseDiffController.java</file>
-            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/SignInController.java</file>
-            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/OfflineVideoController.java</file>
-            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/HomeScreenController.java</file>
-            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/VideoPlayerController.java</file>
-            <file>file:/C:/Users/moham/Documents/NetBeansProjects/TictacToe/src/tictactoe/OnlineBoardController.java</file>
-        </group>
+        <group/>
+        <group/>
     </open-files>
 </project-private>
