@@ -24,6 +24,9 @@ import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.property.adapter.JavaBeanStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -58,6 +61,11 @@ public class Client {
     public boolean isInvited = false;
     private BlockingQueue<String> messageQueue;
     public BooleanProperty myBooleanProperty = new SimpleBooleanProperty(false);
+    public StringProperty acceptStringProperty = new SimpleStringProperty();
+    public StringProperty senderNameStringProperty = new SimpleStringProperty();
+    public BooleanProperty reciverRespondBooleanProperty = new SimpleBooleanProperty(false);
+
+
     public BooleanProperty acceptBooleanProperty = new SimpleBooleanProperty(false);
     String ImagePath;
     String senderName = "";
@@ -154,6 +162,11 @@ public class Client {
             String reciever = responseJsonObject.get("player2").getAsString();
             System.out.println(sender + " sent a request to " + reciever);
             senderName = sender;
+            Platform.runLater(()
+                    -> {
+
+                senderNameStringProperty.set(senderName);
+            });
             return true;
 
         } catch (InterruptedException ex) {
@@ -195,6 +208,12 @@ public class Client {
         jsonObject.addProperty("player1", player1);
         jsonObject.addProperty("player2", player2);
         Gson gson = new Gson();
+        Platform.runLater(() -> {
+                                    System.out.println("from waitResponse " +"boolean "+reciverRespondBooleanProperty);
+                                    reciverRespondBooleanProperty.set(true);
+                                    
+                                    
+                                });
         outputStream.writeUTF(gson.toJson(jsonObject));
 
     }
@@ -212,10 +231,10 @@ public class Client {
         outputStream.writeUTF(gson.toJson(jsonObject));
 
     }
-        public void putInOutGame(String msg) throws IOException {
+
+    public void putInOutGame(String msg) throws IOException {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("func", msg);
-     
 
         Gson gson = new Gson();
         outputStream.writeUTF(gson.toJson(jsonObject));
@@ -258,8 +277,18 @@ public class Client {
                                 Platform.runLater(() -> {
 
                                     myBooleanProperty.set(getInviteRequest());
+                                    senderNameStringProperty.set(header);
                                 });
                                 break;
+                            /*case "waitForRespond":
+                                messageQueue.put(messageFromServer);
+                                Platform.runLater(() -> {
+                                    System.out.println("from waitResponse " + messageFromServer+"boolean "+reciverRespondBooleanProperty);
+                                    reciverRespondBooleanProperty.set(true);
+                                    
+                                    
+                                });
+                                break;*/
                             case "checkAcceptance":
                                 messageQueue.put(messageFromServer);
                                 System.out.println("from checkAccept " + messageFromServer);
@@ -278,7 +307,6 @@ public class Client {
                                     } else {
                                         OnlineBoardController.xoCounter = 0;
                                     }
-                                    
 
                                     //wait the response
                                     JsonObject responseJsonObject = new Gson().fromJson(playMoveMsg, JsonObject.class);
@@ -319,8 +347,15 @@ public class Client {
             jsonObject.addProperty("recievererUsername", this.player.getUsername());
             jsonObject.addProperty("reply", reply);
             Gson gson = new Gson();
+            /*Platform.runLater(() -> {
+                                    System.out.println("from waitResponse " +"boolean "+reciverRespondBooleanProperty);
+                                    
+                                    
+                                    
+                                });*/
             outputStream.writeUTF(gson.toJson(jsonObject));
             myBooleanProperty.set(false);
+            //reciverRespondBooleanProperty.set(false);
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -341,20 +376,59 @@ public class Client {
 
             if (reply.equals("accept")) {
                 if (sender.equals(player.getUsername())) {
+                    
                     Platform.runLater(() -> {
 
-                        acceptBooleanProperty.set(true);
+                        acceptStringProperty.set("accept");
+                                                            System.out.println("from waitResponse in gotoBoard " +"boolean "+reciverRespondBooleanProperty);
+
+                        reciverRespondBooleanProperty.set(false);
                     });
 
                 } else if (reciever.equals(player.getUsername())) {
-                    Platform.runLater(() -> {
+                    Platform.runLater(()
+                    -> {
 
-                        acceptBooleanProperty.set(true);
+                acceptStringProperty.set("accept");
+                
+            });
+
+                }
+                /*Platform.runLater(() -> {
+                                    System.out.println("from waitResponse in gotoBoard " +"boolean "+reciverRespondBooleanProperty);
+                                    reciverRespondBooleanProperty.set(false);
+                                    
+                                    
+                                });*/
+
+            }
+            else if (reply.equals("reject")) {
+                if (sender.equals(player.getUsername())) {
+                    Platform.runLater(() -> {
+                        System.out.println("I am sender and I was rejected");
+                        acceptStringProperty.set("reject");
+                                                            System.out.println("from waitResponse in gotoBoard " +"boolean "+reciverRespondBooleanProperty);
+
+                        reciverRespondBooleanProperty.set(false);
                     });
 
                 }
+                /*else if (reciever.equals(player.getUsername())) {
+                    Platform.runLater(() -> {
+                        System.out.println("I am reciever and I reject");
+                        acceptStringProperty.set("reject");
+                    });
 
+                }*/
+                
+                /*Platform.runLater(() -> {
+                                    System.out.println("from waitResponse in gotoBoard" +"boolean "+reciverRespondBooleanProperty);
+                                    reciverRespondBooleanProperty.set(false);
+                                    
+                                    
+                                });*/
             }
+            
 
         } catch (InterruptedException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);

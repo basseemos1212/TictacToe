@@ -7,53 +7,41 @@ package tictactoe;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.Set;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
  * @author Nouran
  */
-public class DialogBoxCardController implements Initializable {
+public class RefuseDialogController implements Initializable {
 
     @FXML
     private DialogPane parent;
     @FXML
     private Label dialoBoxMsg1;
     @FXML
-    private Label dialoBoxMsg2;
-    @FXML
-    private Label dialogHeaderLabel1;
-    @FXML
     private ImageView dialogBoxImg1;
+    @FXML
+    private Button okBtn;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+       ClientUtility.changeFontInAllNodes(parent);
+    }    
 
-
-        ClientUtility.changeFontInAllNodes(parent);
-
+    @FXML
+    private void onOkClicked(ActionEvent event) {
+        parent.getScene().getWindow().hide();
     }
-
-
+    
 }

@@ -6,12 +6,30 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 
-
-<DialogPane fx:id="parent" prefHeight="169.0" prefWidth="450.0" stylesheets="@../css/requestmessage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.RequestMessageController">
-   <header>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="450.0">
+<DialogPane fx:id="parent" prefHeight="160.0" prefWidth="450.0" stylesheets="@../css/requestmessage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.RequestMessageController">
+   <content>
+      <HBox fx:id="bottom" alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="240.0">
          <children>
-            <Label text="Player">
+            <Button fx:id="acceptBtn" ellipsisString="" mnemonicParsing="false" onAction="#onAcceptClick" prefHeight="30.0" prefWidth="90.0" text="Accept" textAlignment="CENTER">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="rejectBtn" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" mnemonicParsing="false" onAction="#onRejectClick" prefHeight="30.0" prefWidth="90.0" text="Reject" textAlignment="CENTER">
+               <HBox.margin>
+                  <Insets right="15.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="20.0" />
+         </padding>
+      </HBox>
+   </content>
+   <header>
+      <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="450.0">
+         <children>
+            <Label fx:id="label" text="Player">
                <HBox.margin>
                   <Insets left="20.0" right="7.0" />
                </HBox.margin>
@@ -21,28 +39,18 @@
                   <Insets right="7.0" />
                </HBox.margin>
             </Label>
-            <Label alignment="CENTER_RIGHT" text="request to play with you.">
+            <Label fx:id="label" alignment="CENTER_RIGHT" text="request to play with you.">
                <HBox.margin>
-                  <Insets right="20.0" />
+                  <Insets bottom="20.0" right="20.0" />
                </HBox.margin>
             </Label>
          </children>
+         <padding>
+            <Insets top="50.0" />
+         </padding>
       </HBox>
    </header>
-   <content>
-      <HBox fx:id="bottom" prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Button fx:id="acceptBtn" ellipsisString="" mnemonicParsing="false" onAction="#onAcceptClick" prefHeight="30.0" prefWidth="75.0" text="Accept" textAlignment="CENTER">
-               <HBox.margin>
-                  <Insets left="10.0" right="200.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="rejectBtn" alignment="CENTER_RIGHT" contentDisplay="RIGHT" ellipsisString="" mnemonicParsing="false" onAction="#onRejectClick" prefHeight="30.0" prefWidth="75.0" text="Reject" textAlignment="CENTER">
-               <HBox.margin>
-                  <Insets left="50.0" right="10.0" />
-               </HBox.margin>
-            </Button>
-         </children>
-      </HBox>
-   </content>
+   <padding>
+      <Insets bottom="20.0" />
+   </padding>
 </DialogPane>
