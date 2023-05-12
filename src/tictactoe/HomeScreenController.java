@@ -110,7 +110,6 @@ public class HomeScreenController implements Initializable {
         Font myCustomFont3 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 26);
         name.setFont(myCustomFont2);
 
-//        scoreLabel.setFont(myCustomFont2);
         if (client.player != null) {
             if (client.player.getStatus() == 1) {
                 System.out.println("setPlayerValues");
