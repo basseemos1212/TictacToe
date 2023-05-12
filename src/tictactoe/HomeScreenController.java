@@ -140,6 +140,8 @@ public class HomeScreenController implements Initializable {
             }
 
         }
+     if(client.player!=null){
+         
         if (!checkRmbr() && client.player.getUsername() == "Guest") {
             System.out.println("btn : " + client.player.getUsername());
             System.out.println(!checkRmbr());
@@ -147,6 +149,7 @@ public class HomeScreenController implements Initializable {
             LogOutBtn.setVisible(false);
         }
 
+    }
     }
 
     public void setPlayerValues() {
@@ -293,7 +296,8 @@ public class HomeScreenController implements Initializable {
             mapper.writeValue(new File("settings.json"), settings);
             Image newImage = new Image("assets/avatar.png");
             playerImage.setImage(newImage);
-            client.player.setUsername("Guest");
+            if(client.player!=null){
+            client.player.setUsername("Guest");}
             scoreLabel.setText(" ");
             } catch (IOException ex) {
             ex.printStackTrace();
