@@ -43,6 +43,14 @@ import tictactoe.OnlineBoardController;
 public class Client {
 
     private Socket socket;
+
+    public Socket getSocket() {
+        return socket;
+    }
+
+    public void setSocket(Socket socket) {
+        this.socket = socket;
+    }
     private DataInputStream inputStream;
     private DataOutputStream outputStream;
 
