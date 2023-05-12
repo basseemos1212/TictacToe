@@ -6,18 +6,18 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 
-<DialogPane fx:id="parent" prefHeight="169.0" prefWidth="450.0" stylesheets="@../css/requestmessage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.RequestMessageController">
+<DialogPane fx:id="parent" prefHeight="160.0" prefWidth="450.0" stylesheets="@../css/requestmessage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tictactoe.RequestMessageController">
    <content>
       <HBox fx:id="bottom" alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="240.0">
          <children>
-            <Button fx:id="acceptBtn" ellipsisString="" mnemonicParsing="false" onAction="#onAcceptClick" prefHeight="30.0" prefWidth="85.0" text="Accept" textAlignment="CENTER">
+            <Button fx:id="acceptBtn" ellipsisString="" mnemonicParsing="false" onAction="#onAcceptClick" prefHeight="30.0" prefWidth="90.0" text="Accept" textAlignment="CENTER">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="rejectBtn" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" mnemonicParsing="false" onAction="#onRejectClick" prefHeight="30.0" prefWidth="85.0" text="Reject" textAlignment="CENTER">
+            <Button fx:id="rejectBtn" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" mnemonicParsing="false" onAction="#onRejectClick" prefHeight="30.0" prefWidth="90.0" text="Reject" textAlignment="CENTER">
                <HBox.margin>
-                  <Insets right="20.0" />
+                  <Insets right="15.0" />
                </HBox.margin>
             </Button>
          </children>
@@ -50,4 +50,7 @@
          </padding>
       </HBox>
    </header>
+   <padding>
+      <Insets bottom="20.0" />
+   </padding>
 </DialogPane>

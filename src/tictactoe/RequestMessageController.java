@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.stage.StageStyle;
 import model.AppClient;
 import model.Client;
 
@@ -47,9 +48,12 @@ public class RequestMessageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ClientUtility.changeFontInAllNodes(parent);
+        
+
         try {
             this.appClient = AppClient.getInstance("localhost", 3333);
             this.client = appClient.getClient();
+            //client.replyToInviteRequest("none");
 
 
         } catch (IOException ex) {
@@ -61,13 +65,18 @@ public class RequestMessageController implements Initializable {
     @FXML
     private void onAcceptClick(ActionEvent event) {
         client.replyToInviteRequest("accept");
+        parent.getScene().getWindow().hide();
 
     }
 
     @FXML
     private void onRejectClick(ActionEvent event) {
         client.replyToInviteRequest("reject");
+        parent.getScene().getWindow().hide();
 
     }
-    
+    public void setPlayerName(String senderName)
+    {
+        playerName.setText(senderName);
+    }
 }

@@ -1,0 +1,29 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.dialog-pane {
+    -fx-background-color: #3B1787;
+    -fx-pref-height: 50px;
+    -fx-pref-width: 450px;
+    -fx-background-radius: 20,20,20,20;
+    -fx-border-radius: 20,20,20,20;
+        
+
+}
+
+#okBtn
+{
+    -fx-background-color: linear-gradient(to right, #59DFFF, #788CFE);
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+  
+    -fx-border-radius: 5px;
+     -fx-border-radius: 5px;
+     -fx-pref-width: 100px;
+     -fx-pref-height: 100px;
+}
+#dialoBoxMsg1
+{
+    -fx-text-fill: linear-gradient(to right, #59DFFF, #788CFE);
+}

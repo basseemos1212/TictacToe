@@ -100,4 +100,5 @@ public class PlayerCardController implements Initializable {
         //System.out.println("Player invited is: "+playerName.getText());
         client.invite(client.player.getUsername(), playerName.getText());
     }
+    
 }
