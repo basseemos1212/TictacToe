@@ -35,15 +35,15 @@ public class ChoosePlayerDialogController implements Initializable {
     @FXML
     private Label dialogHeaderLabel;
     @FXML
+    private TextField p1TextField;
+    @FXML
+    private TextField p2TextField;
+    @FXML
     private Label dialoBoxMsg1;
     @FXML
     private Button okButton;
     @FXML
     private Label dialoBoxMsg11;
-    @FXML
-    private TextField p1TextField;
-    @FXML
-    private TextField p2TextField;
 
     /**
      * Initializes the controller class.

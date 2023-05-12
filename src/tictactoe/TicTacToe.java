@@ -48,9 +48,9 @@ public class TicTacToe extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("SplashUI.fxml"));
-        Scene scene = new Scene(root, 1024, 700, Color.TRANSPARENT);
 
+        Parent root = FXMLLoader.load(TicTacToe.class.getResource("SplashUI.fxml"));
+        Scene scene = new Scene(root, 1024, 700);
         //Complete exit whenever the window is closed
         stage.setOnCloseRequest(e -> {
             Platform.exit();
@@ -91,6 +91,7 @@ public class TicTacToe extends Application {
         try {
             this.appClient = AppClient.getInstance("localhost", 3333);
             this.client = appClient.getClient();
+          
             client.myBooleanProperty.addListener((observable, oldValue, newValue) -> {
                 // This code will execute whenever the value of the boolean property changes
                 if (newValue) {

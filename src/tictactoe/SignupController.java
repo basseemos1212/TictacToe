@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
@@ -35,18 +36,23 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Control;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import static tictactoe.GameBoardController.playRecord;
+import static tictactoe.GameBoardController.player1;
+import static tictactoe.GameBoardController.player2;
 
 /**
  *
@@ -81,12 +87,15 @@ public class SignupController implements Initializable {
     private TextField signuppassTF;
     @FXML
     private TextField signuprepassTF;
-
+    
+    
     BooleanProperty showPassword = new SimpleBooleanProperty(false);
     BooleanProperty showRePassword = new SimpleBooleanProperty(false);
     @FXML
     private HBox passHB;
-
+    @FXML
+    public  Button imgbtn;
+    public static String imagePath;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ClientUtility.changeFontInAllNodes(parent);
@@ -105,8 +114,22 @@ public class SignupController implements Initializable {
            // Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }
+// Set the button's background using a CSS style
 
+    
+        
+
+//        Platform.runLater(() -> {
+//    imgbtn.setStyle("-fx-background-image: url('" + imagePath + "'); " +
+//                      "-fx-background-size: cover; " +
+//                      "-fx-background-position: center center; " +
+//                      "-fx-background-repeat: no-repeat;");
+//    imgbtn.requestLayout(); 
+//});
+           
+    
+    }
+       
     @FXML
     public void onSignupClicked(ActionEvent event) {
 
@@ -123,11 +146,13 @@ public class SignupController implements Initializable {
             // TODO: Submit the form
             boolean isTwoPassFieldsMatch = checkIfTheTwoPasswordsMatch();
             if (isTwoPassFieldsMatch) {
-
+                if (imagePath==null){
+                    imagePath="/assets/p1L.png";
+                }
                 String username = signupusername.getText();
 
                 try {
-                    boolean success = client.signUp(username, password);
+                    boolean success = client.signUp(username, password,imagePath);
                     if (success) {
                         // do something on success, go Home screen for example
                         System.out.println("succefully signed up player " + username);
@@ -303,4 +328,27 @@ public class SignupController implements Initializable {
 //                       // Optional<ButtonType> result = alert.showAndWait();
 //    }
 
+    @FXML
+    private void onChoooseImg(ActionEvent event) {
+        
+        showmyDialog();
+    }
+  private void showmyDialog() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ChooseImageDailoge.fxml"));
+            DialogPane dialogPane = loader.load();
+
+            Dialog<Void> dialog = new Dialog<>();
+            dialog.getDialogPane().setContent(dialogPane);
+
+            // Set the dialog size to match the content
+            dialog.getDialogPane().getScene().getWindow().sizeToScene();
+
+            // Show the dialog as a modal dialog
+            dialog.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+}
 }

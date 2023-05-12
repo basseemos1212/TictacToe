@@ -46,6 +46,14 @@ import tictactoe.OnlineBoardController;
 public class Client {
 
     private Socket socket;
+
+    public Socket getSocket() {
+        return socket;
+    }
+
+    public void setSocket(Socket socket) {
+        this.socket = socket;
+    }
     private DataInputStream inputStream;
     private DataOutputStream outputStream;
 
@@ -58,6 +66,8 @@ public class Client {
     public BooleanProperty reciverRespondBooleanProperty = new SimpleBooleanProperty(false);
 
 
+    public BooleanProperty acceptBooleanProperty = new SimpleBooleanProperty(false);
+    String ImagePath;
     String senderName = "";
 
     public Client(String serverIP, int serverPort) throws IOException {
@@ -65,17 +75,19 @@ public class Client {
         inputStream = new DataInputStream(socket.getInputStream());
         outputStream = new DataOutputStream(socket.getOutputStream());
         messageQueue = new LinkedBlockingQueue<>();
-        player = new Player();
+        player = new Player("Guest");
         //isInvited=getInviteRequest();
 
         listenForMessages();
 
     }
 
-    public boolean signUp(String username, String password) throws IOException {
+    public boolean signUp(String username, String password, String ImagePath) throws IOException {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("username", username);
         jsonObject.addProperty("password", password);
+        jsonObject.addProperty("ImagePath", ImagePath);
+
         jsonObject.addProperty("func", "signup");
         Gson gson = new Gson();
         String json = gson.toJson(jsonObject);
@@ -115,9 +127,18 @@ public class Client {
             String passe = rootNode.get("password").asText();
 
             int status = rootNode.get("status").asInt();
+            if (rootNode.get("ImagePath").asText().equals(null)){
+                 ImagePath="/assets/avatar.png";
+            
+            }
+            else{
+             ImagePath = rootNode.get("ImagePath").asText();}
+
             player.setUsername(userr);
             player.setPassword(password);
             player.setStatus(status);
+            player.setImagePath(ImagePath);
+
 
 //            player = new Player(userr, passe);
             //player = (Player) inputObjectStream.readObject();
@@ -128,7 +149,7 @@ public class Client {
         return player;
 
     }
-
+//need handeling
     public boolean getInviteRequest() //for the 2nd player
     {
         try {

@@ -53,3 +53,9 @@
 {
     -fx-text-fill: linear-gradient(to right, #59DFFF, #788CFE);
 }
+.colorblue{
+    
+        -fx-background-color: #3B1787;
+
+    
+}

@@ -9,15 +9,22 @@ package model;
 import java.io.Serializable;
 
 public class Player implements Serializable {
-    private String username ="player";
+    private String username ;
     private String password;
     private String ImagePath;
-    private int score =0;
+    private int score ;
     private int status;
     private boolean inGame=false;
 
     public Player() {
     }
+
+    
+    public Player(String username) {
+        this.username = username;
+        this.score = 0;
+    }
+
 
 
     public Player(String username, String password) {
@@ -25,7 +32,11 @@ public class Player implements Serializable {
         this.password = password;
     }
     
-
+    public Player(String username, String password,String ImagePath) {
+        this.username = username;
+        this.password = password;
+        this.ImagePath=ImagePath;
+    }
     
     public Player(String username, String password, String ImagePath, int score, int status) 
     {

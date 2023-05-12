@@ -97,7 +97,7 @@ public class SignInController implements Initializable {
     private void signUpOnclick(ActionEvent event) throws IOException {
         //VideoPlayerController vc=new VideoPlayerController();
         //vc.setActualPath("src/media/YouLose.mp4");
-        ClientUtility.navigate(event, "RequestMessage.fxml");
+        ClientUtility.navigate(event, "SignUp.fxml");
 
     }
 
@@ -150,7 +150,7 @@ public class SignInController implements Initializable {
             String password = passwordTextField.getText();
 
             player = client.signIn(username, password);
-            player.setScore(125);
+            
 
             if (player.getStatus() == 1) {
                 goToHome(event, player);
@@ -195,6 +195,8 @@ public class SignInController implements Initializable {
             settings.setUsername(userNameTextField.getText());
             settings.setPassword(passwordTextField.getText());
             settings.setScore(player.getScore());
+            settings.setImagePath(player.getImagePath());
+
 
             ObjectMapper mapper = new ObjectMapper();
             mapper.writeValue(new File("settings.json"), settings);
