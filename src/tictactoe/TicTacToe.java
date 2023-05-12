@@ -121,6 +121,11 @@ public class TicTacToe extends Application {
                 System.out.println("for accept Boolean value changed from " + oldValue + " to " + newValue);
                 if (newValue.equals("accept")) {
                     client.acceptStringProperty.set("");
+                   /* try {
+                        client.putInOutGame("inGame");
+                    } catch (IOException ex) {
+                        Logger.getLogger(TicTacToe.class.getName()).log(Level.SEVERE, null, ex);
+                    }*/
 
                     showBoard();
 

@@ -150,7 +150,9 @@ public class HomeScreenController implements Initializable {
             }
 
         }
+
         if (client.player != null) {
+
 
             if (!checkRmbr() && client.player.getUsername() == "Guest") {
                 System.out.println("btn : " + client.player.getUsername());
