@@ -13,6 +13,15 @@ public class Settings {
  private String username;
  private String password;
  private int score;
+ private String imagePath;
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
 
 
     public String getUsername() {

@@ -87,16 +87,14 @@ public class HomeScreenController implements Initializable {
     Font myCustomFont2 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 22);
     @FXML
 
-
     private Text scoreLabel;
 
     public Player player;
-    
+
     @FXML
     private Button LogOutBtn;
     @FXML
     private ImageView playerImage;
-
 
     /**
      * Initializes the controller class.
@@ -112,13 +110,24 @@ public class HomeScreenController implements Initializable {
         Font myCustomFont3 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 26);
         name.setFont(myCustomFont2);
 
-
 //        scoreLabel.setFont(myCustomFont2);
-        Platform.runLater(() -> loadSettings());
+        if (client.player != null) {
+            if (client.player.getStatus() == 1) {
+                System.out.println("setPlayerValues");
+                Platform.runLater(() -> setPlayerValues());
+            } else {
+                System.out.println("loadSettings");
+
+                Platform.runLater(() -> loadSettings());
+            }
+        } else {
+            System.out.println("loadSettings");
+
+            Platform.runLater(() -> loadSettings());
+        }
 
         //Platform.runLater(() -> scoreLabel.setText(Integer.toString(client.player.getScore())));
         //loadSettings();
-
         Set<Node> allNodes = parent.lookupAll("*");
         for (Node node : allNodes) {
             if (node instanceof Text) {
@@ -130,17 +139,16 @@ public class HomeScreenController implements Initializable {
                 ((TextField) node).setFont(myCustomFont);
             }
 
-
         }
-        if (!checkLogin()) {
-
+        if (!checkRmbr() && client.player.getUsername() == "Guest") {
+            System.out.println("btn : " + client.player.getUsername());
+            System.out.println(!checkRmbr());
             LogOutBtn.setDisable(true);
             LogOutBtn.setVisible(false);
         }
 
-        setPlayerValues();
-   
     }
+
     public void setPlayerValues() {
         if (Client.player != null) {
             System.out.println(client.player.getUsername());
@@ -163,9 +171,6 @@ public class HomeScreenController implements Initializable {
             scoreLabel.setText("");
         }
     }
-
-
-
 
     public void printPlayer(Player player) {
         System.out.println("from home player is :" + player.getUsername());
@@ -222,10 +227,10 @@ public class HomeScreenController implements Initializable {
 
     @FXML
     private void aboutScreenNav(ActionEvent event) throws IOException {
-        VideoPlayerController vc=new VideoPlayerController();
+        VideoPlayerController vc = new VideoPlayerController();
         vc.setActualPath("src/media/win.mp4");
-   
-         Parent root;
+
+        Parent root;
         Stage stage;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("videoPlayer.fxml"));
@@ -248,19 +253,22 @@ public class HomeScreenController implements Initializable {
                 }
                 if (settings.getScore() != 0) {
                     scoreLabel.setText(String.valueOf(settings.getScore()));
-                }else{
+                } else {
                     scoreLabel.setText("");
 
                 }
+                if (settings.getImagePath() != null) {
+                    Image newImage = new Image(settings.getImagePath());
+                    playerImage.setImage(newImage);
+                }
 
-                
             }
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
 
-    private boolean checkLogin() {
+    private boolean checkRmbr() {
         File file = new File("settings.json");
         if (file.exists()) {
             try {
@@ -283,7 +291,11 @@ public class HomeScreenController implements Initializable {
             ObjectMapper mapper = new ObjectMapper();
             Settings settings = new Settings();
             mapper.writeValue(new File("settings.json"), settings);
-        } catch (IOException ex) {
+            Image newImage = new Image("assets/avatar.png");
+            playerImage.setImage(newImage);
+            client.player.setUsername("Guest");
+            scoreLabel.setText(" ");
+            } catch (IOException ex) {
             ex.printStackTrace();
         }
         //        Parent root = FXMLLoader.load(getClass().getResource("HomeScreen.fxml"));
@@ -293,7 +305,6 @@ public class HomeScreenController implements Initializable {
 //        stage.show();
         flashPass();
 
-        scoreLabel.setText("0");
         name.setText("Guest");
 
 ////        Log
@@ -330,7 +341,7 @@ public class HomeScreenController implements Initializable {
         try {
             this.appClient = AppClient.getInstance("localhost", 3333);
             this.client = appClient.getClient();
-            if (client.player.getUsername()!="Guest") {
+            if (client.player.getUsername() != "Guest") {
                 ClientUtility.navigate(event, "ChoosePlayer.fxml");
 
             } else {
@@ -365,6 +376,5 @@ public class HomeScreenController implements Initializable {
     private void onSignleClick(ActionEvent event) throws IOException {
         navigate(event, "ChooseDiff.fxml");
     }
-
 
 }

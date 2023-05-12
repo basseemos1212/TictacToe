@@ -150,7 +150,7 @@ public class SignInController implements Initializable {
             String password = passwordTextField.getText();
 
             player = client.signIn(username, password);
-            player.setScore(125);
+            
 
             if (player.getStatus() == 1) {
                 goToHome(event, player);
@@ -195,6 +195,8 @@ public class SignInController implements Initializable {
             settings.setUsername(userNameTextField.getText());
             settings.setPassword(passwordTextField.getText());
             settings.setScore(player.getScore());
+            settings.setImagePath(player.getImagePath());
+
 
             ObjectMapper mapper = new ObjectMapper();
             mapper.writeValue(new File("settings.json"), settings);
