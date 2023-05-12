@@ -51,7 +51,7 @@ public class Client {
     private BlockingQueue<String> messageQueue;
     public BooleanProperty myBooleanProperty = new SimpleBooleanProperty(false);
     public BooleanProperty acceptBooleanProperty = new SimpleBooleanProperty(false);
-
+    String ImagePath;
     String senderName = "";
 
     public Client(String serverIP, int serverPort) throws IOException {
@@ -111,7 +111,12 @@ public class Client {
             String passe = rootNode.get("password").asText();
 
             int status = rootNode.get("status").asInt();
-            String ImagePath = rootNode.get("ImagePath").asText();
+            if (rootNode.get("ImagePath").asText().equals(null)){
+                 ImagePath="/assets/avatar.png";
+            
+            }
+            else{
+             ImagePath = rootNode.get("ImagePath").asText();}
 
             player.setUsername(userr);
             player.setPassword(password);
