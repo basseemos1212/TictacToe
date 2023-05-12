@@ -49,6 +49,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javax.imageio.ImageIO;
+import model.Client;
 import model.Settings;
 
 /**
@@ -71,6 +72,9 @@ public class RecordsScreenController implements Initializable {
     private Label userName;
     @FXML
     private Button backBtn;
+    Client client;
+    @FXML
+    private ImageView playerImage;
 
 
     /**
@@ -79,8 +83,20 @@ public class RecordsScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         readRecordedGames();
-        loadSettings();
- 
+            if (client.player != null) {
+            if (client.player.getStatus() == 1) {
+                System.out.println("setPlayerValues");
+                Platform.runLater(() -> setPlayerValues());
+            } else {
+                System.out.println("loadSettings");
+
+                Platform.runLater(() -> loadSettings());
+            }
+        } else {
+            System.out.println("loadSettings");
+
+            Platform.runLater(() -> loadSettings());
+        }
 
        myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 24);
         Set<Node> allNodes = parent.lookupAll("*");
@@ -195,23 +211,54 @@ public class RecordsScreenController implements Initializable {
 //
 //    }
     
-     private void loadSettings() {
-    try {
-        File file = new File("settings.json");
-        if (file.exists()) {
-            ObjectMapper mapper = new ObjectMapper();
-            Settings settings = mapper.readValue(file, Settings.class);
-            if(settings.getUsername()!=null){
-            userName.setText(settings.getUsername());}
-            
-            score.setText(Integer.toString(settings.getScore()));
-            
+   
+ public void setPlayerValues() {
+        if (Client.player != null) {
+            System.out.println(client.player.getUsername());
+            String imagePath = client.player.getImagePath();
+            if (imagePath != null) {
+                Image newImage = new Image(imagePath);
+                playerImage.setImage(newImage);
+            } else {
+                Image newImage = new Image("assets/avatar.png");
+                playerImage.setImage(newImage);
+            }
+            userName.setText(client.player.getUsername());
+            if (client.player.getScore() != 0) {
+                score.setText(Integer.toString(client.player.getScore()));
+            }
+        } else {
+            Image newImage = new Image("assets/avatar.png");
+            playerImage.setImage(newImage);
+            userName.setText("Guest");
+            score.setText("");
         }
-    } catch (IOException ex) {
-        ex.printStackTrace();
     }
-}
+     private void loadSettings() {
+        try {
+            File file = new File("settings.json");
+            if (file.exists()) {
+                ObjectMapper mapper = new ObjectMapper();
+                Settings settings = mapper.readValue(file, Settings.class);
+                if (settings.getUsername() != null) {
+                    userName.setText(settings.getUsername());
+                }
+                if (settings.getScore() != 0) {
+                    score.setText(String.valueOf(settings.getScore()));
+                } else {
+                    score.setText("");
 
+                }
+                if (settings.getImagePath() != null) {
+                    Image newImage = new Image(settings.getImagePath());
+                    playerImage.setImage(newImage);
+                }
+
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
     @FXML
     private void onBack(ActionEvent event) {
         try {

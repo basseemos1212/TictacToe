@@ -65,10 +65,10 @@ public class Client {
     public StringProperty senderNameStringProperty = new SimpleStringProperty();
     public BooleanProperty reciverRespondBooleanProperty = new SimpleBooleanProperty(false);
 
-
     public BooleanProperty acceptBooleanProperty = new SimpleBooleanProperty(false);
     String ImagePath;
     String senderName = "";
+    boolean listening = false;
 
     public Client(String serverIP, int serverPort) throws IOException {
         socket = new Socket(serverIP, serverPort);
@@ -77,6 +77,7 @@ public class Client {
         messageQueue = new LinkedBlockingQueue<>();
         player = new Player("Guest");
         //isInvited=getInviteRequest();
+        listening = true;
 
         listenForMessages();
 
@@ -127,18 +128,17 @@ public class Client {
             String passe = rootNode.get("password").asText();
 
             int status = rootNode.get("status").asInt();
-            if (rootNode.get("ImagePath").asText().equals(null)){
-                 ImagePath="/assets/avatar.png";
-            
+            if (rootNode.get("ImagePath").asText().equals(null)) {
+                ImagePath = "/assets/avatar.png";
+
+            } else {
+                ImagePath = rootNode.get("ImagePath").asText();
             }
-            else{
-             ImagePath = rootNode.get("ImagePath").asText();}
 
             player.setUsername(userr);
             player.setPassword(password);
             player.setStatus(status);
             player.setImagePath(ImagePath);
-
 
 //            player = new Player(userr, passe);
             //player = (Player) inputObjectStream.readObject();
@@ -150,6 +150,7 @@ public class Client {
 
     }
 //need handeling
+
     public boolean getInviteRequest() //for the 2nd player
     {
         try {
@@ -209,11 +210,10 @@ public class Client {
         jsonObject.addProperty("player2", player2);
         Gson gson = new Gson();
         Platform.runLater(() -> {
-                                    System.out.println("from waitResponse " +"boolean "+reciverRespondBooleanProperty);
-                                    reciverRespondBooleanProperty.set(true);
-                                    
-                                    
-                                });
+            System.out.println("from waitResponse " + "boolean " + reciverRespondBooleanProperty);
+            reciverRespondBooleanProperty.set(true);
+
+        });
         outputStream.writeUTF(gson.toJson(jsonObject));
 
     }
@@ -245,7 +245,7 @@ public class Client {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while (true) {
+                while (listening) {
                     try {
                         String messageFromServer = inputStream.readUTF();
                         JsonObject jsonObject = new Gson().fromJson(messageFromServer, JsonObject.class);
@@ -327,7 +327,10 @@ public class Client {
 
                         }
                     } catch (Exception ex) {
-                        Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("Client closed!");
+
+                        
+//                        Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             }
@@ -376,22 +379,22 @@ public class Client {
 
             if (reply.equals("accept")) {
                 if (sender.equals(player.getUsername())) {
-                    
+
                     Platform.runLater(() -> {
 
                         acceptStringProperty.set("accept");
-                                                            System.out.println("from waitResponse in gotoBoard " +"boolean "+reciverRespondBooleanProperty);
+                        System.out.println("from waitResponse in gotoBoard " + "boolean " + reciverRespondBooleanProperty);
 
                         reciverRespondBooleanProperty.set(false);
                     });
 
                 } else if (reciever.equals(player.getUsername())) {
                     Platform.runLater(()
-                    -> {
+                            -> {
 
-                acceptStringProperty.set("accept");
-                
-            });
+                        acceptStringProperty.set("accept");
+
+                    });
 
                 }
                 /*Platform.runLater(() -> {
@@ -401,13 +404,12 @@ public class Client {
                                     
                                 });*/
 
-            }
-            else if (reply.equals("reject")) {
+            } else if (reply.equals("reject")) {
                 if (sender.equals(player.getUsername())) {
                     Platform.runLater(() -> {
                         System.out.println("I am sender and I was rejected");
                         acceptStringProperty.set("reject");
-                                                            System.out.println("from waitResponse in gotoBoard " +"boolean "+reciverRespondBooleanProperty);
+                        System.out.println("from waitResponse in gotoBoard " + "boolean " + reciverRespondBooleanProperty);
 
                         reciverRespondBooleanProperty.set(false);
                     });
@@ -420,15 +422,14 @@ public class Client {
                     });
 
                 }*/
-                
-                /*Platform.runLater(() -> {
+
+ /*Platform.runLater(() -> {
                                     System.out.println("from waitResponse in gotoBoard" +"boolean "+reciverRespondBooleanProperty);
                                     reciverRespondBooleanProperty.set(false);
                                     
                                     
                                 });*/
             }
-            
 
         } catch (InterruptedException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
@@ -440,19 +441,30 @@ public class Client {
     public void playOnlineMove() {
 
     }
-//    private void navigate( Stage stage,String url) throws IOException {
-//
-//        // Load the FXML file for the first screen
-//        Parent root;
-//        
-//
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
-//        root = loader.load();
-//       
-//
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
-//
-//    }
+
+    public void closeClient() {
+
+        // Send the message to the server
+        try {
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("func", "closeclient");
+            Gson gson = new Gson();
+            outputStream.writeUTF(gson.toJson(jsonObject));
+
+        } catch (IOException e) {
+            // Handle the error
+            e.printStackTrace();
+        }
+
+        try {
+            socket.close();
+            listening = false;
+            Thread.currentThread().interrupt();
+            messageQueue.clear();
+
+        } catch (IOException ex) {
+            //Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

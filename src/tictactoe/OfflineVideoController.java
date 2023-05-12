@@ -9,6 +9,10 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,6 +24,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -42,14 +47,12 @@ public class OfflineVideoController implements Initializable {
     private AnchorPane parent;
     private GameBoardController gameBoardController;
 
-    
-
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+
     }
 
     public void setVideo(String videoFile) {
@@ -68,12 +71,21 @@ public class OfflineVideoController implements Initializable {
         playerName.setText(name);
     }
 
-    public void showVideo(String playerName, boolean didThePlayerOneWin) {
-        setPlayerName(playerName);
-        if (didThePlayerOneWin) {
-            setVideo("win");
-        } else {
-            setVideo("YouLose");
+    public void showVideo(String playerName) {
+        switch (playerName) {
+            case "PC":
+                setVideo("YouLose");
+                break;
+            case "you":
+                setVideo("win");
+                break;
+            case "draw":
+                setVideo("Draw");
+                break;
+            default:
+                setPlayerName(playerName);
+                setVideo("win");
+                break;
         }
 
     }

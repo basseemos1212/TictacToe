@@ -150,10 +150,11 @@ public class GameBoardController implements Initializable {
                 moves.add(move);
                 excludedNumbers.add(Integer.valueOf(String.valueOf(onClick.idProperty().get().charAt(12))));
                 xoCounter = 1;
-                if (isVersusPC) {
+                if (isVersusPC && number < 8) {
                     pcPlay(generateRandomNumber(excludedNumbers));
+
                 }
-            } else {
+            } else if(!isVersusPC) {
                 onClick.setText("o");
 
                 ImageView oImageView = new ImageView(oImage);
@@ -161,9 +162,15 @@ public class GameBoardController implements Initializable {
                 xoCounter = 0;
                 moves.add(move);
             }
+
         }
         if (!endOFGame) {
             calculateResult();
+        }
+        if (number == 9 && !endOFGame) {
+            System.out.println("THIS IS DRAW");
+            playVideo(3);
+
         }
     }
 
@@ -189,7 +196,7 @@ public class GameBoardController implements Initializable {
                     recordGame();
                 }
                 endOFGame = true;
-                playVideo(true);
+                playVideo(1);
             } else if (res1.equals(res4) && res1.equals(res7)) {
                 System.out.println("X win");
                 flashButton(gameBoardBtn1);
@@ -200,7 +207,7 @@ public class GameBoardController implements Initializable {
                     recordGame();
                 }
                 endOFGame = true;
-                playVideo(true);
+                playVideo(1);
             }
         } else if (res1.equals("o")) {
             if (res1.equals(res2) && res1.equals(res3)) {
@@ -213,7 +220,7 @@ public class GameBoardController implements Initializable {
                     recordGame();
                 }
                 endOFGame = true;
-                playVideo(false);
+                playVideo(2);
 
             } else if (res1.equals(res4) && res1.equals(res7)) {
                 System.out.println("O win");
@@ -225,7 +232,7 @@ public class GameBoardController implements Initializable {
                     recordGame();
                 }
                 endOFGame = true;
-                playVideo(false);
+                playVideo(2);
 
             }
         }
@@ -241,7 +248,7 @@ public class GameBoardController implements Initializable {
                     recordGame();
                 }
                 endOFGame = true;
-                playVideo(true);
+                playVideo(1);
             } else if (res5.equals(res2) && res5.equals(res8)) {
                 System.out.println("X win");
                 flashButton(gameBoardBtn5);
@@ -252,7 +259,7 @@ public class GameBoardController implements Initializable {
                     recordGame();
                 }
                 endOFGame = true;
-                playVideo(true);
+                playVideo(1);
             } else if (res5.equals(res1) && res5.equals(res9)) {
                 System.out.println("X win");
                 flashButton(gameBoardBtn5);
@@ -263,7 +270,7 @@ public class GameBoardController implements Initializable {
                     recordGame();
                 }
                 endOFGame = true;
-                playVideo(true);
+                playVideo(1);
             } else if (res5.equals(res3) && res5.equals(res7)) {
                 System.out.println("X win");
                 flashButton(gameBoardBtn5);
@@ -274,7 +281,7 @@ public class GameBoardController implements Initializable {
                     recordGame();
                 }
                 endOFGame = true;
-                playVideo(true);
+                playVideo(1);
             }
         } else if (res5.equals("o")) {
             if (res5.equals(res4) && res5.equals(res6)) {
@@ -287,7 +294,7 @@ public class GameBoardController implements Initializable {
                     recordGame();
                 }
                 endOFGame = true;
-                playVideo(false);
+                playVideo(2);
             } else if (res5.equals(res2) && res5.equals(res8)) {
                 System.out.println("O win");
                 flashButton(gameBoardBtn5);
@@ -298,7 +305,7 @@ public class GameBoardController implements Initializable {
                     recordGame();
                 }
                 endOFGame = true;
-                playVideo(false);
+                playVideo(2);
             } else if (res5.equals(res1) && res5.equals(res9)) {
                 System.out.println("O win");
                 flashButton(gameBoardBtn5);
@@ -309,7 +316,7 @@ public class GameBoardController implements Initializable {
                     recordGame();
                 }
                 endOFGame = true;
-                playVideo(false);
+                playVideo(2);
             } else if (res5.equals(res3) && res5.equals(res7)) {
                 System.out.println("O win");
                 flashButton(gameBoardBtn5);
@@ -321,7 +328,7 @@ public class GameBoardController implements Initializable {
                 }
 
                 endOFGame = true;
-                playVideo(false);
+                playVideo(2);
 
             }
         }
@@ -338,7 +345,7 @@ public class GameBoardController implements Initializable {
                 }
 
                 endOFGame = true;
-                playVideo(true);
+                playVideo(1);
             } else if (res9.equals(res8) && res9.equals(res7)) {
                 System.out.println("X win");
                 flashButton(gameBoardBtn9);
@@ -349,7 +356,7 @@ public class GameBoardController implements Initializable {
                     recordGame();
                 }
                 endOFGame = true;
-                playVideo(true);
+                playVideo(1);
 
             }
         } else if (res9.equals("o")) {
@@ -363,7 +370,7 @@ public class GameBoardController implements Initializable {
                     recordGame();
                 }
                 endOFGame = true;
-                playVideo(false);
+                playVideo(2);
             } else if (res9.equals(res8) && res9.equals(res7)) {
                 System.out.println("O win");
                 flashButton(gameBoardBtn9);
@@ -375,7 +382,7 @@ public class GameBoardController implements Initializable {
                 }
 
                 endOFGame = true;
-                playVideo(false);
+                playVideo(2);
             }
         }
     }
@@ -419,14 +426,16 @@ public class GameBoardController implements Initializable {
                 xoCounter = 0;
 
             }
-        }
-        if (!endOFGame) {
-
             calculateResult();
 
-        } else {
-
         }
+//        if (!endOFGame) {
+//
+//            calculateResult();
+//
+//        } else {
+//
+//        }
 
     }
 
@@ -673,7 +682,12 @@ public class GameBoardController implements Initializable {
         }
     }
 
-    private void playVideo(boolean state) {
+    /**
+     * Plays a video depending on the state of the game End.
+     *
+     * @param state 1= player one won, 2 = player 2 won , 3 = draw
+     */
+    private void playVideo(int state) {
         String lastPlayer = moves.lastElement();
 
         try {
@@ -682,15 +696,29 @@ public class GameBoardController implements Initializable {
             AnchorPane root = loader.load();
             OfflineVideoController controller = loader.getController();
             controller.setGameBoardController(this);
+            switch (state) {
+                case 1:
+                    //player 1 wins
+                    if (player2.equals("PC")) {
+                        controller.showVideo("you");
+                    } else {
+                        controller.showVideo(player1);
+                    }
+                    break;
+                case 2:
+                    //player 2 wins
+                    if (player2.equals("PC")) {
+                        controller.showVideo("PC");
+                    } else {
+                        controller.showVideo(player2);
+                    }
+                    break;
+                default:
+                    //Draw
+                    controller.showVideo("draw");
+                    break;
+            }
 
-//            if (lastPlayer.equals("Player1")) {
-                controller.showVideo("You", state);
-//                System.out.println("PLAYR1 WON");
-//            } else {
-//                controller.showVideo("You", state);
-//                System.out.println("PLAYR1 LOST");
-//
-//            }
             Stage stage = new Stage();
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -722,7 +750,7 @@ public class GameBoardController implements Initializable {
     }
 
     void playAgain() {
-                try {
+        try {
             Parent root;
             Stage stage;
 
