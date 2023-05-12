@@ -104,6 +104,17 @@ public class HomeScreenController implements Initializable {
      */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+
+        try {
+            this.appClient = AppClient.getInstance("localhost", 3333);
+            this.client = appClient.getClient();
+
+        } catch (IOException ex) {
+
+            Stage stage = new Stage();
+            Toast.makeText(stage, "Server is off. Running on offline mode now!");
+        }
+
         // TODO
 //        printPlayer(player);
         Font myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 26);
@@ -140,16 +151,16 @@ public class HomeScreenController implements Initializable {
             }
 
         }
-     if(client.player!=null){
-         
-        if (!checkRmbr() && client.player.getUsername() == "Guest") {
-            System.out.println("btn : " + client.player.getUsername());
-            System.out.println(!checkRmbr());
-            LogOutBtn.setDisable(true);
-            LogOutBtn.setVisible(false);
-        }
+        if (client.player != null) {
 
-    }
+            if (!checkRmbr() && client.player.getUsername() == "Guest") {
+                System.out.println("btn : " + client.player.getUsername());
+                System.out.println(!checkRmbr());
+                LogOutBtn.setDisable(true);
+                LogOutBtn.setVisible(false);
+            }
+
+        }
     }
 
     public void setPlayerValues() {
@@ -232,7 +243,7 @@ public class HomeScreenController implements Initializable {
     private void aboutScreenNav(ActionEvent event) throws IOException {
         //VideoPlayerController vc=new VideoPlayerController();
         //vc.setActualPath("src/media/win.mp4");
-       // navigate(event, "RequestMessage.fxml");
+        // navigate(event, "RequestMessage.fxml");
         VideoPlayerController vc = new VideoPlayerController();
         vc.setActualPath("src/media/win.mp4");
 
@@ -299,10 +310,15 @@ public class HomeScreenController implements Initializable {
             mapper.writeValue(new File("settings.json"), settings);
             Image newImage = new Image("assets/avatar.png");
             playerImage.setImage(newImage);
-            if(client.player!=null){
-            client.player.setUsername("Guest");}
+
+            if (client.player != null) {
+                System.out.println("CLIENT IS NOT NULL");
+                client.player.setUsername("Guest");
+                client.closeClient();
+
+            }
             scoreLabel.setText(" ");
-            } catch (IOException ex) {
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
         //        Parent root = FXMLLoader.load(getClass().getResource("HomeScreen.fxml"));
