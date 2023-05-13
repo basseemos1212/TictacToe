@@ -58,6 +58,7 @@ public class Client {
     private DataOutputStream outputStream;
 
     public static Player player;
+    
     public boolean isInvited = false;
     private BlockingQueue<String> messageQueue;
     public BooleanProperty myBooleanProperty = new SimpleBooleanProperty(false);
@@ -126,6 +127,7 @@ public class Client {
             JsonNode rootNode = objectMapper.readTree(loggedInMessage);
             String userr = rootNode.get("username").asText();
             String passe = rootNode.get("password").asText();
+            String score=rootNode.get("score").asText();
 
             int status = rootNode.get("status").asInt();
             if (rootNode.get("ImagePath").asText().equals(null)) {
@@ -139,6 +141,7 @@ public class Client {
             player.setPassword(password);
             player.setStatus(status);
             player.setImagePath(ImagePath);
+            player.setScore(Integer.valueOf(score));
 
 //            player = new Player(userr, passe);
             //player = (Player) inputObjectStream.readObject();
@@ -147,6 +150,17 @@ public class Client {
         }
 
         return player;
+
+    }
+
+    public void addScore(String player) throws IOException {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("func", "addScore");
+        jsonObject.addProperty("player", Client.player.getUsername());
+
+        Gson gson = new Gson();
+
+        outputStream.writeUTF(gson.toJson(jsonObject));
 
     }
 //need handeling
@@ -329,7 +343,6 @@ public class Client {
                     } catch (Exception ex) {
                         System.out.println("Client closed!");
 
-                        
 //                        Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }

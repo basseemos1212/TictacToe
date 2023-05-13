@@ -56,12 +56,11 @@ public class ChooseDiffController implements Initializable {
         
     }
 
-    @FXML
-    private void onClickMeduim(ActionEvent event) {
-    }
+
 
     @FXML
-    private void onClickHard(ActionEvent event) {
+    private void onClickHard(ActionEvent event) throws IOException {
+           navigate(event,"MeduimPC.fxml");
     }
       private void navigate(ActionEvent event, String url) throws IOException{
     

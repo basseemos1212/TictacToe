@@ -22,19 +22,6 @@
             <ImageView fx:id="easyImg" fitHeight="116.0" fitWidth="116.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" />
          </children>
       </StackPane>
-      <StackPane alignment="CENTER_LEFT" layoutX="265.0" layoutY="360.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="150.0" prefWidth="564.0">
-         <children>
-            <Button fx:id="meduimButton" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#onClickMeduim" text="Meduim" textAlignment="CENTER" StackPane.alignment="CENTER_LEFT">
-               <StackPane.margin>
-                  <Insets left="80.0" />
-               </StackPane.margin>
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Button>
-            <ImageView fx:id="meduimImg" fitHeight="116.0" fitWidth="116.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </StackPane>
       <StackPane alignment="CENTER_LEFT" layoutX="265.0" layoutY="510.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="150.0" prefWidth="564.0">
          <children>
             <Button fx:id="hardButton" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#onClickHard" text="Hard" textAlignment="CENTER" StackPane.alignment="CENTER_LEFT">

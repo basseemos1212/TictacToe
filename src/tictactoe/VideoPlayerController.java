@@ -39,9 +39,10 @@ public class VideoPlayerController implements Initializable {
     private Button backBtn;
     @FXML
     private Button playAgainBtn;
-    
+
     private String path;
     private static String actualPath;
+    public static String name;
     private Media media;
     private MediaPlayer mediaPlayer;
     @FXML
@@ -52,45 +53,35 @@ public class VideoPlayerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-       Font myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"),20);
-       Font myCustomFont2 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"),35);
-       
-       playerName.setFont(myCustomFont2);
-       actualPath="src/media/win.mp4";
-       path=new File(actualPath).getAbsolutePath();
-       media=new Media(new File(path).toURI().toString());
-       mediaPlayer=new MediaPlayer(media);
-       mediaView.setMediaPlayer(mediaPlayer);
-       mediaPlayer.play();
-       
-       
-      
+
+        Font myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 20);
+        Font myCustomFont2 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 35);
+
+        Platform.runLater(() -> {
+            playerName.setFont(myCustomFont2);
+            playerName.setText(name);
+        });
+
+        path = new File(actualPath).getAbsolutePath();
+        media = new Media(new File(path).toURI().toString());
+        mediaPlayer = new MediaPlayer(media);
+        mediaView.setMediaPlayer(mediaPlayer);
+        mediaPlayer.play();
+
         Set<Node> allNodes = parent.lookupAll("*");
-        for (Node node : allNodes) 
-        {
-            if (node instanceof Text) 
-            {
+        for (Node node : allNodes) {
+            if (node instanceof Text) {
                 ((Text) node).setFont(myCustomFont);
 
-            } 
-            else if (node instanceof Button) 
-            {
+            } else if (node instanceof Button) {
                 ((Button) node).setFont(myCustomFont);
-            } 
-            else if (node instanceof TextField)
-            {
+            } else if (node instanceof TextField) {
                 ((TextField) node).setFont(myCustomFont);
             }
-           
-    
+
         }
-        
-       
-        
-        
-        
-    }    
+
+    }
 
     @FXML
     private void onBackClick(ActionEvent event) {
@@ -106,9 +97,7 @@ public class VideoPlayerController implements Initializable {
 
     public void setActualPath(String actualPath) {
         VideoPlayerController.actualPath = actualPath;
-        
+
     }
 
-    
-    
 }
