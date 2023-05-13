@@ -46,6 +46,7 @@ public class VideoPlayerController implements Initializable {
     private MediaPlayer mediaPlayer;
     @FXML
     private AnchorPane parent;
+    public static String name;
 
     /**
      * Initializes the controller class.
@@ -56,7 +57,12 @@ public class VideoPlayerController implements Initializable {
        Font myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"),20);
        Font myCustomFont2 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"),35);
        
-       playerName.setFont(myCustomFont2);
+       Platform.runLater(() -> {
+           playerName.setFont(myCustomFont2);
+       
+       playerName.setText(name);
+       });
+       
    
        path=new File(actualPath).getAbsolutePath();
        media=new Media(new File(path).toURI().toString());
@@ -109,6 +115,9 @@ public class VideoPlayerController implements Initializable {
         
     }
 
-    
+public void setPlayerName(String name) {
+        playerName.setText(name);
+    }   
+
     
 }

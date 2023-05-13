@@ -169,7 +169,7 @@ public class TicTacToe extends Application {
     }
 
     private void showmyDialog() {
-        RequestMessageController.stageParent=mainWindow;
+        //RequestMessageController.stageParent=mainWindow;
         try {
             
             Dialog<Void> requestDialog = new Dialog<>();
@@ -339,10 +339,7 @@ public class TicTacToe extends Application {
         if (waitinfDialogPane != null) {
             System.out.println("from closepane not null");
         Window window = waitinfDialogPane.getScene().getWindow();
-        Stage s =(Stage) window;
-        s.close();
-        mainWindow.close();
-//        Platform.runLater(window::hide);
+        Platform.runLater(window::hide);
     }
     }
 

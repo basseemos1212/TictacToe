@@ -57,7 +57,7 @@ public class ChoosePlayerDialogController implements Initializable {
     @FXML
     private void onClickOk(ActionEvent event) throws IOException{
         Stage stage = (Stage) parent.getScene().getWindow();
-        stageParent.close();
+       // stageParent.close();
           stage.close();
           navigate(event,"GameBoard.fxml");
     }

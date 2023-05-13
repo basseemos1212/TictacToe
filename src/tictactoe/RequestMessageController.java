@@ -43,7 +43,7 @@ public class RequestMessageController implements Initializable {
     private AppClient appClient;
     @FXML
     private Label label;
-    public static Stage stageParent;
+    //public static Stage stageParent;
     /**
      * Initializes the controller class.
      */
@@ -66,22 +66,19 @@ public class RequestMessageController implements Initializable {
 
     @FXML
     private void onAcceptClick(ActionEvent event) {
-             Stage stage=(Stage)parent.getScene().getWindow();
-        
+            
     
         client.replyToInviteRequest("accept");
-       stageParent.close();
-        stage.close();
+        parent.getScene().getWindow().hide();
+      
 
     }
 
     @FXML
     private void onRejectClick(ActionEvent event) {
-            Stage stage=(Stage)parent.getScene().getWindow();
-        
-        stageParent.close();
-        stage.close();
+            
         client.replyToInviteRequest("reject");
+        parent.getScene().getWindow().hide();
     
 
     }
