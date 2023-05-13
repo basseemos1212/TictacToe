@@ -48,6 +48,7 @@ public class TicTacToe extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        mainWindow=stage;
 
         Parent root = FXMLLoader.load(TicTacToe.class.getResource("SplashUI.fxml"));
         Scene scene = new Scene(root, 1024, 700);
@@ -79,6 +80,16 @@ public class TicTacToe extends Application {
         stage.show();
         stage.setResizable(false);
         delay.play();
+         Platform.setImplicitExit(true);
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            // Execute the function here
+                if(Client.player!=null){
+                    
+                    client.closeClient();
+                }
+        }));
+    
+        
 
     }
 
@@ -95,7 +106,7 @@ public class TicTacToe extends Application {
             client.myBooleanProperty.addListener((observable, oldValue, newValue) -> {
                 // This code will execute whenever the value of the boolean property changes
                 if (newValue) {
-
+                    
                     showmyDialog();
 
                 }
@@ -158,8 +169,9 @@ public class TicTacToe extends Application {
     }
 
     private void showmyDialog() {
+        RequestMessageController.stageParent=mainWindow;
         try {
-
+            
             Dialog<Void> requestDialog = new Dialog<>();
             requestDialog.initStyle(StageStyle.TRANSPARENT);
             ///////
@@ -290,8 +302,9 @@ public class TicTacToe extends Application {
             waitingDialog.getDialogPane().setContent(waitinfDialogPane);
             waitingDialog.getDialogPane().getScene().getWindow().sizeToScene();
             Window window = waitingDialog.getDialogPane().getScene().getWindow();
+            Stage xStage=(Stage) waitingDialog.getDialogPane().getScene().getWindow();
             window.setOnCloseRequest(event -> {
-
+//                mainWindow.close();
                 window.hide();
 
             });
@@ -326,7 +339,10 @@ public class TicTacToe extends Application {
         if (waitinfDialogPane != null) {
             System.out.println("from closepane not null");
         Window window = waitinfDialogPane.getScene().getWindow();
-        Platform.runLater(window::hide);
+        Stage s =(Stage) window;
+        s.close();
+        mainWindow.close();
+//        Platform.runLater(window::hide);
     }
     }
 

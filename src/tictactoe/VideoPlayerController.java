@@ -57,7 +57,7 @@ public class VideoPlayerController implements Initializable {
        Font myCustomFont2 = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"),35);
        
        playerName.setFont(myCustomFont2);
-       actualPath="src/media/win.mp4";
+   
        path=new File(actualPath).getAbsolutePath();
        media=new Media(new File(path).toURI().toString());
        mediaPlayer=new MediaPlayer(media);

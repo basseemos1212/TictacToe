@@ -732,6 +732,8 @@ public class GameBoardController implements Initializable {
     }
 
     public void closeBoard() {
+       
+
         try {
             Parent root;
             Stage stage;

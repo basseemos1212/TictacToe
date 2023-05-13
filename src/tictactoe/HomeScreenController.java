@@ -108,7 +108,7 @@ public class HomeScreenController implements Initializable {
         try {
             this.appClient = AppClient.getInstance("localhost", 3333);
             this.client = appClient.getClient();
-
+            
         } catch (IOException ex) {
 
             Stage stage = new Stage();
@@ -122,7 +122,10 @@ public class HomeScreenController implements Initializable {
         name.setFont(myCustomFont2);
 
         if (client.player != null) {
+      
+            
             if (client.player.getStatus() == 1) {
+                
                 System.out.println("setPlayerValues");
                 Platform.runLater(() -> setPlayerValues());
             } else {
@@ -204,10 +207,13 @@ public class HomeScreenController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
+       
+        
+ 
     }
 
     private void showmyDialog() {
+        ChoosePlayerDialogController.stageParent=(Stage) parent.getScene().getWindow();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ChoosePlayerDialog.fxml"));
             DialogPane dialogPane = loader.load();

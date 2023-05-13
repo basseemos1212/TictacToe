@@ -57,11 +57,13 @@ public class ChooseDiffController implements Initializable {
     }
 
     @FXML
-    private void onClickMeduim(ActionEvent event) {
+    private void onClickMeduim(ActionEvent event) throws IOException {
+             navigate(event,"MeduimPC.fxml");
     }
 
     @FXML
-    private void onClickHard(ActionEvent event) {
+    private void onClickHard(ActionEvent event) throws IOException {
+        navigate(event,"TicTacToeHard.fxml");
     }
       private void navigate(ActionEvent event, String url) throws IOException{
     
@@ -82,7 +84,7 @@ public class ChooseDiffController implements Initializable {
         GameBoardController.playRecord=false;
         
         
-        GameBoardController gbc = loader.getController();
+//        GameBoardController gbc = loader.getController();
       
 
 

@@ -126,6 +126,8 @@ public class Client {
             JsonNode rootNode = objectMapper.readTree(loggedInMessage);
             String userr = rootNode.get("username").asText();
             String passe = rootNode.get("password").asText();
+            System.out.println("score == " +rootNode.get("score").asText());
+//            int score = rootNode.get("score").asInt();
 
             int status = rootNode.get("status").asInt();
             if (rootNode.get("ImagePath").asText().equals(null)) {
@@ -139,6 +141,7 @@ public class Client {
             player.setPassword(password);
             player.setStatus(status);
             player.setImagePath(ImagePath);
+            player.setScore(Integer.valueOf(rootNode.get("score").asText()));
 
 //            player = new Player(userr, passe);
             //player = (Player) inputObjectStream.readObject();
@@ -149,6 +152,7 @@ public class Client {
         return player;
 
     }
+    
 //need handeling
 
     public boolean getInviteRequest() //for the 2nd player
@@ -214,6 +218,16 @@ public class Client {
             reciverRespondBooleanProperty.set(true);
 
         });
+        outputStream.writeUTF(gson.toJson(jsonObject));
+
+    }
+        public void addScore(String player) throws IOException {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("func", "addScore");
+        jsonObject.addProperty("player", Client.player.getUsername());
+        
+        Gson gson = new Gson();
+ 
         outputStream.writeUTF(gson.toJson(jsonObject));
 
     }

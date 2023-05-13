@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.AppClient;
 import model.Client;
@@ -42,6 +43,7 @@ public class RequestMessageController implements Initializable {
     private AppClient appClient;
     @FXML
     private Label label;
+    public static Stage stageParent;
     /**
      * Initializes the controller class.
      */
@@ -64,15 +66,23 @@ public class RequestMessageController implements Initializable {
 
     @FXML
     private void onAcceptClick(ActionEvent event) {
+             Stage stage=(Stage)parent.getScene().getWindow();
+        
+    
         client.replyToInviteRequest("accept");
-        parent.getScene().getWindow().hide();
+       stageParent.close();
+        stage.close();
 
     }
 
     @FXML
     private void onRejectClick(ActionEvent event) {
+            Stage stage=(Stage)parent.getScene().getWindow();
+        
+        stageParent.close();
+        stage.close();
         client.replyToInviteRequest("reject");
-        parent.getScene().getWindow().hide();
+    
 
     }
     public void setPlayerName(String senderName)

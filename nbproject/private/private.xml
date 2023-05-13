@@ -2,14 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group/>
+        <group/>
         <group>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/TicTacToe.java</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/PlayerCardController.java</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/SignInController.java</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/tictactoe/HomeScreenController.java</file>
-            <file>file:/D:/ITI%20Android/Java/Project/TictacToe/src/model/Client.java</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/HomeScreenController.java</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/TicTacToe.java</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/ChoosePlayerDialogController.java</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/WaitingForResponseController.java</file>
+            <file>file:/C:/Users/Bassem/Desktop/TictacToe/src/tictactoe/RequestMessageController.java</file>
         </group>
-        <group/>
-        <group/>
     </open-files>
 </project-private>

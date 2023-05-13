@@ -44,6 +44,7 @@ public class ChoosePlayerDialogController implements Initializable {
     private Button okButton;
     @FXML
     private Label dialoBoxMsg11;
+    public static Stage stageParent;
 
     /**
      * Initializes the controller class.
@@ -56,6 +57,7 @@ public class ChoosePlayerDialogController implements Initializable {
     @FXML
     private void onClickOk(ActionEvent event) throws IOException{
         Stage stage = (Stage) parent.getScene().getWindow();
+        stageParent.close();
           stage.close();
           navigate(event,"GameBoard.fxml");
     }

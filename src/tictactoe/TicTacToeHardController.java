@@ -49,20 +49,31 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.AppClient;
 import model.Client;
-import model.Game;
-import model.Player;
+import model.TicTacToeHard;
 
 /**
  * FXML Controller class
  *
  * @author Bassem
  */
-public class OnlineBoardController implements Initializable {
+public class TicTacToeHardController implements Initializable {
 
-    private Image xImage = new Image("/assets/x_1.png");
+   String[] board = {
+    "", "", "",
+    "", "", "",
+    "", "", ""
+};
+
+   private Image xImage = new Image("/assets/x_1.png");
+   int depth=9;
+   private static final String EMPTY_CELL = "";
+
+private static final char USER_Player = 'X';
+private static final char COMPUTER_PLAYER = 'O';
 
     private Image oImage = new Image("/assets/o_1.png");
     public static IntegerProperty playXO = new SimpleIntegerProperty(0);
+    TicTacToeHard tacToeHard;
 
     public static int xoCounter = 0;
     int number = 0;
@@ -151,45 +162,42 @@ public class OnlineBoardController implements Initializable {
         String move = String.valueOf(onClick.idProperty().get().charAt(12));
 
         if (onClick.getText().equals("") && endOFGame == false) {
-            if (xoCounter == 0 && Client.player.getUsername().equals(player1)) {
+            if (xoCounter == 0 ) {
                 onClick.setText("x");
 
                 ImageView xImageView = new ImageView(xImage);
                 onClick.setGraphic(xImageView);
                 moves.add(move);
-                excludedNumbers.add(Integer.valueOf(String.valueOf(onClick.idProperty().get().charAt(12))));
-                try {
-                    this.appClient = AppClient.getInstance("localhost", 3333);
-                    this.client = appClient.getClient();
-
-                } catch (IOException ex) {
-                    Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                client.play(player1, player2, String.valueOf(xoCounter), move, player1);
-
-            } else if (xoCounter == 1 && Client.player.getUsername().equals(player2)) {
-                  System.out.println("test= " + number++);
+               
+                
+               tacToeHard.playMove(Integer.valueOf(move)-1, USER_Player);
+               tacToeHard.displayBoard();  
+//                tacToeHard.makeMove(Integer.valueOf(move));for meduim 
+                
+                
+//                excludedNumbers.add(Integer.valueOf(String.valueOf(onClick.idProperty().get().charAt(12))));
+                int aimove=tacToeHard.getComputerMove();
+                System.out.println("this should be the ai move "+aimove);
+               
+//                 tacToeHard.makeMove(aimove);
+//                  tacToeHard.printBoard();
+                    tacToeHard.playMove(aimove, COMPUTER_PLAYER);
+                      tacToeHard.displayBoard(); 
+                   pcPlay(aimove+1);
+                xoCounter=1;
+               
+            } else if (xoCounter == 1) {
                 onClick.setText("o");
 
                 ImageView oImageView = new ImageView(oImage);
                 onClick.setGraphic(oImageView);
 
-                client.play(player1, player2, String.valueOf(xoCounter), move, player2);
+                xoCounter=0;
                 moves.add(move);
             }
         }
         if (!endOFGame) {
             calculateResult();
-        }
-           if (Client.player.getUsername().equals(player2)&&number == 4 && !endOFGame) {
-            System.out.println("THIS IS DRAW");
-            playVideo("Draw");
-
-        }
-            if (Client.player.getUsername().equals(player1)&&number == 5 && !endOFGame) {
-            System.out.println("THIS IS DRAW");
-            playVideo("Draw");
-
         }
     }
 
@@ -214,13 +222,10 @@ public class OnlineBoardController implements Initializable {
                 if (isRecoarding) {
                     recordGame();
                 }
-                if (player1.equals(Client.player.getUsername())) {
+          
 
-//                    playVideo("win");
-                    client.addScore(player1);
-                } else {
-//                    playVideo("YouLose");
-                }
+                    playVideo("win");
+
                 client.putInOutGame("outGame");
                 endOFGame = true;
 
@@ -233,13 +238,10 @@ public class OnlineBoardController implements Initializable {
                 if (isRecoarding) {
                     recordGame();
                 }
-                if (player1.equals(Client.player.getUsername())) {
+           
 
-//                    playVideo("win");
-                     client.addScore(player1);
-                } else {
-//                    playVideo("YouLose");
-                }
+                    playVideo("win");
+            
                 client.putInOutGame("outGame");
                 endOFGame = true;
             }
@@ -253,13 +255,9 @@ public class OnlineBoardController implements Initializable {
                 if (isRecoarding) {
                     recordGame();
                 }
-                if (player2.equals(Client.player.getUsername())) {
-
-//                    playVideo("win");
-                     client.addScore(player2);
-                } else {
-//                    playVideo("YouLose");
-                }
+ 
+                    playVideo("YouLose");
+      
                 client.putInOutGame("outGame");
                 endOFGame = true;
             } else if (res1.equals(res4) && res1.equals(res7)) {
@@ -271,17 +269,13 @@ public class OnlineBoardController implements Initializable {
                 if (isRecoarding) {
                     recordGame();
                 }
-                if (player2.equals(Client.player.getUsername())) {
 
-//                    playVideo("win");
-                     client.addScore(player2);
-                } else {
-//                    playVideo("YouLose");
-                }
+                    playVideo("YouLose");
+    
 
                 endOFGame = true;
             }
-            client.putInOutGame("outGame");
+          
         }
 
         if (res5.equals("x")) {
@@ -294,13 +288,10 @@ public class OnlineBoardController implements Initializable {
                 if (isRecoarding) {
                     recordGame();
                 }
-                if (player1.equals(Client.player.getUsername())) {
 
-//                    playVideo("win");
-                     client.addScore(player1);
-                } else {
-//                    playVideo("YouLose");
-                }
+
+                    playVideo("win");
+
                 client.putInOutGame("outGame");
                 endOFGame = true;
             } else if (res5.equals(res2) && res5.equals(res8)) {
@@ -312,13 +303,11 @@ public class OnlineBoardController implements Initializable {
                 if (isRecoarding) {
                     recordGame();
                 }
-                if (player1.equals(Client.player.getUsername())) {
 
-//                    playVideo("win");
-                     client.addScore(player1);
-                } else {
-//                    playVideo("YouLose");
-                }
+
+                    playVideo("win");
+
+
                 client.putInOutGame("outGame");
                 endOFGame = true;
             } else if (res5.equals(res1) && res5.equals(res9)) {
@@ -330,13 +319,10 @@ public class OnlineBoardController implements Initializable {
                 if (isRecoarding) {
                     recordGame();
                 }
-                if (player1.equals(Client.player.getUsername())) {
 
-//                    playVideo("win");
-                     client.addScore(player1);
-                } else {
-//                    playVideo("YouLose");
-                }
+
+                    playVideo("win");
+
                 client.putInOutGame("outGame");
                 endOFGame = true;
             } else if (res5.equals(res3) && res5.equals(res7)) {
@@ -348,13 +334,10 @@ public class OnlineBoardController implements Initializable {
                 if (isRecoarding) {
                     recordGame();
                 }
-                if (player1.equals(Client.player.getUsername())) {
+      
 
-//                    playVideo("win");
-                     client.addScore(player1);
-                } else {
-//                    playVideo("YouLose");
-                }
+                    playVideo("win");
+
                 client.putInOutGame("outGame");
                 endOFGame = true;
             }
@@ -368,13 +351,8 @@ public class OnlineBoardController implements Initializable {
                 if (isRecoarding) {
                     recordGame();
                 }
-                if (player2.equals(Client.player.getUsername())) {
+                    playVideo("YouLose");
 
-//                    playVideo("win");
-                     client.addScore(player2);
-                } else {
-//                    playVideo("YouLose");
-                }
                 client.putInOutGame("outGame");
                 endOFGame = true;
             } else if (res5.equals(res2) && res5.equals(res8)) {
@@ -386,13 +364,9 @@ public class OnlineBoardController implements Initializable {
                 if (isRecoarding) {
                     recordGame();
                 }
-                if (player2.equals(Client.player.getUsername())) {
 
-//                    playVideo("win");
-                     client.addScore(player2);
-                } else {
-//                    playVideo("YouLose");
-                }
+                    playVideo("YouLose");
+
                 client.putInOutGame("outGame");
                 endOFGame = true;
             } else if (res5.equals(res1) && res5.equals(res9)) {
@@ -404,13 +378,9 @@ public class OnlineBoardController implements Initializable {
                 if (isRecoarding) {
                     recordGame();
                 }
-                if (player2.equals(Client.player.getUsername())) {
-
-//                    playVideo("win");
-                     client.addScore(player2);
-                } else {
-//                    playVideo("YouLose");
-                }
+ 
+                    playVideo("YouLose");
+  
                 client.putInOutGame("outGame");
                 endOFGame = true;
             } else if (res5.equals(res3) && res5.equals(res7)) {
@@ -422,13 +392,9 @@ public class OnlineBoardController implements Initializable {
                 if (isRecoarding) {
                     recordGame();
                 }
-                if (player2.equals(Client.player.getUsername())) {
-
-//                    playVideo("win");
-                     client.addScore(player2);
-                } else {
-//                    playVideo("YouLose");
-                }
+     
+                    playVideo("YouLose");
+                
                 client.putInOutGame("outGame");
 
                 endOFGame = true;
@@ -445,13 +411,10 @@ public class OnlineBoardController implements Initializable {
                 if (isRecoarding) {
                     recordGame();
                 }
-                if (player1.equals(Client.player.getUsername())) {
+      
 
-//                    playVideo("win");
-                     client.addScore(player1);
-                } else {
-//                    playVideo("YouLose");
-                }
+                    playVideo("win");
+    
                 client.putInOutGame("outGame");
 
                 endOFGame = true;
@@ -464,13 +427,10 @@ public class OnlineBoardController implements Initializable {
                 if (isRecoarding) {
                     recordGame();
                 }
-                if (player2.equals(Client.player.getUsername())) {
+          
 
-//                    playVideo("win");
-                     client.addScore(player2);
-                } else {
-//                    playVideo("YouLose");
-                }
+                    playVideo("win");
+            
                 client.putInOutGame("outGame");
                 endOFGame = true;
             }
@@ -486,10 +446,9 @@ public class OnlineBoardController implements Initializable {
                 }
                 if (player2.equals(Client.player.getUsername())) {
 
-//                    playVideo("win");
-                     client.addScore(player2);
+                    playVideo("win");
                 } else {
-//                    playVideo("YouLose");
+                    playVideo("YouLose");
                 }
                 client.putInOutGame("outGame");
                 endOFGame = true;
@@ -504,10 +463,9 @@ public class OnlineBoardController implements Initializable {
                 }
                 if (player2.equals(Client.player.getUsername())) {
 
-//                    playVideo("win");
-                     client.addScore(player2);
+                    playVideo("win");
                 } else {
-//                    playVideo("YouLose");
+                    playVideo("YouLose");
                 }
                 client.putInOutGame("outGame");
 
@@ -537,16 +495,21 @@ public class OnlineBoardController implements Initializable {
 
         if (bt.getText().equals("") && endOFGame == false) {
             if (xoCounter == 0) {
-                bt.setText("o");
+                bt.setText("X");
                 System.out.println(bt.idProperty().get().charAt(12));
 
-                ImageView xImageView = new ImageView(oImage);
+                ImageView xImageView = new ImageView(xImage);
                 bt.setGraphic(xImageView);
                 moves.add(move);
 
             } else {
-                bt.setText("x");
-                ImageView oImageView = new ImageView(xImage);
+                
+                bt.setText("o");
+                ImageView oImageView = new ImageView(oImage);
+             
+            
+                xoCounter=0;
+                
                 excludedNumbers.add(Integer.valueOf(String.valueOf(bt.idProperty().get().charAt(12))));
                 moves.add(move);
                 bt.setGraphic(oImageView);
@@ -634,7 +597,7 @@ public class OnlineBoardController implements Initializable {
                     Logger.getLogger(OnlineBoardController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }) : new KeyFrame(Duration.seconds(i + 0.1), (event) -> {
-                System.out.println("nothing");
+                
             }));
 
             timeline.setCycleCount(0);
@@ -721,19 +684,7 @@ public class OnlineBoardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-        ClientUtility.changeFontInAllNodes(borderPane);
-        try {
-            this.appClient = AppClient.getInstance("localhost", 3333);
-            this.client = appClient.getClient();
-            client.putInOutGame("inGame");
-
-        } catch (IOException ex) {
-            Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        playXO.addListener((observable, oldValue, newValue) -> {
-            pcPlay((int) newValue);
-        });
+         tacToeHard =new TicTacToeHard();
 
         myCustomFont = Font.loadFont(getClass().getResourceAsStream("/fonts/gumbo.otf"), 18);
         Set<Node> allNodes = borderPane.lookupAll("*");
@@ -865,13 +816,6 @@ public class OnlineBoardController implements Initializable {
 
     @FXML
     private void onBack(ActionEvent event) {
-         try {
-            client.signIn(Client.player.getUsername(), Client.player.getPassword());
-        } catch (IOException ex) {
-            Logger.getLogger(GameBoardController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(GameBoardController.class.getName()).log(Level.SEVERE, null, ex);
-        }
         try {
             ClientUtility.navigate(event, "HomeScreen.fxml");
         } catch (IOException ex) {
@@ -881,7 +825,7 @@ public class OnlineBoardController implements Initializable {
 
     private void playVideo(String status) {
         VideoPlayerController vc = new VideoPlayerController();
-        vc.setActualPath("src/media/"+status+".mp4");
+        vc.setActualPath("src/media/"+ status + ".mp4");
         try {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("videoPlayer.fxml"));
@@ -896,4 +840,6 @@ public class OnlineBoardController implements Initializable {
         }
 
     }
+   
+    
 }
