@@ -124,8 +124,8 @@ private static final char COMPUTER_PLAYER = 'O';
     Button[] buttons = {gameBoardBtn1, gameBoardBtn2, gameBoardBtn3, gameBoardBtn4, gameBoardBtn5, gameBoardBtn6, gameBoardBtn7, gameBoardBtn8, gameBoardBtn9};
     private int gameID;
     private int order = 0;
-    private AppClient appClient;
-    private Client client;
+//    private AppClient appClient;
+//    private Client client;
     Date now = new Date();
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy h:mm a");
     String formattedDate = formatter.format(now);
@@ -226,7 +226,6 @@ private static final char COMPUTER_PLAYER = 'O';
 
                     playVideo("win");
 
-                client.putInOutGame("outGame");
                 endOFGame = true;
 
             } else if (res1.equals(res4) && res1.equals(res7)) {
@@ -242,7 +241,6 @@ private static final char COMPUTER_PLAYER = 'O';
 
                     playVideo("win");
             
-                client.putInOutGame("outGame");
                 endOFGame = true;
             }
         } else if (res1.equals("o")) {
@@ -258,7 +256,6 @@ private static final char COMPUTER_PLAYER = 'O';
  
                     playVideo("YouLose");
       
-                client.putInOutGame("outGame");
                 endOFGame = true;
             } else if (res1.equals(res4) && res1.equals(res7)) {
                 System.out.println("O win");
@@ -292,7 +289,6 @@ private static final char COMPUTER_PLAYER = 'O';
 
                     playVideo("win");
 
-                client.putInOutGame("outGame");
                 endOFGame = true;
             } else if (res5.equals(res2) && res5.equals(res8)) {
                 System.out.println("X win");
@@ -308,7 +304,6 @@ private static final char COMPUTER_PLAYER = 'O';
                     playVideo("win");
 
 
-                client.putInOutGame("outGame");
                 endOFGame = true;
             } else if (res5.equals(res1) && res5.equals(res9)) {
                 System.out.println("X win");
@@ -323,7 +318,6 @@ private static final char COMPUTER_PLAYER = 'O';
 
                     playVideo("win");
 
-                client.putInOutGame("outGame");
                 endOFGame = true;
             } else if (res5.equals(res3) && res5.equals(res7)) {
                 System.out.println("X win");
@@ -338,7 +332,6 @@ private static final char COMPUTER_PLAYER = 'O';
 
                     playVideo("win");
 
-                client.putInOutGame("outGame");
                 endOFGame = true;
             }
         } else if (res5.equals("o")) {
@@ -353,7 +346,6 @@ private static final char COMPUTER_PLAYER = 'O';
                 }
                     playVideo("YouLose");
 
-                client.putInOutGame("outGame");
                 endOFGame = true;
             } else if (res5.equals(res2) && res5.equals(res8)) {
                 System.out.println("O win");
@@ -367,7 +359,6 @@ private static final char COMPUTER_PLAYER = 'O';
 
                     playVideo("YouLose");
 
-                client.putInOutGame("outGame");
                 endOFGame = true;
             } else if (res5.equals(res1) && res5.equals(res9)) {
                 System.out.println("O win");
@@ -381,7 +372,6 @@ private static final char COMPUTER_PLAYER = 'O';
  
                     playVideo("YouLose");
   
-                client.putInOutGame("outGame");
                 endOFGame = true;
             } else if (res5.equals(res3) && res5.equals(res7)) {
                 System.out.println("O win");
@@ -395,7 +385,6 @@ private static final char COMPUTER_PLAYER = 'O';
      
                     playVideo("YouLose");
                 
-                client.putInOutGame("outGame");
 
                 endOFGame = true;
             }
@@ -415,7 +404,6 @@ private static final char COMPUTER_PLAYER = 'O';
 
                     playVideo("win");
     
-                client.putInOutGame("outGame");
 
                 endOFGame = true;
             } else if (res9.equals(res8) && res9.equals(res7)) {
@@ -431,7 +419,6 @@ private static final char COMPUTER_PLAYER = 'O';
 
                     playVideo("win");
             
-                client.putInOutGame("outGame");
                 endOFGame = true;
             }
         } else if (res9.equals("o")) {
@@ -450,7 +437,6 @@ private static final char COMPUTER_PLAYER = 'O';
                 } else {
                     playVideo("YouLose");
                 }
-                client.putInOutGame("outGame");
                 endOFGame = true;
             } else if (res9.equals(res8) && res9.equals(res7)) {
                 System.out.println("O win");
@@ -467,10 +453,13 @@ private static final char COMPUTER_PLAYER = 'O';
                 } else {
                     playVideo("YouLose");
                 }
-                client.putInOutGame("outGame");
 
                 endOFGame = true;
             }
+        }
+        if(number==8 &&!endOFGame){
+        
+            playVideo("draw");
         }
     }
 
@@ -826,7 +815,10 @@ private static final char COMPUTER_PLAYER = 'O';
     private void playVideo(String status) {
         VideoPlayerController vc = new VideoPlayerController();
         vc.setActualPath("src/media/"+ status + ".mp4");
+        
         try {
+            
+            VideoPlayerController.meduimPCController = this;
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("videoPlayer.fxml"));
             Parent root = loader.load();
@@ -837,6 +829,25 @@ private static final char COMPUTER_PLAYER = 'O';
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+    }
+
+    void closeBoard() {
+        
+        try {
+            Parent root;
+            Stage stage;
+
+            FXMLLoader loader = new FXMLLoader(ClientUtility.class.getResource("HomeScreen.fxml"));
+            root = loader.load();
+            stage = (Stage) borderPane.getScene().getWindow();
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(GameBoardController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

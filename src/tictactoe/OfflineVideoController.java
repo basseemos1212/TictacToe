@@ -82,6 +82,7 @@ public class OfflineVideoController implements Initializable {
             case "draw":
                 setVideo("Draw");
                 break;
+                
             default:
                 setPlayerName(playerName);
                 setVideo("win");

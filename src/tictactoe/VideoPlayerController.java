@@ -6,14 +6,20 @@
 package tictactoe;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -23,6 +29,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -37,8 +44,6 @@ public class VideoPlayerController implements Initializable {
     private Label playerName;
     @FXML
     private Button backBtn;
-    @FXML
-    private Button playAgainBtn;
 
     private String path;
     private static String actualPath;
@@ -47,6 +52,8 @@ public class VideoPlayerController implements Initializable {
     private MediaPlayer mediaPlayer;
     @FXML
     private AnchorPane parent;
+
+    public static MeduimPCController meduimPCController;
 
     /**
      * Initializes the controller class.
@@ -85,11 +92,13 @@ public class VideoPlayerController implements Initializable {
 
     @FXML
     private void onBackClick(ActionEvent event) {
+        Stage stage = (Stage) backBtn.getScene().getWindow();
+        stage.close();
+
+        this.meduimPCController.closeBoard();
+
     }
 
-    @FXML
-    private void onPlayAgainClick(ActionEvent event) {
-    }
 
     public static String getActualPath() {
         return actualPath;
@@ -98,6 +107,10 @@ public class VideoPlayerController implements Initializable {
     public void setActualPath(String actualPath) {
         VideoPlayerController.actualPath = actualPath;
 
+    }
+
+    public void setGameBoardController(MeduimPCController meduimPCController) {
+        this.meduimPCController = meduimPCController;
     }
 
 }
