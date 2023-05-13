@@ -54,6 +54,9 @@ public class VideoPlayerController implements Initializable {
     private AnchorPane parent;
 
     public static MeduimPCController meduimPCController;
+     public static OnlineBoardController onlineBoardController;
+     public static boolean isonline = false;
+
 
     /**
      * Initializes the controller class.
@@ -94,8 +97,13 @@ public class VideoPlayerController implements Initializable {
     private void onBackClick(ActionEvent event) {
         Stage stage = (Stage) backBtn.getScene().getWindow();
         stage.close();
+        if(isonline){
+            this.onlineBoardController.closeBoard();
 
-        this.meduimPCController.closeBoard();
+        }else{
+            this.meduimPCController.closeBoard();
+
+        }
 
     }
 
@@ -110,7 +118,14 @@ public class VideoPlayerController implements Initializable {
     }
 
     public void setGameBoardController(MeduimPCController meduimPCController) {
+
         this.meduimPCController = meduimPCController;
+    }
+    
+    
+    public void setOnlineGameBoardController(OnlineBoardController onlineBoardController) {
+
+        this.onlineBoardController = onlineBoardController;
     }
 
 }

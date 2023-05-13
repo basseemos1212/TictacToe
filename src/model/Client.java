@@ -72,7 +72,7 @@ public class Client {
     public boolean listening = false;
 
     public Client(String serverIP, int serverPort) throws IOException {
-        socket = new Socket(serverIP, serverPort);
+        socket = new Socket("10.145.4.192", serverPort);
         inputStream = new DataInputStream(socket.getInputStream());
         outputStream = new DataOutputStream(socket.getOutputStream());
         messageQueue = new LinkedBlockingQueue<>();

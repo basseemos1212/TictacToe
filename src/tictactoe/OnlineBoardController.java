@@ -718,6 +718,8 @@ public class OnlineBoardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        VideoPlayerController.isonline  = true;
 
         ClientUtility.changeFontInAllNodes(borderPane);
         try {
@@ -789,7 +791,7 @@ public class OnlineBoardController implements Initializable {
 
     public void pcPlay(int number) {
         Timeline timeline = new Timeline(
-                number == 1 ? new KeyFrame(Duration.seconds(1 + 0.1), (event) -> {
+                number == 1 ? new KeyFrame(Duration.seconds(0.2), (event) -> {
 
                             try {
                                 RecordClick(gameBoardBtn1);
@@ -876,7 +878,8 @@ public class OnlineBoardController implements Initializable {
         VideoPlayerController vc = new VideoPlayerController();
         vc.setActualPath("src/media/" + status + ".mp4");
         try {
-
+            
+            VideoPlayerController.onlineBoardController = this;
             FXMLLoader loader = new FXMLLoader(getClass().getResource("videoPlayer.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
@@ -889,4 +892,27 @@ public class OnlineBoardController implements Initializable {
         }
 
     }
+    
+    
+        void closeBoard() {
+            
+            VideoPlayerController.isonline = false;
+        
+        try {
+            Parent root;
+            Stage stage;
+
+            FXMLLoader loader = new FXMLLoader(ClientUtility.class.getResource("HomeScreen.fxml"));
+            root = loader.load();
+            stage = (Stage) borderPane.getScene().getWindow();
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(GameBoardController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+   
 }
