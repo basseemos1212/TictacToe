@@ -81,7 +81,7 @@ public class ChooseDiffController implements Initializable {
         GameBoardController.playRecord=false;
         
         
-        GameBoardController gbc = loader.getController();
+        MeduimPCController gbc = loader.getController();
       
 
 

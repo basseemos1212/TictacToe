@@ -18,7 +18,6 @@
             <MediaView fx:id="mediaView" fitHeight="350.0" fitWidth="750.0" />
          </children>
       </VBox>
-      <Button fx:id="backBtn" alignment="CENTER" layoutX="170.0" layoutY="446.0" mnemonicParsing="false" onAction="#onBackClick" text="Back" AnchorPane.leftAnchor="100.0" />
-      <Button fx:id="playAgainBtn" alignment="CENTER" ellipsisString="" layoutX="602.0" layoutY="446.0" mnemonicParsing="false" onAction="#onPlayAgainClick" text="PlayAgain" textAlignment="CENTER" AnchorPane.rightAnchor="100.0" />
+      <Button fx:id="backBtn" alignment="CENTER" layoutX="379.0" layoutY="439.0" mnemonicParsing="false" onAction="#onBackClick" text="Back" AnchorPane.leftAnchor="379.0" />
    </children>
 </AnchorPane>

@@ -212,13 +212,13 @@ public class TicTacToe extends Application {
             // Set the dialog size to match the content
             dialog.getDialogPane().getScene().getWindow().sizeToScene();
             dialog.getDialogPane().getScene().setFill(Color.TRANSPARENT);*/
-            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+            /*Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 
             // Calculate the top-left position of the dialog
             double dialogX = screenBounds.getMinX() + (screenBounds.getWidth() - requestDialogPane.getPrefWidth()) / 4;
             double dialogY = screenBounds.getMinY() + (screenBounds.getHeight() - requestDialogPane.getPrefHeight()) / 4;
             requestDialog.setX(dialogX);
-            requestDialog.setY(dialogY);
+            requestDialog.setY(dialogY);*/
 
             /*Rectangle rect = new Rectangle((int)dialogStage.getWidth(),(int)dialogStage.getHeight());
             rect.setArcWidth(20);
@@ -265,13 +265,13 @@ public class TicTacToe extends Application {
                 window.hide();
 
             });
-            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+            /*Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 
             // Calculate the top-left position of the dialog
             double dialogX = screenBounds.getMinX() + (screenBounds.getWidth() - refuseDialogPane.getPrefWidth()) / 4;
             double dialogY = screenBounds.getMinY() + (screenBounds.getHeight() - refuseDialogPane.getPrefHeight()) / 4;
             dialogForRefuse.setX(dialogX);
-            dialogForRefuse.setY(dialogY);
+            dialogForRefuse.setY(dialogY);*/
             dialogForRefuse.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
@@ -295,13 +295,13 @@ public class TicTacToe extends Application {
                 window.hide();
 
             });
-            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+           /* Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 
             // Calculate the top-left position of the dialog
             double dialogX = screenBounds.getMinX() + (screenBounds.getWidth() - waitinfDialogPane.getPrefWidth()) / 2;
             double dialogY = screenBounds.getMinY() + (screenBounds.getHeight() - waitinfDialogPane.getPrefHeight()) / 2;
             waitingDialog.setX(dialogX);
-            waitingDialog.setY(dialogY);
+            waitingDialog.setY(dialogY);*/
             /*if (close) {
                 System.out.println("I am in close");
                 Platform.runLater(() -> {

@@ -506,6 +506,7 @@ public class OnlineBoardController implements Initializable {
         if(checkDraw.size()==9){
             System.out.println("draw");
             playVideo("draw");
+            client.putInOutGame("outGame");
             }
     }
 
