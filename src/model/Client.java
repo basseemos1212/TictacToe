@@ -45,7 +45,7 @@ import tictactoe.OnlineBoardController;
  */
 public class Client {
 
-    private Socket socket;
+    public Socket socket;
 
     public Socket getSocket() {
         return socket;
@@ -69,7 +69,7 @@ public class Client {
     public BooleanProperty acceptBooleanProperty = new SimpleBooleanProperty(false);
     String ImagePath;
     String senderName = "";
-    boolean listening = false;
+    public boolean listening = false;
 
     public Client(String serverIP, int serverPort) throws IOException {
         socket = new Socket(serverIP, serverPort);
@@ -83,6 +83,18 @@ public class Client {
         listenForMessages();
 
     }
+
+    public boolean isListening() {
+        return listening;
+    }
+
+    public void setListening(boolean listening) {
+        this.listening = listening;
+    }
+    
+    
+    
+    
 
     public boolean signUp(String username, String password, String ImagePath) throws IOException {
         JsonObject jsonObject = new JsonObject();
@@ -472,8 +484,10 @@ public class Client {
         try {
             socket.close();
             listening = false;
+            
             Thread.currentThread().interrupt();
             messageQueue.clear();
+            AppClient.closeAppClient();
 
         } catch (IOException ex) {
             //Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);

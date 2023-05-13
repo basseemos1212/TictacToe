@@ -41,4 +41,10 @@ public class AppClient {
     }
     
     
+    public static void closeAppClient() {
+        AppClient.instance = null ;
+    }
+    
+    
+    
 }

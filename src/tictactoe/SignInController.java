@@ -83,6 +83,8 @@ public class SignInController implements Initializable {
             this.appClient = AppClient.getInstance("localhost", 3333);
             this.client = appClient.getClient();
 
+            this.client.setListening(true);
+
         } catch (IOException ex) {
             Stage stage = new Stage();
             Toast.makeText(stage, "Server is off. Running on offline mode now!");
@@ -143,6 +145,19 @@ public class SignInController implements Initializable {
 
     @FXML
     private void signInonClick(ActionEvent event) throws IOException {
+        
+                try {
+            this.appClient = AppClient.getInstance("localhost", 3333);
+            this.client = appClient.getClient();
+
+            this.client.setListening(true);
+
+        } catch (IOException ex) {
+            Stage stage = new Stage();
+            Toast.makeText(stage, "Server is off. Running on offline mode now!");
+
+            //Logger.getLogger(SignupController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         try {
 
