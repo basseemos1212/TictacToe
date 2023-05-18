@@ -17,4 +17,4 @@ This project serves as a demonstration of skills acquired in Java programming, n
 
 ## 🔗 Check server Repository 
 
-[Server repository ](https://github.com/basseemos1212/TictacToe)
+[Server repository ](https://github.com/Amon3m/TictacToe-Server)
